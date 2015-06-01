@@ -1,10 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.StudentController;
-import domein.Docent;
 import domein.Student;
 
+@SuppressWarnings("serial")
 public class EnqueteServlet extends HttpServlet {
 	private Student s = new Student();
 	private StudentController sc = new StudentController();

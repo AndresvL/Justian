@@ -1,7 +1,8 @@
 package domein;
 
-import com.google.appengine.api.datastore.Blob;
+import java.sql.Blob;
 
+import org.hibernate.Hibernate;
 
 public class Vraag {
 	private String antwoord;
@@ -74,7 +75,13 @@ public class Vraag {
 	}
 
 	public void setAfbeelding(String afbeelding) {
+		byte[] af = afbeelding.getBytes();
+		System.out.println("blob "+af);
+
 		this.afbeelding = afbeelding;
+
+		
+		System.out.println(afbeelding);
 	}
 
 	public String getVraagstelling() {

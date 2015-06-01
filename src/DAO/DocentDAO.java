@@ -11,7 +11,6 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
-import dSUtil.SQLCon;
 import domein.Docent;
 
 public class DocentDAO {

@@ -14,11 +14,8 @@ import domein.Vraag;
 import domein.Antwoord;
 
 
+@SuppressWarnings("serial")
 public class ToetsServlet extends HttpServlet{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1120482309534L;
 	private AntwoordController antw = new AntwoordController();
 	private VraagController vrg = new VraagController();
 	private TijdController tijd = new TijdController();

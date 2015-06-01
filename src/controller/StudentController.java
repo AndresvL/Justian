@@ -1,6 +1,5 @@
 package controller;
 import DAO.StudentDAO;
-import domein.Docent;
 import domein.Student;
 
 public class StudentController {

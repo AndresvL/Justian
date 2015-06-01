@@ -7,18 +7,18 @@ import DAO.ToetsDAO;
 import DAO.VraagDAO;
 
 public class VraagController {
+	private ToetsDAO dao = new ToetsDAO();
+	private VraagDAO vraagDAO = new VraagDAO();
 	
-	VraagDAO vraagDAO = new VraagDAO();
 	public void addVraag(Vraag vr){
 		vraagDAO.addVraag(vr);
 	}
 	public Vraag getVraag(BlobKey blobkey){
 		return vraagDAO.getVraag(blobkey);
 	}
-	ToetsDAO dao = new ToetsDAO();
-	public Vraag eersteVraag() {
-		Vraag v = dao.getVraagByNr(1);
-		
+	
+	public Vraag eersteVraag(int nr) {
+		Vraag v = dao.getVraagByNr(nr);		
 		return v;
 	}
 
@@ -31,10 +31,11 @@ public class VraagController {
 		Vraag v = dao.getVraagByNr(nr);
 		return v;
 	}
-
-	public int getHuidigToetsNummer(){
-		return dao.getHuidigToetsNummer();
+	
+	public int getLaatsteVraag(int studentNr){
+		return vraagDAO.getLaatsteVraagNummer(studentNr);
 	}
+	
 	public int getVolgendToetsNummer(boolean newToets, int stNr){
 		return dao.getVolgendToetsNummer(newToets, stNr);
 	}

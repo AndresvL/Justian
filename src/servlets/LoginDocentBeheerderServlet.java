@@ -8,7 +8,8 @@ import javax.servlet.http.*;
 
 import controller.DocentController;
 import domein.Docent;
-import controller.DocentController;
+
+@SuppressWarnings("serial")
 public class LoginDocentBeheerderServlet extends HttpServlet {
 	private DocentController dc = new DocentController();
 	private Docent d = new Docent();

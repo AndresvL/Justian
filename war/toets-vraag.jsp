@@ -18,10 +18,8 @@
 						<th id="context">${context}</th>
 						<th><img id="ilustratie" alt="ilustratie" src="data:image/gif;base64,${plaatje}"></img></th>
 					</tr>
-					<tr></tr>
 					<tr id="vraagstelling">
 						<th>${vraag}</th>
-					</tr><br />
 					<tr class="antwoord">						
 						<th><input type="text" required name="antwoord" placeholder="Voer hier uw antwoord in"></th>
 						<th><button type="submit" name="rekenmachine" value="toon">rekenmachine</button>

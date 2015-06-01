@@ -5,7 +5,7 @@
  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 	<welcome-file-list>
-		<welcome-file>uploaden.jsp</welcome-file>
+		<welcome-file>login-student.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>login docent servlet</servlet-name>
@@ -33,7 +33,7 @@
 		<servlet-name>toets servlet</servlet-name>
 		<url-pattern>/toets-vraag.do</url-pattern>
 	</servlet-mapping>
-
+<!-- 
 	<servlet>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
 		<servlet-class>servlets.VragenAanmakenServlet</servlet-class>
@@ -41,9 +41,9 @@
 	<servlet-mapping>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
 		<url-pattern>/vraag-aanmaken.do</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>vragen bewerken servlet</servlet-name>
 		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
 	</servlet>
@@ -59,12 +59,13 @@
 	<servlet-mapping>
 		<servlet-name>vragen overzicht servlet</servlet-name>
 		<url-pattern>/vragen-overzicht.do</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>enquete servlet</servlet-name>
 		<servlet-class>servlets.EnqueteServlet</servlet-class>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>enquete servlet</servlet-name>
 		<url-pattern>/enquete.do</url-pattern>

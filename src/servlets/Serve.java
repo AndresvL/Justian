@@ -12,6 +12,7 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 import controller.VraagController;
 
+@SuppressWarnings("serial")
 public class Serve extends HttpServlet {
     private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 

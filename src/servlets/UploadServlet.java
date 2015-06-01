@@ -1,32 +1,18 @@
 package servlets;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
-import controller.VraagController;
-import domein.Vraag;
-
 @SuppressWarnings("serial")
 public class UploadServlet extends HttpServlet {
-	private String line = "";
-	private VraagController controller = new VraagController();
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
