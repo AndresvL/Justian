@@ -10,17 +10,17 @@
 		<div class="col-md-18" id="header" >
 			<img alt="" src="images/logo.png" style="margin: 10px;" height="80px"></img>	
 		</div>
-		<div id="msgs">
-			<% 
-			Object msgs = request.getAttribute("msgs"); 
-			if (msgs != null) { 	 
-				out.println(msgs); 
-				out.println(); 		
-			}	%>
-		</div>
 		<div class="container" id="content">
 			<h2>Log hier in als Docent of Beheerder</h2>
 			<div class="col-md-5">
+				<div id="msgs">
+					<% 
+					Object msgs = request.getAttribute("msgs"); 
+					if (msgs != null) { 	 
+						out.println(msgs); 
+						out.println(); 		
+					}	%>
+				</div>
 				<form action="login-docent.do">
 					<div class="form-group">
 						<input class="form-control" type="text" name="email" placeholder="Email" required>
