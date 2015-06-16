@@ -1,4 +1,5 @@
 package DAO;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -16,17 +17,20 @@ import domein.Vraag;
 
 public class ToetsDAO {
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-	//set volgende vraag
+	public int toetsNummer = 1;
+
+	// set volgende vraag
 	public Vraag getVraagByNr(int nr) {
 		Vraag v = null;
 		try {
 			Entity vraag = ds.get(KeyFactory.createKey("Vraag", nr));
 			v = new Vraag(Boolean.parseBoolean(vraag
 					.getProperty("rekenmachine").toString()), nr, vraag
-					.getProperty("context").toString(), (Text)vraag.getProperty(
-							"afbeelding"), vraag.getProperty("categorie")
-					.toString(), vraag.getProperty("opgave").toString(), vraag
-					.getProperty("antwoord").toString());
+					.getProperty("context").toString(),
+					(Text) vraag.getProperty("afbeelding"), vraag.getProperty(
+							"categorie").toString(), vraag
+							.getProperty("opgave").toString(), vraag
+							.getProperty("antwoord").toString());
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,43 +49,55 @@ public class ToetsDAO {
 		ds.put(antwoord);
 
 	}
-	//Moet nog aangepast worden
-//	public int getHuidigToetsNummer() {
-//		Connection conn = null;
-//		int toetsNummer = 0;
-//		try {
-//			conn = SQLCon.getConnection();
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("select MAX from toets");
-//			ResultSet rSet = pStmt.executeQuery();
-//			toetsNummer = rSet.getInt("toetsNummer");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			SQLCon.closeConnection(conn);
-//		}
-//		if (toetsNummer == 0)
-//			return 1;
-//		else
-//			return toetsNummer;
-//	}
+
+	// Moet nog aangepast worden
+	// public int getHuidigToetsNummer() {
+	// Connection conn = null;
+	// int toetsNummer = 0;
+	// try {
+	// conn = SQLCon.getConnection();
+	// PreparedStatement pStmt = conn
+	// .prepareStatement("select MAX from toets");
+	// ResultSet rSet = pStmt.executeQuery();
+	// toetsNummer = rSet.getInt("toetsNummer");
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// SQLCon.closeConnection(conn);
+	// }
+	// if (toetsNummer == 0)
+	// return 1;
+	// else
+	// return toetsNummer;
+	// }
 
 	public int getVolgendToetsNummer(boolean newToets, int studentNr) {
-		int toetsNummer = 1;
-		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);
+		boolean b = true;
+		Filter filter = new FilterPredicate("studentNummer",
+				FilterOperator.EQUAL, studentNr);
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
+				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			}
+			b = false;
 		}
-		if(newToets&&toetsNummer>1){
-		//!!Opgelet, als er wat uit de datastore "Toets" wordt verwijderd klopt de nummering niet meer
+		if (b) {
+			Query q1 = new Query("Toets");
+			PreparedQuery pq1 = ds.prepare(q1);
+			for (Entity e1 : pq1.asIterable()) {
+			int nr = Integer.parseInt(e1.getProperty("toetsNummer").toString());
+				if (toetsNummer <= nr) {
+					toetsNummer = nr+1;
+				}
+			}
 			Entity toets = new Entity("Toets", toetsNummer);
 			toets.setProperty("toetsNummer", toetsNummer);
 			toets.setProperty("studentNummer", studentNr);
 			ds.put(toets);
-		}
-
+			
+		}		
 		return toetsNummer;
 	}
 }

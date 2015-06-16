@@ -1,87 +1,131 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>Vraag Aanmaken</title>
-<link href="css.css" rel="stylesheet">
-</head>
-<body>
-	<div class="body">
-		<div class="header">
-			<img alt="" src="images/logo.png" style="margin: 10px;"></img>
-			<div id="links">
-				<a href="">Home</a> <a href="">Vragenbeheer</a> <a href="">Docenten</a>
-				<a href="">Resultaten</a>
+	<head>
+		<meta charset="utf-8 u00E0"/>
+		<title>Vraag Bewerken</title>
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid links" id="header">
+			<div class="row">
+				<div class="col-md-8">
+					<img alt="" src="images/logo.png" style="margin: 10px;" height="80px"></img>				
+				</div>
+				<div class="col-md-4">
+					<ul class="nav nav-tabs tabnav">
+					  <li role="presentation"><a href="#">Home</a></li>
+					  <li role="presentation" class="active"><a href="#">Vragenbeheer</a></li>
+					  <li role="presentation"><a href="#">Docenten</a></li>
+					  <li role="presentation"><a href="#">Resultaten</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		
-		<div class='opties'>
-			<table id='opties'>
-				<form id='vragen'>
-					<tr>
-							<th><button type="submit" name="image" value="image">Afbeelding</button>afbeeldingnaam.png</th>
-					</tr>
-					<tr>
-						<th id='border'>
-							<input type="radio" name="meet" value="Meetkunde">Meetkunde<br>
-							<input type="radio" name="verband" value="Verbanden">Verbanden<br>
-							<input type="radio" name="getal" value="Getallen">Getallen<br>
-							<input type="radio" name="verhouding" value="Verhoudingen">Verhoudingen
-						</th>
-					</tr>
-					<tr>
-							<th><input type="checkbox" name="verhouding" value="Verhoudingen">Rekekenmachine</th>
-					</tr>
-					<tr>
-							<th><input type="checkbox" name="verhouding" value="Verhoudingen">Multiple choice</th>
-					</tr>
+		<div class='container' id="content">
+			<div class="col-md-4">
+				<div class="row">
+					<h3>Opties</h3>
+				</div>
+				<form class="form-group" id='vragen'>
+					<div class="row">
+						<input type="file" name="afbeelding" accept="image/*">
+   		 				<p class="help-block">Geef afbeelding indien nodig</p>
+					</div>
+					<div class="row">
+						<select class="form-control" name="categorie">
+			                <option value="meet">Meetkunde</option>
+			                <option value="verband">Verbanden</option>
+			                <option value="getal">Getallen</option>
+			                <option value="verhoud">Verhoudingen</option>
+		            	</select>
+					</div>
+					<div class="row">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="rekenmachine">Rekekenmachine
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="multiplechoice">Multiplechoice
+							</label>
+						</div>
+					</div>
 				</form>
-			</table>
-		</div>
-		<div class="vragen">
-		<h3>Vraag aanmaken</h3>
-			<table style="text-align: left;">
+			</div>
+			<div class="col-md-7 col-md-offset-1">
+				<h3>Vraag bewerken</h3>
 				<form id="vragen">
-					<tr>
-						<th><label name="context">Context</label></th>
-						<th><input type="text" id='context' name="context"
-							placeholder="Vul hier de context in"></th>
-					</tr>
-					<tr>
-						<th><label name="Opgave">Opgave</label></th>
-						<th><input type="text" name="Opgave"
-							placeholder="Vul hier de opgave in"></th>
-					</tr>
-					<tr>
-						<th><label name="antwoord1">Antwoord 1</label></th>
-						<th><input type="text" name="antwoord1"
-							placeholder="Vul hier antwoord in"></th>
-					</tr>
-					<tr>
-						<th><label name="antwoord2">Antwoord 2</label></th>
-						<th><input type="text" name="antwoord2"
-							placeholder="Vul hier multiple choice antwoord indien multiple choice"></th>
-					</tr>
-					<tr>
-						<th><label name="antwoord3">Antwoord 3</label></th>
-						<th><input type="text" name="antwoord3"
-							placeholder="Vul hier multiple choice antwoord indien multiple choice"></th>
-					</tr>
-					<tr>
-						<th><label name="antwoord4">Antwoord 4</label></th>
-						<th><input type="text" name="antwoord4"
-							placeholder="Vul hier multiple choice antwoord indien multiple choice"></th>
-					</tr>
-					<tr>
-						<th><button type="reset" name="cancel" value="cancel">Annuleren</button></th>
-						<th><button type="submit" name="next" value="next">Verder</button></th>
-					</tr>
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Context</label>
+						</div>
+						<div class="col-md-6">
+							<textarea class="form-control" name="context" required placeholder="Vul hier de context in indien aanwezig" rows="3"></textarea>
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Opgave</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="opgave" required placeholder="Vul hier de opgave in">
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Antwoord 1</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="antwoord1" required placeholder="Vul hier het correcte antwoord in">
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Antwoord 2</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="antwoord2" required placeholder="Vul indien multiple choice">
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Antwoord 3</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="antwoord3" required placeholder="Vul indien multiple choice">
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Antwoord 4</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="antwoord4" required placeholder="Vul indien multiple choice">
+						</div>
+					</div> 
+					<div class="row form-group">
+						<div class="col-md-3 col-md-offset-2">
+							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+						</div>
+						<div class="col-md-3">
+							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>
+						</div>
+					</div>
 				</form>
-			</table>
+			</div>
 		</div>
-		<div class="footer">
-			<h6>© Direct-ACT & Justian Knobbout</h6>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-18">
+					<div id="footer">
+						<h6>© Direct-ACT & Justian Knobbout</h6>
+					</div>				
+				</div>
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>

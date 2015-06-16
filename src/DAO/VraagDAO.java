@@ -72,27 +72,26 @@ public class VraagDAO {
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		// het laatste toetsnummer wordt meegegeven aan toetsNummer;
-		int toetsNummer = 1;
+		int toetsNummer = 0;
 		for (Entity toets : pq.asIterable()) {
-			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer")
-					.toString());
+			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
 		}
 		// zoek in Entity Antwoord naar het laatste vraagNummer van het
 		// meegegeven toetsNr
-		int vraagNummer = 1;
-		if (toetsNummer > 1) {
+		int vraagNummer = 0;
+		if (toetsNummer > 0) {
 			Filter filter1 = new FilterPredicate("toetsNummer",
 					FilterOperator.EQUAL, toetsNummer);
 			Query q1 = new Query("Antwoord").setFilter(filter1);
 			PreparedQuery pq1 = ds.prepare(q1);
-
-			
 			for (Entity antwoord : pq1.asIterable()) {
-				vraagNummer = Integer.parseInt(antwoord.getProperty(
-						"vraagNummer").toString());
+				if(vraagNummer < Integer.parseInt(antwoord.getProperty(
+						"vraagNummer").toString())){
+					vraagNummer = Integer.parseInt(antwoord.getProperty(
+							"vraagNummer").toString());
+				}
 			}
 		}
-
-		return vraagNummer;
+		return vraagNummer+1;
 	}
 }

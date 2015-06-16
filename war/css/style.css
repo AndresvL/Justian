@@ -1,0 +1,56 @@
+#header {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	background-color: #49DCDC;
+	padding-top: 0px;
+}
+#footer {
+	background-color: white;
+	position: fixed;
+	height: 40px;
+	left: 0px;
+	bottom: 0px;
+	border-top: solid #49DCDC;
+	display: table;
+	width: 100%;
+	text-align: center;
+}
+#content {
+	padding-top: 5%;
+	overflow:auto;
+}
+#codeLijst{
+	border: solid;
+	border-color: #49DCDC;
+	overflow: auto;
+	height: 150px;
+	text-align: center;
+}
+#msgs{
+	color: #FF4136;
+}
+#context {
+	vertical-align: text-top;
+	height: 200px;
+}
+#ilustratie {
+	max-height: 200px;
+}
+.links a{
+	float: right;
+	top: 100px;
+	position: relative;
+}
+.vol{
+	width: 100%;
+}
+.tabnav{
+	position:relative;
+	bottom: 42px;	
+}
+
+.tabnav a{
+	color: #606060;
+}
