@@ -9,10 +9,10 @@
 	<body>
 		<div class="container-fluid links" id="header">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<img alt="" src="images/logo.png" style="margin: 10px;" height="80px"></img>				
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<ul class="nav nav-tabs tabnav">
 					  <li role="presentation"><a href="#">Home</a></li>
 					  <li role="presentation" class="active"><a href="#">Vragenbeheer</a></li>
