@@ -20,7 +20,7 @@ public class EnqueteServlet extends HttpServlet {
 		Student stud = (Student) req.getSession().getAttribute("student");
 		s.setCode(stud.getCode());
 		s.setSchool(req.getParameter("school"));
-		s.setJaar(req.getParameter("lesjaar"));
+		s.setJaar(req.getParameter("lesJaar"));
 		s.setProfiel(req.getParameter("profiel"));
 		s.setNiveau(req.getParameter("niveau"));
 		s.setGeslacht(req.getParameter("geslacht"));

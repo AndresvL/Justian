@@ -32,12 +32,8 @@
 #msgs{
 	color: #FF4136;
 }
-#context {
-	vertical-align: text-top;
-	height: 200px;
-}
 #ilustratie {
-	max-height: 200px;
+	max-width: 100%;
 }
 .links a{
 	float: right;

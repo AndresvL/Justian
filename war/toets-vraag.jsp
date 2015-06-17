@@ -27,30 +27,34 @@
 				<h2>Vraag ${vraagnummer}</h2>
 			</div>
 			<div class="row">
-				<table style="text-align: left;">
-					<tr class="vraag+context">
-						<th id="context">${context}</th>
-						<th><img id="ilustratie" alt="ilustratie" src="data:image/gif;base64,${plaatje}"></img></th>
-					</tr>
-					<tr id="vraagstelling">
-						<th>${vraag}</th>
-					</tr>
-				</table>
-			</div>
-			</br>
-			<div class="row">				
-				<form id="antwoord" action="toets-vraag.do" method="get">
-					<div class="form-group">
-						<div class="col-md-3">
-							<input class="form-control" type="text" required name="antwoord" placeholder="Voer hier uw antwoord in">
-						</div>
-						<div class="col-md-3">
-							<button class="btn btn-default" type="submit" name="rekenmachine" value="toon">rekenmachine</button>
-							<button class="btn btn-default" type="submit" name="button" value="volgende">volgende</button>
+				<div class="col-md-6">
+					<div class="row">
+						<p>${context}</p>
+					</div>
+					<div class="row">
+						<p><b>${vraag}</b></p>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<form id="antwoord" action="toets-vraag.do" method="get">
+								<div class="form-group">
+									<div class="row">
+										<input class="form-control" type="text" required name="antwoord" placeholder="Voer hier uw antwoord in">
+									</div>
+									<div class="row">
+										<button class="btn btn-default" type="submit" name="rekenmachine" value="toon">rekenmachine</button>
+										<button class="btn btn-default" type="submit" name="button" value="volgende">volgende</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-				</form>
+				</div>
+				<div class="col-md-6">
+					<img id="ilustratie" alt="ilustratie" src="data:image/gif;base64,${plaatje}"></img>
+				</div>
 			</div>
+		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 		  <div class="container-fluid">
 		    <h6>© Direct-ACT & Justian Knobbout</h6>
