@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.StudentController;
+import DAO.StudentDAO;
 import domein.Docent;
 import domein.Student;
 
 @SuppressWarnings("serial")
 public class StudentcodeServlet extends HttpServlet {
-	private StudentController sc = new StudentController();
 	private Student s = new Student();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,7 +27,7 @@ public class StudentcodeServlet extends HttpServlet {
 			int getal = (int) (888888 * Math.random() + 111111);
 //			if (!sc.checkCode(getal, done)) {
 				s.setCode(getal);
-				sc.setStudentCode(s, d.getEmail());
+				StudentDAO.createStudent(s, d.getEmail());
 				msgs += getal + "<br />";
 //			} else {
 //				System.out.println("deze code staat WEL in de database "

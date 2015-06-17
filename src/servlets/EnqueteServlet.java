@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.StudentController;
+import DAO.StudentDAO;
 import domein.Student;
 
 @SuppressWarnings("serial")
 public class EnqueteServlet extends HttpServlet {
 	private Student s = new Student();
-	private StudentController sc = new StudentController();
-
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Student stud = (Student) req.getSession().getAttribute("student");
@@ -28,14 +27,10 @@ public class EnqueteServlet extends HttpServlet {
 		s.setGemCijfer(req.getParameter("gemWisCijfer"));
 		String datum = req.getParameter("blijvenZitten");
 		s.setIsBlijvenZitten(datum);
-		if (sc.createStudent(s)) {
+		StudentDAO.fillStudent(s);
 			RequestDispatcher rd = null;
 			rd = req.getRequestDispatcher("/toets-vraag.jsp");
 			rd.forward(req, resp);
-		}else{
-			System.out.println("Er is wat fout gegaan bij het sturen "
-					+ "van de enquete gegevens naar de datbase");
 		}
-	}
 
 }

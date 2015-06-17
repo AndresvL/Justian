@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.ToetsDAO;
+
 import com.google.appengine.api.datastore.Text;
 
-import controller.AntwoordController;
-import controller.VraagController;
 import controller.TijdController;
 import domein.Vraag;
 import domein.Antwoord;
@@ -19,8 +19,6 @@ import domein.Antwoord;
 
 @SuppressWarnings("serial")
 public class ToetsServlet extends HttpServlet{
-	private AntwoordController antw = new AntwoordController();
-	private VraagController vrg = new VraagController();
 	private TijdController tijd = new TijdController();
 	
 	
@@ -41,9 +39,9 @@ public class ToetsServlet extends HttpServlet{
 			a.setToetsNummer((Integer)req.getSession().getAttribute("toetsnummer"));
 			a.setVraagNummer(nr);
 			a.setHeeftRekenmachineGebruikt(false);
-			antw.verwerk(a);		
-			if(vrg.isVolgendeVraag(nr + 1) != false){				
-				Vraag v = vrg.volgendeVraag(nr + 1);
+			ToetsDAO.addAntwoord(a);		
+			if(ToetsDAO.getVraagByNr(nr + 1) != null){				
+				Vraag v = ToetsDAO.getVraagByNr(nr + 1);
 				if (v.getAfbeelding().equals("NULL")) {
 					Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
 					v.setAfbeelding(blob);

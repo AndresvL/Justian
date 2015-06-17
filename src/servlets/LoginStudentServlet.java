@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.StudentDAO;
+import DAO.ToetsDAO;
+import DAO.VraagDAO;
+
 import com.google.appengine.api.datastore.Text;
 
-import controller.VraagController;
-import controller.StudentController;
 import controller.TijdController;
 import domein.Student;
 import domein.Vraag;
@@ -19,22 +21,20 @@ import domein.Vraag;
 public class LoginStudentServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 194503685680L;
-	private StudentController controller = new StudentController();
-	private VraagController vc = new VraagController();
 	private TijdController tijd = new TijdController();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Student s = new Student();
 		int code = Integer.parseInt(req.getParameter("code"));
-		Vraag v = vc.eersteVraag(vc.getLaatsteVraag(code));	
+		Vraag v = ToetsDAO.getVraagByNr(VraagDAO.getLaatsteVraagNummer(code));	
 		if (v.getAfbeelding().equals("NULL")) {
 			Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
 			v.setAfbeelding(blob);
 		}
 		RequestDispatcher rd = null;
-		if (controller.checkCode(code)) {
-			s = controller.setStudent(s, code);
+		if (StudentDAO.checkStudent(code)) {
+			s = StudentDAO.getStudentByCode(code);
 			req.getSession().setAttribute("student", s);
 			req.getSession().setAttribute("vraag", v.getVraagstelling());
 			req.getSession().setAttribute("vraagnummer", v.getNummer());
@@ -49,7 +49,7 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("seconden",
 					tijd.getSeconde(System.currentTimeMillis()));
 			req.getSession().setAttribute("toetsnummer",
-					vc.getVolgendToetsNummer(true, s.getCode()));
+					ToetsDAO.getVolgendToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
 				rd = req.getRequestDispatcher("/enquete.jsp");
 			} else {

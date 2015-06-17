@@ -12,20 +12,29 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 import domein.Docent;
-
-public class DocentDAO {
-	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
-	public Docent getDocent(String em, String ww) {
-		Entity docent = new Entity("Docent");
-		docent.setProperty("email", "Andresvanlummel@gmail.com");
-		docent.setProperty("wachtwoord", "andres");
-		docent.setProperty("voornaam", "Andres");
-		docent.setProperty("achternaam", "van Lummel");
-		docent.setProperty("schoolNaam", "Corderius");
-		docent.setProperty("schoolPlaats", "Bunschoten");
-		ds.put(docent);
-
+/**
+ * deze klasse beheert alle docent-gerelateerde database acties.
+ * @author Direct-Act
+ *
+ */
+public final class DocentDAO {
+	/**
+	 * vereiste variabele om met de google datastore te verbinden
+	 */
+	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+	/**
+	 * haalt een docent op uit de database<p>
+	 * uit een loginpoging worden een email en wachtwoord gehaald. dit zijn de twee <br>
+	 * gegevens waarmee we in de database kunnen kijken en exact de goede docent kunnen selecteren.<p>
+	 * als eerste wordt een lege docent aangemaakt. vervolgens wordt er gekeken of er een docent<br>
+	 * in de database staat die het ingevulde email en wachtwoord heeft. <br>
+	 * als deze bestaat wordt de docent ingevuld met de gegevens uit de database.
+	 * @param em het emailadres van de docent, gehaald uit een loginpoging
+	 * @param ww het wachtwoord van de docent, gehaald uit een loginpoging
+	 * @return de docent wordt teruggegeven. deze kan null of volledig zijn.
+	 */
+	public static Docent getDocent(String em, String ww) {
+	
 		Docent d = null;
 		// filter voor ingevoerde email en wachtwoord
 		Filter email = new FilterPredicate("email", FilterOperator.EQUAL, em);

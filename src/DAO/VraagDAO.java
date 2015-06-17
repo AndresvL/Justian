@@ -18,10 +18,10 @@ import com.google.appengine.api.datastore.Text;
 
 import domein.Vraag;
 
-public class VraagDAO {
-	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+public final class VraagDAO {
+	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 
-	public void addVraag(Vraag vr) {
+	public static void addVraag(Vraag vr) {
 		Entity vraag = new Entity("Vraag", vr.getNummer());
 		Text af = new Text(vr.getBlobAfbeelding());
 		vraag.setProperty("categorie", vr.getType());
@@ -35,7 +35,7 @@ public class VraagDAO {
 	}
 
 	// getVraag uit blob file
-	public Vraag getVraag(BlobKey blobkey) {
+	public static Vraag getVraag(BlobKey blobkey) {
 		Vraag vr = null;
 		try {
 			InputStream is = new BlobstoreInputStream(blobkey);
@@ -65,7 +65,7 @@ public class VraagDAO {
 		return vr;
 	}
 
-	public int getLaatsteVraagNummer(int studentNr) {
+	public static int getLaatsteVraagNummer(int studentNr) {
 		// zoekt het toetsNummer in Entity Toets
 		// met als filter het studentNr
 		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);

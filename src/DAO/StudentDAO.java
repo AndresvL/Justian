@@ -7,17 +7,33 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import domein.Student;
-
-public class StudentDAO {
-	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-	
-	public void setStudentCode(Student s, String email) {
+/**
+ * Deze klasse beheert alle student-gerelateerde database acties
+ * @author Direct-Act
+ *
+ */
+public final class StudentDAO {
+	/**
+	 * vereiste variabele om verbinding te maken met de google datastore
+	 */
+	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+	/**
+	 * deze methode wordt aangeroepen als de student wordt gegenereerd door de docent
+	 * @param s de gegenereerde student
+	 * @param email het emailadres van de docent die de student genereert.
+	 */
+	public static void createStudent(Student s, String email) {
 		Entity student = new Entity("Student", s.getCode());
 		student.setProperty("docent_email", email);
 		ds.put(student);
 	}
-	
-	public boolean createStudent(Student s) {
+	/**
+	 * deze methode vult de student met de gegevens uit de enquette<p>
+	 * eerst zal de student een unieke key worden toegewezen, vervolgens<br>
+	 * zal de methode de student in de database invullen.
+	 * @param s de student die de enquette invult.
+	 */
+	public static void fillStudent(Student s) {
 		Key key=KeyFactory.createKey("Student", s.getCode());
 		String email = "";
 		try{
@@ -36,7 +52,6 @@ public class StudentDAO {
 		student.setProperty("wannBlijvenZitten", s.getIsBlijvenZitten());
 		student.setProperty("docent_email", email);
 		ds.put(student);
-		return true;
 	}
 
 //	public ArrayList<Student> getStudenten() {
@@ -158,7 +173,13 @@ public class StudentDAO {
 //		return Studenten;
 //
 //	}
-	public boolean checkStudent(int code){
+	/**
+	 * deze methode checkt of de meegegeven studentcode bestaat.
+	 * 
+	 * @param code de studentcode
+	 * @return een boolean die bepaalt of de student bestaat of niet.
+	 */
+	public static boolean checkStudent(int code){
 		boolean b = false;
 		Key key=KeyFactory.createKey("Student", code);
 		try{
@@ -174,8 +195,15 @@ public class StudentDAO {
 		return b;
 		
 	}
-	
-	public Student getStudentByCode(int code) {
+	/**
+	 * deze methode haalt een studen uit de database gebaseerd op een studentcode.<p>
+	 * eerst wordt er een key gegenereerd gebaseerd op de studentcode<br>
+	 * vervolgens wordt de database doorzocht naar die student<br>
+	 * ten slotte wordt de student ingevuld met de 
+	 * @param code de code van de student die je wilt ophalen.
+	 * @return de student van de bijbehorende code.
+	 */
+	public static Student getStudentByCode(int code) {
 		Key key=KeyFactory.createKey("Student", code);
 		Student s = new Student();
 		s.setCode(code);
