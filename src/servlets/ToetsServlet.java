@@ -24,24 +24,26 @@ public class ToetsServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		RequestDispatcher rd = null;
-		if(req.getParameter("button").equals("volgende")){
-			Antwoord a = new Antwoord();
-			int nrs = (Integer)req.getSession().getAttribute("vraagnummer");
-			Vraag huidig = new Vraag(nrs, (String)req.getSession().getAttribute("type"));			
-			int nr = huidig.getNummer();
+		if(req.getParameter("button").equals("volgende")&&req.getSession().getAttribute("vraagnummer") != null){
+			int vraagnr = (Integer)req.getSession().getAttribute("vraagnummer");
+			String antwoord  = req.getParameter("antwoord");			
+			int toetsnr = (Integer)req.getSession().getAttribute("toetsnummer");
 			int uur = (Integer)req.getSession().getAttribute("uren");
 			int min = (Integer)req.getSession().getAttribute("minuten");
 			int sec = (Integer)req.getSession().getAttribute("seconden");
-			a.setNummer(nr);
-			a.setTijd(tijd.getVraagTijd(sec, min, uur, (System.currentTimeMillis())));
-			a.setAntwoord((String)req.getParameter("antwoord"));
-			a.setCategorie(huidig.getType());
-			a.setToetsNummer((Integer)req.getSession().getAttribute("toetsnummer"));
-			a.setVraagNummer(nr);
-			a.setHeeftRekenmachineGebruikt(false);
-			ToetsDAO.addAntwoord(a);		
-			if(ToetsDAO.getVraagByNr(nr + 1) != null){				
-				Vraag v = ToetsDAO.getVraagByNr(nr + 1);
+
+			int t = tijd.getVraagTijd(sec, min, uur, (System.currentTimeMillis()));
+			Vraag huidig = ToetsDAO.getVraagByNr(vraagnr);
+			boolean goedAntwoord = false;
+			if(huidig.getAntwoord().equals(antwoord)){
+				goedAntwoord = true;
+			}
+			Antwoord a = new Antwoord(vraagnr, antwoord, t, false, toetsnr, vraagnr, goedAntwoord);
+			ToetsDAO.addAntwoord(a);
+			
+			
+			if(ToetsDAO.getVraagByNr(vraagnr + 1) != null){				
+				Vraag v = ToetsDAO.getVraagByNr(vraagnr + 1);
 				if (v.getAfbeelding().equals("NULL")) {
 					Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
 					v.setAfbeelding(blob);
@@ -54,9 +56,12 @@ public class ToetsServlet extends HttpServlet{
 				req.getSession().setAttribute("rekenmachine", v.isRekenmachine());
 				req.getSession().setAttribute("uren", tijd.getUur(System.currentTimeMillis()));
 				req.getSession().setAttribute("minuten", tijd.getMinuut(System.currentTimeMillis()));
-				req.getSession().setAttribute("seconden", tijd.getSeconde(System.currentTimeMillis()));
+				req.getSession().setAttribute("seconden", tijd.getSeconde(System.currentTimeMillis()));				
 				rd = req.getRequestDispatcher("/toets-vraag.jsp");
+				
 			}else rd = req.getRequestDispatcher("/toets-eind.jsp");
+		}else{
+			rd = req.getRequestDispatcher("/");
 		}
 		rd.forward(req,resp);
 	}	

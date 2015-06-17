@@ -17,7 +17,7 @@
 						<label>School</label>
 					</div>
 					<div class="col-md-3">
-						<input class="form-control" type="text" name="school" required	placeholder="Bijvoorbeeld Cornelius">
+						<input class="form-control" type="text" name="school" required	placeholder="Bijvoorbeeld Cornelius" autofocus>
 					</div>
 				</div> 
 				<div class="row form-group">
@@ -25,8 +25,15 @@
 						<label>Lesjaar</label>
 					</div>
 					<div class="col-md-3">
-						<input class="form-control" type="number" name="lesjaar" required placeholder="Bijvoorbeeld 5">
-					</div>
+						<select class="form-control" name="lesJaar">
+		                <option value="1">Klas 1</option>
+		                <option value="2">Klas 2</option>
+		                <option value="3">Klas 3</option>
+		                <option value="4">Klas 4</option>
+		                <option value="5">Klas 5</option>
+		                <option value="6">Klas 6</option>
+		            	</select>
+		            </div>
 				</div>
 				<div class="row form-group">
 					<div class="col-md-2 col-md-offset-1">
@@ -61,7 +68,6 @@
 						<select class="form-control" name="geslacht">
 		                <option value="man">Man</option>
 		                <option value="vrouw">Vrouw</option>
-		                <option value="VMBO">VMBO</option>
 		            	</select>
 		            </div>
 				</div>
@@ -80,11 +86,12 @@
 					<div class="col-md-3">
 						<select class="form-control" name="blijvenZitten">
 		                <option value="nee">Nee</option>
-		                <option value="klas 1">Klas 1</option>
-		                <option value="klas 2">Klas 2</option>
-		                <option value="klas 3">Klas 3</option>
-		                <option value="klas 4">Klas 4</option>
-		                <option value="klas 5">Klas 5</option>
+		                <option value="1">Klas 1</option>
+		                <option value="2">Klas 2</option>
+		                <option value="3">Klas 3</option>
+		                <option value="4">Klas 4</option>
+		                <option value="5">Klas 5</option>
+		                <option value="6">Klas 6</option>
 		            	</select>
 		            </div>
 				</div>

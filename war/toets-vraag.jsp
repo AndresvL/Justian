@@ -30,7 +30,7 @@
 			<form id="antwoord" action="toets-vraag.do" method="get">
 				<div class="form-group">
 					<div class="col-md-3">
-						<input class="form-control" type="text" required name="antwoord" placeholder="Voer hier uw antwoord in">
+						<input class="form-control" type="text" required autofocus name="antwoord" placeholder="Voer hier uw antwoord in">
 					</div>
 					<div class="col-md-3">
 						<button class="btn btn-default" type="submit" name="rekenmachine" value="toon">rekenmachine</button>
