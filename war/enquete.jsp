@@ -46,7 +46,7 @@
 						<label>Lesjaar</label>
 					</div>
 					<div class="col-md-3">
-						<select class="form-control" name="lesJaar">
+						<select class="form-control" name="lesjaar">
 							<option value="1">Klas 1</option>
 							<option value="2">Klas 2</option>
 							<option value="3">Klas 3</option>
