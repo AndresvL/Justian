@@ -1,21 +1,22 @@
-#header {
-	position: relative;
-	left: 0px;
-	top: 0px;
-	width: 100%;
+#headernew{
 	background-color: #49DCDC;
-	padding-top: 0px;
+	border-color: #39CCCC;
 }
-#footer {
-	background-color: white;
-	position: fixed;
-	height: 40px;
-	left: 0px;
-	bottom: 0px;
-	border-top: solid #49DCDC;
-	display: table;
-	width: 100%;
+#toggle {
+	background-color: #29bCbC;
+	border-color: #39CCCC;
+}
+#toggle:hover{
+	background-color: #19aCaC;
+}
+.actief{
+	background-color: #39CCCC;
+}
+#footernew{
 	text-align: center;
+	background-color: white;
+	border-color: #39CCCC;	
+	border-top: solid #49DCDC;
 }
 #content {
 	padding-top: 5%;
@@ -31,12 +32,8 @@
 #msgs{
 	color: #FF4136;
 }
-#context {
-	vertical-align: text-top;
-	height: 200px;
-}
 #ilustratie {
-	max-height: 200px;
+	max-width: 100%;
 }
 .links a{
 	float: right;
@@ -53,4 +50,8 @@
 
 .tabnav a{
 	color: #606060;
+}
+.tablecontent{
+	overflow: auto;
+	height: 400px;
 }
