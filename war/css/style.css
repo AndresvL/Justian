@@ -47,8 +47,8 @@
 	width: 100%;
 }
 .tabnav{
-	position:relative;
-	bottom: 42px;	
+	position:absolute;
+	bottom: 1%;
 }
 
 .tabnav a{

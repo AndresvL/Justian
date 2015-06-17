@@ -1,0 +1,127 @@
+body {
+	font-family: Verdana, Serif;
+}
+
+#table {
+	display: table;
+	text-align: left;
+}
+
+#links {
+	top: 100px;
+	right: 100px;
+	position: fixed;
+}
+
+#links a {
+	padding: 0px 20px;
+}
+
+.antwoord {
+	position: absolute;
+	padding-top: 5%;
+}
+
+#context {
+	height: 200px;
+}
+
+#border {
+	border: 1px solid #49DCDC;
+}
+
+.opties {
+	position: absolute;
+	margin-top: 150px;
+	margin-left: 10%;
+	margin-right: auto;
+	text-align: left;
+}
+
+#opties th {
+	text-align: left;
+	width: 60px;
+}
+
+.header {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	background-color: #49DCDC;
+	display: table;
+	padding-top: 0px;
+}
+
+.footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	border-top: solid #49DCDC;
+	display: table;
+	width: 100%;
+}
+.footer h6{
+	
+}
+
+#ilustratie {
+	max-height: 200px;
+}
+.vragen {
+	position: absolute;
+	margin-top: 20%;
+	margin-left: 30%;
+	margin-right: auto;	
+}
+
+.vragen label {
+	padding: 10px;
+	width: 200px;
+	float: left;
+}
+
+.vragen input{
+	padding: 5px;
+	margin: 10px;
+}
+.vragen select{
+	padding: 10px;
+	margin: 15px;
+	width: 100px;
+}
+.vragen .button{
+	padding: 5px;
+	margin: 10px;
+}
+#codelijst{
+	position: absolute;
+	margin-top: 5%;
+	margin-left: 28%;
+	margin-right: auto;
+	overflow: auto;
+}
+.content {
+	margin-top: 15%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+.content th {
+	vertical-align: bottom;
+}
+.content label {
+	padding: 10px;
+	margin: 10px;
+}
+
+.content input {
+	padding: 10px;
+	margin: 10px;
+	width: 400px;
+}
+
+.content button {
+	padding: 5px;
+	margin: 10px;
+}

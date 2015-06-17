@@ -49,6 +49,11 @@ public class ToetsDAO {
 		ds.put(antwoord);
 
 	}
+	
+	public Antwoord getAntwoordByVraagNr(int nr){
+		return null;
+		
+	}
 
 	// Moet nog aangepast worden
 	// public int getHuidigToetsNummer() {
