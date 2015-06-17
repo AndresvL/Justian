@@ -26,13 +26,21 @@
 					<h2>Studentcodes generen</h2>
 			</div>
 			<form action="studentcode.do">
+				<div id="msgs">
+						<% 
+						Object melding = request.getAttribute("melding"); 
+						if (melding != null) { 	 
+							out.println(melding); 
+							out.println(); 		
+						}	%>
+				</div>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-3">
 				    		<label class="control-label">Aantal nieuwe studenten</label>
 				    	</div>
 						<div class="col-md-2">
-							<input class="form-control" type="number" name="aantal" required autofocus="on">
+							<input class="form-control" type="number" name="aantal" required autofocus>
 				    	</div>
 					    <div class="col-md-2">
 					    	<button class="btn btn-default" style="width:100%;" type="submit" name="button" value="code">Genereer	Codes</button>
@@ -41,7 +49,6 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-3">
-						</br>
 						<div class="form-control" id="codeLijst">
 							<p>Studentcodes:</p>
 							<% Object msgs = request.getAttribute("msgs"); 

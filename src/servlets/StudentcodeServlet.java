@@ -19,25 +19,23 @@ public class StudentcodeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		RequestDispatcher rd = null;
 		int aantal = Integer.parseInt(req.getParameter("aantal"));
-		Docent d = (Docent) req.getSession().getAttribute("docent");
-		System.out.println("session na login" + req.getSession().getAttribute("docent"));
-		String msgs = "";
-		//genereert code tussen 111.111 en 999.999
-		for (int i = 0; i < aantal; i++) {
-			int getal = (int) (888888 * Math.random() + 111111);
-//			if (!sc.checkCode(getal, done)) {
+		if (aantal <= 40) {
+			Docent d = (Docent) req.getSession().getAttribute("docent");
+			String msgs = "";
+			// genereert code tussen 111.111 en 999.999
+			for (int i = 0; i < aantal; i++) {
+				int getal = (int) (888888 * Math.random() + 111111);
 				s.setCode(getal);
 				sc.setStudentCode(s, d.getEmail());
 				msgs += getal + "<br />";
-//			} else {
-//				System.out.println("deze code staat WEL in de database "
-//						+ getal);
-//				aantal++;
-//			}
+			}
+			req.setAttribute("msgs", msgs);
+		} else {
+			String melding = "Vul een getal kleiner dan 40 in!";
+			req.setAttribute("melding", melding);
 		}
-		RequestDispatcher rd = null;
-		req.setAttribute("msgs", msgs);
 		rd = req.getRequestDispatcher("/studentcode-aanmaken.jsp");
 		rd.forward(req, resp);
 	}
