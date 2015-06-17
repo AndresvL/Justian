@@ -39,21 +39,31 @@ public class ToetsDAO {
 	}
 
 	public void addAntwoord(Antwoord a) {
-		Entity antwoord = new Entity("Antwoord");
-		antwoord.setProperty("antwoord", a.getAntwoord());
-		antwoord.setProperty("tijd", a.getTijd());
-		antwoord.setProperty("heeftRekenmachineGebruikt",
-				a.getHeeftRekenmachineGebruikt());
-		antwoord.setProperty("toetsNummer", a.getToetsNummer());
-		antwoord.setProperty("vraagNummer", a.getVraagNummer());
-		ds.put(antwoord);
+		synchronized (this) {
+			Entity antwoord = new Entity("Antwoord");
+			antwoord.setProperty("antwoord", a.getAntwoord());
+			antwoord.setProperty("tijd", a.getTijd());
+			antwoord.setProperty("heeftRekenmachineGebruikt",
+					a.getHeeftRekenmachineGebruikt());
+			antwoord.setProperty("toetsNummer", a.getToetsNummer());
+			antwoord.setProperty("vraagNummer", a.getVraagNummer());
+			antwoord.setProperty("checkAntwoord", a.checkAntwoord());
+			ds.put(antwoord);
+		}
+	}
 
-	}
-	
-	public Antwoord getAntwoordByVraagNr(int nr){
-		return null;
-		
-	}
+//	public Map<String, Object> getAlleAntwoorden(int studentNr){
+//		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);	
+//		Query q = new Query("Antwoord").setFilter(filter);
+//		PreparedQuery pq = ds.prepare(q);
+//		Map<String, Object> alleAntwoorden = new LinkedHashMap<String, Object>();
+//		System.out.println("check ");	
+//		for(Entity antwoord : pq.asIterable()){
+//			alleAntwoorden.putAll(antwoord.getProperties());
+//			System.out.println("antwoord.getProperties() "+antwoord.getProperties());			
+//		}
+//		return alleAntwoorden;
+//	}
 
 	// Moet nog aangepast worden
 	// public int getHuidigToetsNummer() {

@@ -29,9 +29,8 @@ public class Vraag {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Vraag(int nr, String cat){
+	public Vraag(int nr){
 		this.setNummer(nr);
-		this.setType(cat);
 	}
 	
 	public void setType(String t){
@@ -67,6 +66,9 @@ public class Vraag {
 	}
 
 	public void setContext(String context) {
+		if(context.equals("NULL")){
+			context = "";
+		}
 		this.context = context;
 	}
 

@@ -3,25 +3,29 @@ package domein;
 import java.io.Serializable;
 
 public class Antwoord implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nummer;
 	private String antw;
 	private int toetsNummer;
 	private int tijd;
 	private int vraagNummer;
 	private boolean heeftRekenmachineGebruikt;
+	private boolean goedAntwoord;
 	private enum categorie{getal,meet,verhouding,verband}
 	categorie cat;
 	public Antwoord(){
 	}
-	public Antwoord(int nr,String antw,String cat, int t, int tN, boolean hRG, int vN){
-		setNummer(nr);
-		setAntwoord(antw);
-		setCategorie(cat);
-		setTijd(t);
-		setToetsNummer(tN);
-		setHeeftRekenmachineGebruikt(hRG);
-		setVraagNummer(vN);
-		setToetsNummer(tN);
+	public Antwoord(int nr,String antw, int t, boolean hRG, int tN, int vN, boolean gA){
+		this.setNummer(nr);
+		this.setAntwoord(antw);
+		this.setTijd(t);		
+		this.setHeeftRekenmachineGebruikt(hRG);
+		this.setToetsNummer(tN);
+		this.setVraagNummer(vN);
+		this.setcheckAntwoord(gA);
 	}
 	
 	public void setNummer(int nr) {
@@ -36,17 +40,6 @@ public class Antwoord implements Serializable{
 	}
 	public void setAntwoord(String antw){
 		this.antw = antw;
-	}
-	public void setCategorie(String t){
-		for(categorie tt : categorie.values()){
-			if(tt.name().equals(t)){
-				this.cat = tt;
-			}
-		}
-	}
-	
-	public String getCategorie(){
-		return cat.toString();
 	}
 	public void setTijd(int seconden) {
 		this.tijd = seconden;		
@@ -71,5 +64,11 @@ public class Antwoord implements Serializable{
 	}
 	public void setVraagNummer(int vraagNummer){
 		this.vraagNummer = vraagNummer;
+	}
+	public void setcheckAntwoord(boolean gA) {
+		this.goedAntwoord = gA;
+	}
+	public boolean checkAntwoord(){
+		return goedAntwoord;
 	}
 }
