@@ -99,4 +99,26 @@
 		<servlet-name>Serve</servlet-name>
 		<url-pattern>/serve</url-pattern>
 	</servlet-mapping>
+	
+<!-- 	<filter>
+		<filter-name>InlogFilterStudent</filter-name>
+		<filter-class>servlets.InlogFilterStudentServlet</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>InlogFilterStudent</filter-name>
+		<url-pattern>/*</url-pattern>
+		<DISPATCHER>REQUEST</DISPATCHER>
+		<DISPATCHER>RESPONSE</DISPATCHER>
+	</filter-mapping>
+	 -->
+	<!-- <filter>
+		<filter-name>InlogFilterDocent</filter-name>
+		<filter-class>servlets.InlogFilterDocentServlet</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>InlogFilterDocent</filter-name>
+		<url-pattern>/secure/studentcode-aanmaken</url-pattern>
+		<DISPATCHER>REQUEST</DISPATCHER>
+		<DISPATCHER>RESPONSE</DISPATCHER>
+	</filter-mapping> -->
 </web-app> 

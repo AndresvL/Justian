@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,14 +28,20 @@ public class LoginStudentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Student s = new Student();
 		int code = Integer.parseInt(req.getParameter("code"));
-		Vraag v = ToetsDAO.getVraagByNr(VraagDAO.getLaatsteVraagNummer(code));	
-		if (v.getAfbeelding().equals("NULL")) {
-			Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
-			v.setAfbeelding(blob);
-		}
-		RequestDispatcher rd = null;
+//		Vraag v = ToetsDAO.getVraagByNr(VraagDAO.getLaatsteAntwoord(code));	
+		RequestDispatcher rd = null;		
 		if (StudentDAO.checkStudent(code)) {
 			s = StudentDAO.getStudentByCode(code);
+			ArrayList<Vraag> vraag = new ArrayList<Vraag>();
+			vraag = Adaptief.set1();			
+			Vraag v = vraag.get(0);
+			if (v.getAfbeelding().equals("NULL")) {
+				Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
+				v.setAfbeelding(blob);
+			}
+		
+			req.getSession().setAttribute("set1", vraag);
+			req.getSession().setAttribute("aantal", 1);
 			req.getSession().setAttribute("student", s);
 			req.getSession().setAttribute("vraag", v.getVraagstelling());
 			req.getSession().setAttribute("vraagnummer", v.getNummer());
@@ -51,9 +58,9 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("toetsnummer",
 					ToetsDAO.getVolgendToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
-				rd = req.getRequestDispatcher("/enquete.jsp");
+				rd = req.getRequestDispatcher("enquete.jsp");
 			} else {
-				rd = req.getRequestDispatcher("/toets-vraag.jsp");
+				rd = req.getRequestDispatcher("toets-vraag.jsp");
 			}
 		} else {
 			req.setAttribute("msgs", "code bestaat niet");

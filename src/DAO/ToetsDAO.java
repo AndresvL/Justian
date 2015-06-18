@@ -65,6 +65,7 @@ public final class ToetsDAO {
 		antwoord.setProperty("tijd", a.getTijd());
 		antwoord.setProperty("heeftRekenmachineGebruikt",
 				a.getHeeftRekenmachineGebruikt());
+		antwoord.setProperty("checkAntwoord", a.checkAntwoord());
 		antwoord.setProperty("toetsNummer", a.getToetsNummer());
 		antwoord.setProperty("vraagNummer", a.getVraagNummer());
 		ds.put(antwoord);
@@ -75,27 +76,6 @@ public final class ToetsDAO {
 		return null;
 		
 	}
-
-	// Moet nog aangepast worden
-	// public int getHuidigToetsNummer() {
-	// Connection conn = null;
-	// int toetsNummer = 0;
-	// try {
-	// conn = SQLCon.getConnection();
-	// PreparedStatement pStmt = conn
-	// .prepareStatement("select MAX from toets");
-	// ResultSet rSet = pStmt.executeQuery();
-	// toetsNummer = rSet.getInt("toetsNummer");
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// } finally {
-	// SQLCon.closeConnection(conn);
-	// }
-	// if (toetsNummer == 0)
-	// return 1;
-	// else
-	// return toetsNummer;
-	// }
 	/**
 	 * deze methode haalt het volgende toetsnummer op.<p>
 	 * 

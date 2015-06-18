@@ -26,16 +26,21 @@ public class StudentcodeServlet extends HttpServlet {
 			// genereert code tussen 111.111 en 999.999
 			for (int i = 0; i < aantal; i++) {
 				int getal = (int) (888888 * Math.random() + 111111);
-				s.setCode(getal);
-				StudentDAO.createStudent(s, d.getEmail());
-				msgs += getal + "<br />";
+				if(StudentDAO.checkCode(getal)){
+					s.setCode(getal);
+					StudentDAO.createStudent(s, d.getEmail());
+					msgs += getal + "<br />";
+				}else{
+					aantal++;
+				}
+				
 			}
 			req.setAttribute("msgs", msgs);
 		} else {
 			String melding = "Vul een getal kleiner dan 40 in!";
 			req.setAttribute("melding", melding);
 		}
-		rd = req.getRequestDispatcher("/studentcode-aanmaken.jsp");
+		rd = req.getRequestDispatcher("studentcode-aanmaken.jsp");
 		rd.forward(req, resp);
 	}
 }

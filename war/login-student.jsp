@@ -7,7 +7,11 @@
 		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>	
+<<<<<<< HEAD
+		<nav class="navbar navbar-default" id="headernew">
+=======
 		<nav class="navbar navbar-default navbar-static-top" id="headernew">
+>>>>>>> origin/master
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -66,7 +70,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<form id="studentInlog" action="login-student.do" method="get">
+				<form id="studentInlog" action="/login-student.do" method="get">
 	  				<div class="col-md-3">
 						<input class="form-group form-control" type="number" name="code" placeholder="Voer hier uw code in" required autofocus="on">
 					</div>

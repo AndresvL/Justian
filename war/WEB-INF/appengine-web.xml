@@ -12,8 +12,7 @@
 	</system-properties>
 
 	<sessions-enabled>true</sessions-enabled>
-
-	<async-session-persistence enabled="true" />
+	<!--     <async-session-persistence enabled="true" /> -->
 
 
 </appengine-web-app>

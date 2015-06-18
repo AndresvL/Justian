@@ -3,17 +3,28 @@
 	<head>
 		<meta charset="utf-8 u00E0"/>
 		<title>Vragen Bewerken</title>
+<<<<<<< HEAD
+=======
 		<script type="text/javascript" src="/js/jquery-2.1.4.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+>>>>>>> origin/master
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>	
+<<<<<<< HEAD
+		<nav class="navbar navbar-default" id="headernew">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" id="toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+=======
 		<nav class="navbar navbar-default navbar-static-top" id="headernew">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
 		      <button type="button" class="navbar-toggle collapsed toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+>>>>>>> origin/master
 		        <span class="sr-only">Toggle navigation</span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
@@ -25,6 +36,16 @@
 		    </div>
 	        <div id="navbar" class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
 	          <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
+	            <li><a href="#">Home</a></li>
+	            <li class="actief"><a href="#">Vragenbeheer</a></li>
+	            <li><a href="#">Docenten</a></li>
+	            <li><a href="#">Resultaten</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>	
+=======
 	            <li><a href="docent-dash.jsp">Home</a></li>
 	     		<li class="dropdown toggle">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vragenbeheer<span class="caret"></span></a>
@@ -53,6 +74,7 @@
 	        </div>
 	      </div>
 	    </nav>
+>>>>>>> origin/master
 		<div class='container' id="content">
 			<form class="form-group" action="vraag-aanmaken.do">
 				<div class="col-md-4">

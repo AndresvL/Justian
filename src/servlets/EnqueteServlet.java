@@ -20,7 +20,7 @@ public class EnqueteServlet extends HttpServlet {
 		Student stud = (Student) req.getSession().getAttribute("student");
 		s.setCode(stud.getCode());
 		s.setSchool(req.getParameter("school"));
-		s.setJaar(req.getParameter("lesjaar"));
+		s.setJaar(req.getParameter("lesJaar"));
 		s.setProfiel(req.getParameter("profiel"));
 		s.setNiveau(req.getParameter("niveau"));
 		s.setGeslacht(req.getParameter("geslacht"));
@@ -28,9 +28,9 @@ public class EnqueteServlet extends HttpServlet {
 		String datum = req.getParameter("blijvenZitten");
 		s.setIsBlijvenZitten(datum);
 		StudentDAO.fillStudent(s);
-			RequestDispatcher rd = null;
-			rd = req.getRequestDispatcher("/toets-vraag.jsp");
-			rd.forward(req, resp);
+		RequestDispatcher rd = null;
+		rd = req.getRequestDispatcher("toets-vraag.jsp");
+		rd.forward(req, resp);
 		}
 
 }
