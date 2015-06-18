@@ -7,7 +7,11 @@
 		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>	
+<<<<<<< HEAD
 		<nav class="navbar navbar-default" id="headernew">
+=======
+		<nav class="navbar navbar-default navbar-static-top" id="headernew">
+>>>>>>> origin/master
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -45,8 +49,10 @@
 				</form>
 			</div>
 		</div>
-		<div id="footer">
-			<h6>© Direct-ACT & Justian Knobbout</h6>
-		</div>
+		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
+		  <div class="container-fluid">
+		    <h6>© Direct-ACT & Justian Knobbout</h6>
+		  </div>
+		</nav>
 	</body>
 </html>

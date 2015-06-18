@@ -78,7 +78,9 @@ public final class ToetsDAO {
 	}
 	/**
 	 * deze methode haalt het volgende toetsnummer op.<p>
-	 * eerst wordt 
+	 * 
+	 * de methode haalt het volgende toetsnummer uit de database, vergelijkt deze met de huidige<br>
+	 * als het volgende toetsnummer hoger is dan het huidige, dan wordt het huidige nummer overschreven/
 	 * @param studentNr het student nummer van de student die de toets aan het maken is.
 	 * @return het toetsnummer van de volgende toets.
 	 */

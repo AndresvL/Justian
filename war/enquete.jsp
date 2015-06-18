@@ -7,7 +7,11 @@
 		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>
+<<<<<<< HEAD
 		<nav class="navbar navbar-default" id="headernew">
+=======
+		<nav class="navbar navbar-default navbar-static-top" id="headernew">
+>>>>>>> origin/master
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -46,7 +50,11 @@
 						<label>Lesjaar</label>
 					</div>
 					<div class="col-md-3">
+<<<<<<< HEAD
 						<select class="form-control" name="lesJaar">
+=======
+						<select class="form-control" name="lesjaar">
+>>>>>>> origin/master
 							<option value="1">Klas 1</option>
 							<option value="2">Klas 2</option>
 							<option value="3">Klas 3</option>
@@ -123,8 +131,10 @@
 				</div>
 			</form>
 		</div>
-		<div id="footer">
-			<h6>© Direct-ACT & Justian Knobbout</h6>
-		</div>
+		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
+			<div class="container-fluid">
+				<h6>© Direct-ACT & Justian Knobbout</h6>
+			</div>
+		</nav>
 	</body>
 </html>

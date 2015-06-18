@@ -22,10 +22,18 @@ import com.google.appengine.api.datastore.Text;
 
 import domein.Student;
 import domein.Vraag;
+/**
+ * deze klasse beheert alle vraag-gerelateerde database acties
+ * @author Direct-Act
+ *
+ */
 
 public final class VraagDAO {
 	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
+/**
+ * deze methode voegt een vraag toe aan de database
+ * @param vr het vraag object dat toegevoegd dient te worden
+ */
 	public static void addVraag(Vraag vr) {
 		Entity vraag = new Entity("Vraag", vr.getNummer());
 		Text af = new Text(vr.getBlobAfbeelding());
@@ -39,8 +47,12 @@ public final class VraagDAO {
 		vraag.setProperty("antwoord", vr.getAntwoord());
 		ds.put(vraag);
 	}
-
-	// getVraag uit blob file
+/**
+ * deze methode haalt een vraag uit een blob file
+ * @param blobkey de blobkey
+ * @return de vraag die opgevraagd wordt
+ */
+	
 	public static Vraag getVraag(BlobKey blobkey) {
 		Vraag vr = null;
 		try {
@@ -65,25 +77,25 @@ public final class VraagDAO {
 			}
 			br.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return vr;
 	}
-
-	public static int getLaatsteAntwoord(int studentNr) {
-		// zoekt het toetsNummer in Entity Toets
-		// met als filter het studentNr
+/**
+ * deze methode haalt het laatste vraagnummer op als de toets vroegtijdig is afgesloten.
+ * <p>eerst zoekt de methode het toetsnummer met als filter studentnr<br>vervolgens wordt het hoogste toetsnummer meegegeven<br>
+ * daarna wordt in die toets het hoogste vraagnummer geselecteerd om terug te geven.
+ * @param studentNr het studentnummer van de student die de toets hervat.
+ * @return het vraagnummer
+ */
+	public static int getLaatsteVraagNummer(int studentNr) {
 		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
-		// het laatste toetsnummer wordt meegegeven aan toetsNummer;
 		int toetsNummer = 0;
 		for (Entity toets : pq.asIterable()) {
 			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
 		}
-		// zoek in Entity Antwoord naar het laatste vraagNummer van het
-		// meegegeven toetsNr
 		int vraagNummer = 0;
 		if (toetsNummer > 0) {
 			Filter filter1 = new FilterPredicate("toetsNummer",
