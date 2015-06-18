@@ -6,6 +6,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+
 import domein.Student;
 /**
  * Deze klasse beheert alle student-gerelateerde database acties
@@ -53,126 +54,27 @@ public final class StudentDAO {
 		student.setProperty("docent_email", email);
 		ds.put(student);
 	}
+	/**
+	 * deze methode checkt of de meegegeven studentcode bestaat.
+	 * 
+	 * @param code de studentcode
+	 * @return een boolean die bepaalt of de student bestaat of niet.
+	 */
+	public static boolean checkCode(int code){
+		boolean b = false;
 
-//	public ArrayList<Student> getStudenten() {
-//		Connection conn = null;
-//		ArrayList<Student> Studenten = new ArrayList<Student>();
-//		try {
-//			conn = SQLCon.getConnection();
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("select * from student");
-//			ResultSet rSet = pStmt.executeQuery();
-//			while (rSet.next()) {
-//				Student s = new Student();
-//				s.setCode(rSet.getInt("studencode"));
-//				s.setSchool(rSet.getString("school"));
-//				s.setJaar(rSet.getInt("lesjaar"));
-//				s.setProfiel(rSet.getString("profiel"));
-//				s.setNiveau(rSet.getString("niveau"));
-//				s.setGeslacht(rSet.getString("geslacht"));
-//				s.setGemCijfer(rSet.getDouble("gemCijfer"));
-//				s.setIsBlijvenZitten(rSet.getString("isBlijvenZitten"));
-//				Studenten.add(s);
-//			}
-//			pStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			SQLCon.closeConnection(conn);
-//		}
-//		return Studenten;
-//
-//	}
-
-//	public ArrayList<Student> getStudentByGeslacht(String ges) {
-//		Connection conn = null;
-//		ArrayList<Student> Studenten = new ArrayList<Student>();
-//		try {
-//			conn = SQLCon.getConnection();
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("select * from student where geslacht = '?'");
-//			pStmt.setString(1, ges);
-//			ResultSet rSet = pStmt.executeQuery();
-//			while (rSet.next()) {
-//				Student s = new Student();
-//				s.setCode(rSet.getInt("studentcode"));
-//				s.setSchool(rSet.getString("school"));
-//				s.setJaar(rSet.getInt("lesjaar"));
-//				s.setNiveau(rSet.getString("niveau"));
-//				s.setGeslacht(rSet.getString("geslacht"));
-//				s.setGemCijfer(rSet.getDouble("gemCijfer"));
-//				s.setIsBlijvenZitten(rSet.getString("isBlijvenZitten"));
-//				Studenten.add(s);
-//			}
-//			pStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			SQLCon.closeConnection(conn);
-//		}
-//		return Studenten;
-//
-//	}
-
-//	public ArrayList<Student> getStudentByniveau(String niv) {
-//		Connection conn = null;
-//		ArrayList<Student> Studenten = new ArrayList<Student>();
-//		try {
-//			conn = SQLCon.getConnection();
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("select * from student where niveau = '?'");
-//			pStmt.setString(1, niv);
-//			ResultSet rSet = pStmt.executeQuery();
-//			while (rSet.next()) {
-//				Student s = new Student();
-//				s.setCode(rSet.getInt("studentcode"));
-//				s.setSchool(rSet.getString("school"));
-//				s.setJaar(rSet.getInt("lesjaar"));
-//				s.setNiveau(rSet.getString("niveau"));
-//				s.setGeslacht(rSet.getString("geslacht"));
-//				s.setGemCijfer(rSet.getDouble("gemCijfer"));
-//				s.setIsBlijvenZitten(rSet.getString("isBlijvenZitten"));
-//				Studenten.add(s);
-//			}
-//			pStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			SQLCon.closeConnection(conn);
-//		}
-//		return Studenten;
-//
-//	}
-
-//	public ArrayList<Student> getStudentByLesjaar(String jaar) {
-//		Connection conn = null;
-//		ArrayList<Student> Studenten = new ArrayList<Student>();
-//		try {
-//			conn = SQLCon.getConnection();
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("select * from student where lesjaar = '?'");
-//			pStmt.setString(1, jaar);
-//			ResultSet rSet = pStmt.executeQuery();
-//			while (rSet.next()) {
-//				Student s = new Student();
-//				s.setCode(rSet.getInt("studentcode"));
-//				s.setSchool(rSet.getString("school"));
-//				s.setJaar(rSet.getInt("lesjaar"));
-//				s.setNiveau(rSet.getString("niveau"));
-//				s.setGeslacht(rSet.getString("geslacht"));
-//				s.setGemCijfer(rSet.getDouble("gemCijfer"));
-//				s.setIsBlijvenZitten(rSet.getString("isBlijvenZitten"));
-//				Studenten.add(s);
-//			}
-//			pStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			SQLCon.closeConnection(conn);
-//		}
-//		return Studenten;
-//
-//	}
+		Key key=KeyFactory.createKey("Student", code);
+		try{
+			@SuppressWarnings("unused")
+			Entity getKey = ds.get(key);	
+			b = false;
+			
+		}catch (EntityNotFoundException e) {			
+			b = true;
+		}
+		return b;
+		
+	}
 	/**
 	 * deze methode checkt of de meegegeven studentcode bestaat.
 	 * 
@@ -183,17 +85,15 @@ public final class StudentDAO {
 		boolean b = false;
 		Key key=KeyFactory.createKey("Student", code);
 		try{
-			Entity getKey = ds.get(key);			
-			if(getKey != null){
+			Entity getKey = ds.get(key);	
+			if(getKey!=null){
 				b = true;
 			}
 			
-		}catch (EntityNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}catch (EntityNotFoundException e) {			
+			b = false;
 		}
-		return b;
-		
+		return b;		
 	}
 	/**
 	 * deze methode haalt een studen uit de database gebaseerd op een studentcode.<p>

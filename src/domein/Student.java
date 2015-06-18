@@ -46,6 +46,7 @@ public class Student implements Serializable{
 	}
 
 	public void setJaar(String jaar) {
+		System.out.println(jaar);
 		this.jaar = Integer.parseInt(jaar);
 	}
 

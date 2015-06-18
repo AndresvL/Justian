@@ -33,8 +33,7 @@ public final class DocentDAO {
 	 * @param ww het wachtwoord van de docent, gehaald uit een loginpoging
 	 * @return de docent wordt teruggegeven. deze kan null of volledig zijn.
 	 */
-	public static Docent getDocent(String em, String ww) {
-	
+	public static Docent getDocent(String em, String ww) {	
 		Docent d = null;
 		// filter voor ingevoerde email en wachtwoord
 		Filter email = new FilterPredicate("email", FilterOperator.EQUAL, em);

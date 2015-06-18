@@ -1,8 +1,10 @@
 package domein;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Text;
 
-public class Vraag {
+public class Vraag implements Serializable {
 	private String antwoord;
 	private boolean rekenmachine;
 	private boolean isMultiplechoice;
