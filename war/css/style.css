@@ -2,18 +2,6 @@
 	background-color: #49DCDC;
 	border-color: #39CCCC;
 }
-<<<<<<< HEAD
-#toggle {
-	background-color: #29bCbC;
-	border-color: #39CCCC;
-}
-#toggle:hover{
-	background-color: #19aCaC;
-}
-.actief{
-	background-color: #39CCCC;
-}
-=======
 .toggle {
 	background-color: #29bCbC;
 	border-color: #39CCCC;
@@ -24,7 +12,6 @@
 .actief{
 	background-color: #39CCCC;
 }
->>>>>>> origin/master
 #footernew{
 	text-align: center;
 	background-color: white;
