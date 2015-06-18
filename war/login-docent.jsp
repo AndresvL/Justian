@@ -7,7 +7,7 @@
 		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>	
-		<nav class="navbar navbar-default" id="headernew">
+		<nav class="navbar navbar-default navbar-static-top" id="headernew">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">

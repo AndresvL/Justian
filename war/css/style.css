@@ -2,11 +2,11 @@
 	background-color: #49DCDC;
 	border-color: #39CCCC;
 }
-#toggle {
+.toggle {
 	background-color: #29bCbC;
 	border-color: #39CCCC;
 }
-#toggle:hover{
+.toggle:hover{
 	background-color: #19aCaC;
 }
 .actief{
