@@ -31,7 +31,7 @@
 		          	<ul class="dropdown-menu">
 			            <li><a href="vraag-overzicht.jsp">Overzicht</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li class="disabled"><a href="vraag-aanmaken.jsp">Aanmaken</a></li>
+			            <li class="disabled"><a href="#">Aanmaken</a></li>
 			            <li><a href="vraag-uploaden.jsp">Uploaden</a></li>
 		   			</ul>
 		        </li>

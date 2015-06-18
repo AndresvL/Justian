@@ -38,7 +38,7 @@
 	     		<li class="dropdown toggle">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
-			            <li class="disabled"><a href="docent-aanmaken.jsp">Aanmaken</a></li>
+			            <li class="disabled"><a href="#">Aanmaken</a></li>
 		   			</ul>
 		        </li>
 	     		<li class="dropdown">

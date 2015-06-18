@@ -46,7 +46,7 @@
 		          	<ul class="dropdown-menu">
 			            <li><a href="student-overzicht.jsp">Overzicht</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li class="disabled"><a href="studentcode-aanmaken.jsp">Aanmaken</a></li>
+			            <li class="disabled"><a href="#">Aanmaken</a></li>
 		   			</ul>
 		        </li>
 	          </ul>

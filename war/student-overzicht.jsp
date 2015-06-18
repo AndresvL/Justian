@@ -44,7 +44,7 @@
 	     		<li class="dropdown toggle">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Studenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
-			            <li class="disabled"><a href="student-overzicht.jsp">Overzicht</a></li>
+			            <li class="disabled"><a href="#">Overzicht</a></li>
 			            <li role="separator" class="divider"></li>
 			            <li><a href="studentcode-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>

@@ -29,7 +29,7 @@
 	     		<li class="dropdown toggle">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vragenbeheer<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
-			            <li class="disabled"><a href="vraag-overzicht.jsp">Overzicht</a></li>
+			            <li class="disabled"><a href="#">Overzicht</a></li>
 			            <li role="separator" class="divider"></li>
 			            <li><a href="vraag-aanmaken.jsp">Aanmaken</a></li>
 			            <li><a href="vraag-uploaden.jsp">Uploaden</a></li>
