@@ -43,6 +43,9 @@
 .vol{
 	width: 100%;
 }
+.half{
+	width: 50%;
+}
 .tabnav{
 	position:absolute;
 	bottom: 1%;
@@ -54,4 +57,7 @@
 .tablecontent{
 	overflow: auto;
 	height: 400px;
+}
+#vraagcontext{
+	height: 200px;
 }

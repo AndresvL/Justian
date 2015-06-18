@@ -24,30 +24,40 @@
 	    </nav>	
 		<div class="container" id="content">
 			<div class="row">
-				<h2>Vraag ${vraagnummer}</h2>
+				<div class="form-group">
+					<div class="col-md-12">
+						<h2>Vraag ${vraagnummer}</h2>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="row">
-						<p>${context}</p>
-					</div>
-					<div class="row">
-						<p><b>${vraag}</b></p>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<form id="antwoord" action="toets-vraag.do" method="get">
-								<div class="form-group">
-									<div class="row">
-										<input class="form-control" type="text" required name="antwoord" placeholder="Voer hier uw antwoord in">
-									</div>
-									<div class="row">
-										<button class="btn btn-default" type="submit" name="rekenmachine" value="toon">rekenmachine</button>
-										<button class="btn btn-default" type="submit" name="button" value="volgende">volgende</button>
-									</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<div id="vraagcontext">
+								<div class="row">
+									<p>${context}</p>
 								</div>
-							</form>
+								<div class="row">
+									<p><b>${vraag}</b></p>
+								</div>
+							</div>
 						</div>
+					</div>
+					<div class="row">
+						<form id="antwoord" action="toets-vraag.do" method="get">
+							<div class="form-group">
+								<div class="col-md-6">
+									<input class="form-control vol" type="text" required name="antwoord" placeholder="Voer hier uw antwoord in">
+								</div>
+								<div class="col-md-3">
+									<button class="btn btn-default vol" type="submit" name="rekenmachine" value="toon">rekenmachine</button>
+								</div>
+								<div class="col-md-3">
+									<button class="btn btn-default vol" type="submit" name="button" value="volgende">volgende</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 				<div class="col-md-6">
