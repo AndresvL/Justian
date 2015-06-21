@@ -14,10 +14,12 @@ import com.google.appengine.api.datastore.Text;
 
 import domein.Antwoord;
 import domein.Vraag;
+
 /**
  * deze klasse beheert alle toets-gerelateerde database acties
+ * 
  * @author Direct-Act
- *
+ * 
  */
 public final class ToetsDAO {
 	/**
@@ -30,11 +32,16 @@ public final class ToetsDAO {
 	public static int toetsNummer = 1;
 
 	/**
-	 * deze methode haalt de volgende vraag voor de toets op gebaseerd op een vraagnummer
+	 * deze methode haalt de volgende vraag voor de toets op gebaseerd op een
+	 * vraagnummer
 	 * <P>
-	 * eerst wordt er een lege vraag gemaakt. vervolgens wordt er een key gegenereerd op basis <br>
-	 * van het vraagnummer. ten slotte wordt de vraag ingevuld met gegevens uit de database<br>
-	 * @param nr het gewenste vraagnummer voor de volgende vraag.
+	 * eerst wordt er een lege vraag gemaakt. vervolgens wordt er een key
+	 * gegenereerd op basis <br>
+	 * van het vraagnummer. ten slotte wordt de vraag ingevuld met gegevens uit
+	 * de database<br>
+	 * 
+	 * @param nr
+	 *            het gewenste vraagnummer voor de volgende vraag.
 	 * @return de volgende vraag in de toets deze kan null zijn of ingevuld.
 	 */
 	// set volgende vraag
@@ -54,13 +61,19 @@ public final class ToetsDAO {
 		}
 		return v;
 	}
-/**
- * deze methode voegt een antwoord toe aan de database.<p>
- * er wordt eerst een entity aangemaakt en vervolgens wordt die ingevuld.
- * @param a het antwoord object dat toegevoegd moet worden aan de database
- */
+
+	/**
+	 * deze methode voegt een antwoord toe aan de database.
+	 * <p>
+	 * er wordt eerst een entity aangemaakt en vervolgens wordt die ingevuld.
+	 * 
+	 * @param a
+	 *            het antwoord object dat toegevoegd moet worden aan de database
+	 */
 	public static void addAntwoord(Antwoord a) {
 		Entity antwoord = new Entity("Antwoord");
+		antwoord.setProperty("antwoordNummer", a.getNummer());
+		System.out.println("getnummer " + a.getNummer());
 		antwoord.setProperty("antwoord", a.getAntwoord());
 		antwoord.setProperty("tijd", a.getTijd());
 		antwoord.setProperty("heeftRekenmachineGebruikt",
@@ -71,17 +84,25 @@ public final class ToetsDAO {
 		ds.put(antwoord);
 
 	}
-	//TODO maken!
-	public static Antwoord getAntwoordByVraagNr(int nr){
+
+	// TODO maken!
+	public static Antwoord getAntwoordByVraagNr(int nr) {
 		return null;
-		
+
 	}
+
 	/**
-	 * deze methode haalt het volgende toetsnummer op.<p>
+	 * deze methode haalt het volgende toetsnummer op.
+	 * <p>
 	 * 
-	 * de methode haalt het volgende toetsnummer uit de database, vergelijkt deze met de huidige<br>
-	 * als het volgende toetsnummer hoger is dan het huidige, dan wordt het huidige nummer overschreven/
-	 * @param studentNr het student nummer van de student die de toets aan het maken is.
+	 * de methode haalt het volgende toetsnummer uit de database, vergelijkt
+	 * deze met de huidige<br>
+	 * als het volgende toetsnummer hoger is dan het huidige, dan wordt het
+	 * huidige nummer overschreven/
+	 * 
+	 * @param studentNr
+	 *            het student nummer van de student die de toets aan het maken
+	 *            is.
 	 * @return het toetsnummer van de volgende toets.
 	 */
 	public static int getVolgendToetsNummer(int studentNr) {
@@ -91,8 +112,10 @@ public final class ToetsDAO {
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
-				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer")
+					.toString())) {
+				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer")
+						.toString());
 			}
 			b = false;
 		}
@@ -100,17 +123,18 @@ public final class ToetsDAO {
 			Query q1 = new Query("Toets");
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity e1 : pq1.asIterable()) {
-			int nr = Integer.parseInt(e1.getProperty("toetsNummer").toString());
+				int nr = Integer.parseInt(e1.getProperty("toetsNummer")
+						.toString());
 				if (toetsNummer <= nr) {
-					toetsNummer = nr+1;
+					toetsNummer = nr + 1;
 				}
 			}
 			Entity toets = new Entity("Toets", toetsNummer);
 			toets.setProperty("toetsNummer", toetsNummer);
 			toets.setProperty("studentNummer", studentNr);
 			ds.put(toets);
-			
-		}		
+
+		}
 		return toetsNummer;
 	}
 }

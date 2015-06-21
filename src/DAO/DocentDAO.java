@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 import domein.Docent;
+import domein.Student;
 /**
  * deze klasse beheert alle docent-gerelateerde database acties.
  * @author Direct-Act
@@ -54,4 +55,16 @@ public final class DocentDAO {
 
 		return d;
 	}
+	
+	public static void createDocent(Docent d) {
+		Entity docent = new Entity("Docent");
+		docent.setProperty("email", d.getEmail());
+		docent.setProperty("voornaam", d.getVoornaam());
+		docent.setProperty("achternaam", d.getAchternaam());
+		docent.setProperty("wachtwoord", d.getWachtwoord());
+		docent.setProperty("schoolNaam", d.getSchoolnaam());
+		docent.setProperty("schoolPlaats", d.getSchoolplaats());
+		ds.put(docent);
+	}
+	
 }

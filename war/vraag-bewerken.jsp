@@ -38,6 +38,8 @@
 	     		<li class="dropdown">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
+			            <li><a href="docent-overzicht.jsp">Overzicht</a></li>
+			            <li role="separator" class="divider"></li>
 			            <li><a href="docent-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>
 		        </li>
@@ -93,7 +95,7 @@
 							<label>Context</label>
 						</div>
 						<div class="col-md-6">
-							<textarea class="form-control" name="context" required placeholder="Vul hier de context in indien aanwezig" rows="3"></textarea>
+							<textarea class="form-control" name="context" required placeholder="Vul hier de context in indien aanwezig" rows="3" >${context}</textarea>
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -101,7 +103,7 @@
 							<label>Opgave</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="opgave" required placeholder="Vul hier de opgave in">
+							<input class="form-control" type="text" name="opgave" required placeholder="Vul hier de opgave in" value="${opgave}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -109,7 +111,7 @@
 							<label>Antwoord 1</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord1" required placeholder="Vul hier het correcte antwoord in">
+							<input class="form-control" type="text" name="antwoord1" required placeholder="Vul hier het correcte antwoord in" value="${antwoord1}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -117,7 +119,7 @@
 							<label>Antwoord 2</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord2" placeholder="Vul indien multiple choice">
+							<input class="form-control" type="text" name="antwoord2" placeholder="Vul indien multiple choice" value="${antwoord2}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -125,7 +127,7 @@
 							<label>Antwoord 3</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord3" placeholder="Vul indien multiple choice">
+							<input class="form-control" type="text" name="antwoord3" placeholder="Vul indien multiple choice" value="${antwoord3}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -133,7 +135,7 @@
 							<label>Antwoord 4</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord4" placeholder="Vul indien multiple choice">
+							<input class="form-control" type="text" name="antwoord4" placeholder="Vul indien multiple choice" value="${antwoord4}">
 						</div>
 					</div> 
 					<div class="row form-group">

@@ -36,7 +36,7 @@
 				</div>
 				<form action="login-docent.do">
 					<div class="form-group">
-						<input class="form-control" type="text" name="email" placeholder="Email" required>
+						<input class="form-control" type="email" name="email" placeholder="Email" required autofocus>
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="password" name="wachtwoord" placeholder="Wachtwoord" required>

@@ -1,4 +1,3 @@
-
 package DAO;
 
 import java.io.BufferedReader;
@@ -22,18 +21,23 @@ import com.google.appengine.api.datastore.Text;
 
 import domein.Student;
 import domein.Vraag;
+
 /**
  * deze klasse beheert alle vraag-gerelateerde database acties
+ * 
  * @author Direct-Act
- *
+ * 
  */
 
 public final class VraagDAO {
 	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-/**
- * deze methode voegt een vraag toe aan de database
- * @param vr het vraag object dat toegevoegd dient te worden
- */
+
+	/**
+	 * deze methode voegt een vraag toe aan de database
+	 * 
+	 * @param vr
+	 *            het vraag object dat toegevoegd dient te worden
+	 */
 	public static void addVraag(Vraag vr) {
 		Entity vraag = new Entity("Vraag", vr.getNummer());
 		Text af = new Text(vr.getBlobAfbeelding());
@@ -47,13 +51,63 @@ public final class VraagDAO {
 		vraag.setProperty("antwoord", vr.getAntwoord());
 		ds.put(vraag);
 	}
-/**
- * deze methode haalt een vraag uit een blob file
- * @param blobkey de blobkey
- * @return de vraag die opgevraagd wordt
- */
+
+	/**
+	 * deze methode voegt een set vragen toe aan de database
+	 * 
+	 * @param vr
+	 *            het vraag object dat toegevoegd dient te worden
+	 */
+	public static void addVraagSet(ArrayList<Vraag> set, int code, int aantal) {
+			for(Vraag vr : set){
+				aantal ++;
+				Entity vraag = new Entity("VraagSet", aantal);
+				Text af = new Text(vr.getAfbeelding());
+				vraag.setProperty("studentNummer", code);
+				vraag.setProperty("vraagNummer", aantal);
+				vraag.setProperty("categorie", vr.getType());
+				vraag.setProperty("opgave", vr.getVraagstelling());
+				vraag.setProperty("rekenmachine", vr.isRekenmachine());
+				vraag.setProperty("context", vr.getContext());
+				vraag.setProperty("afbeelding", af);
+				vraag.setProperty("isMultiplechoice", vr.isMultiplechoice());
+				vraag.setProperty("antwoord", vr.getAntwoord());
+				ds.put(vraag);
+			}
+	}
 	
-	public static Vraag getVraag(BlobKey blobkey) {
+	public static ArrayList<Vraag> getVraagSet(int code) {
+		ArrayList<Vraag> set = new ArrayList<Vraag>();
+		Vraag vr = null;
+		Filter filter = new FilterPredicate("studentNummer",FilterOperator.EQUAL, code);
+		Query q = new Query("VraagSet").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
+			Text afbeelding = (Text) e.getProperty("afbeelding");
+			String antwoord = e.getProperty("antwoord").toString();
+			String cat = e.getProperty("categorie").toString();
+			String context = e.getProperty("context").toString();
+			boolean multi = (Boolean) e.getProperty("isMultiplechoice");
+			String opgave = e.getProperty("opgave").toString();
+			boolean rekenmachine = (Boolean) e.getProperty("rekenmachine");
+			// mulitple choice moet nog in vraag object
+			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
+					opgave, antwoord);
+			set.add(vr);		
+		}
+		return set;
+	}
+
+	/**
+	 * deze methode haalt een vraag uit een blob file
+	 * 
+	 * @param blobkey
+	 *            de blobkey
+	 * @return de vraag die opgevraagd wordt
+	 */
+
+	public static Vraag setVragen(BlobKey blobkey) {
 		Vraag vr = null;
 		try {
 			InputStream is = new BlobstoreInputStream(blobkey);
@@ -81,20 +135,29 @@ public final class VraagDAO {
 		}
 		return vr;
 	}
-/**
- * deze methode haalt het laatste vraagnummer op als de toets vroegtijdig is afgesloten.
- * <p>eerst zoekt de methode het toetsnummer met als filter studentnr<br>vervolgens wordt het hoogste toetsnummer meegegeven<br>
- * daarna wordt in die toets het hoogste vraagnummer geselecteerd om terug te geven.
- * @param studentNr het studentnummer van de student die de toets hervat.
- * @return het vraagnummer
- */
-	public static int getLaatsteVraagNummer(int studentNr) {
-		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);
+
+	/**
+	 * deze methode haalt het laatste vraagnummer op als de toets vroegtijdig is
+	 * afgesloten.
+	 * <p>
+	 * eerst zoekt de methode het toetsnummer met als filter studentnr<br>
+	 * vervolgens wordt het hoogste toetsnummer meegegeven<br>
+	 * daarna wordt in die toets het hoogste vraagnummer geselecteerd om terug
+	 * te geven.
+	 * 
+	 * @param studentNr
+	 *            het studentnummer van de student die de toets hervat.
+	 * @return het vraagnummer
+	 */
+	public static int getLaatsteAntwoordNummer(int studentNr) {
+		Filter filter = new FilterPredicate("studentNummer",
+				FilterOperator.EQUAL, studentNr);
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		int toetsNummer = 0;
 		for (Entity toets : pq.asIterable()) {
-			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
+			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer")
+					.toString());
 		}
 		int vraagNummer = 0;
 		if (toetsNummer > 0) {
@@ -103,16 +166,17 @@ public final class VraagDAO {
 			Query q1 = new Query("Antwoord").setFilter(filter1);
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity antwoord : pq1.asIterable()) {
-				if(vraagNummer < Integer.parseInt(antwoord.getProperty(
-						"vraagNummer").toString())){
+				if (vraagNummer < Integer.parseInt(antwoord.getProperty(
+						"antwoordNummer").toString())) {
 					vraagNummer = Integer.parseInt(antwoord.getProperty(
-							"vraagNummer").toString());
+							"antwoordNummer").toString());
 				}
 			}
 		}
-		return vraagNummer+1;
+		return vraagNummer;
 	}
-	public static ArrayList<Vraag> alleVragen(){
+
+	public static ArrayList<Vraag> alleVragen() {
 		ArrayList<Vraag> vragen = new ArrayList<Vraag>();
 		Vraag vr = null;
 		Query q = new Query("Vraag");
@@ -120,30 +184,17 @@ public final class VraagDAO {
 		for (Entity e : pq.asIterable()) {
 			int nummer = Integer.parseInt(e.getProperty("id").toString());
 			Text afbeelding = (Text) e.getProperty("afbeelding");
-			String antwoord  = e.getProperty("antwoord").toString();
+			String antwoord = e.getProperty("antwoord").toString();
 			String cat = e.getProperty("categorie").toString();
 			String context = e.getProperty("context").toString();
-			boolean multi = (Boolean)e.getProperty("isMultiplechoice");
+			boolean multi = (Boolean) e.getProperty("isMultiplechoice");
 			String opgave = e.getProperty("opgave").toString();
-			boolean rekenmachine = (Boolean)e.getProperty("rekenmachine");
-			//mulitple choice moet nog in vraag object
-			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat, opgave, antwoord);
+			boolean rekenmachine = (Boolean) e.getProperty("rekenmachine");
+			// mulitple choice moet nog in vraag object
+			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
+					opgave, antwoord);
 			vragen.add(vr);
 		}
 		return vragen;
 	}
-			
-//			public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a){
-//				vr.setProperty("categorie", vr.getType());
-//				vr.setProperty("opgave", vr.getVraagstelling());
-//				vr.setProperty("rekenmachine", vr.isRekenmachine());
-//				vraag.setProperty("context", vr.getContext());
-//				vraag.setProperty("afbeelding", af);
-//				vraag.setProperty("isMultiplechoice", vr.isMultiplechoice());
-//				vraag.setProperty("antwoord", vr.getAntwoord());
-//				boolean rek = e.getProperty("")
-//			}
-//			vr = new Vraag(e.getProperty());
-//		}
-//		
 }

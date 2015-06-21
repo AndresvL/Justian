@@ -38,6 +38,8 @@
 	     		<li class="dropdown toggle">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
+			            <li><a href="docent-overzicht.jsp">Overzicht</a></li>
+			            <li role="separator" class="divider"></li>
 			            <li class="disabled"><a href="#">Aanmaken</a></li>
 		   			</ul>
 		        </li>
@@ -78,7 +80,7 @@
 							<label>Email</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="email" required >
+							<input class="form-control" type="email" name="email" required >
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -86,7 +88,7 @@
 							<label>Wachtwoord</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="wachtwoord" required >
+							<input class="form-control" type="password" name="wachtwoord" required >
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -94,7 +96,7 @@
 							<label>Bevestig wachtwoord</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="wwbevestiging" required >
+							<input class="form-control" type="password" name="wwbevestiging" required >
 						</div>
 					</div> 
 					<div class="row form-group">
