@@ -137,4 +137,18 @@ public class Vraag implements Serializable{
 	public String getBlobAfbeelding(){
 		return blobAfbeelding;
 	}
+	public boolean heeftAfbeelding(){
+		boolean b = true;
+		if(afbeelding == null || afbeelding.equals("") || afbeelding.equals("NULL") || afbeelding.equals("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY")){
+			b=false;
+		}
+		return b;
+	}
+	public boolean heeftContext(){
+		boolean b = true;
+		if(context == null || context.equals("") || context.equals("NULL")){
+			b=false;
+		}
+		return b;
+	}
 }
