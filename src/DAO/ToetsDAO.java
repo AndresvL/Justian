@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.ArrayList;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -37,7 +39,6 @@ public final class ToetsDAO {
 	 * @param nr het gewenste vraagnummer voor de volgende vraag.
 	 * @return de volgende vraag in de toets deze kan null zijn of ingevuld.
 	 */
-	// set volgende vraag
 	public static Vraag getVraagByNr(int nr) {
 		Vraag v = null;
 		try {
@@ -70,6 +71,29 @@ public final class ToetsDAO {
 		antwoord.setProperty("vraagNummer", a.getVraagNummer());
 		ds.put(antwoord);
 
+	}
+	public static ArrayList<Antwoord> getAntwoordenByToetsNr(int nr){
+		ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
+		Antwoord a = null;
+		Query q = new Query("Antwoord");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			if(e.getProperty("toetsNummer").equals(nr + "")){
+				int antwoordnummer = antwoorden.size() +1;
+				int vraagnummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
+				int tijd = Integer.parseInt(e.getProperty("tijd").toString());
+				boolean rekenmachine  = Boolean.parseBoolean(e.getProperty("heeftRekenmachineGebruikt").toString());
+				boolean correct = Boolean.parseBoolean(e.getProperty("checkAntwoord").toString());
+				String antwoord = e.getProperty("antwoord").toString();
+				boolean multi = (Boolean)e.getProperty("isMultiplechoice");
+				String opgave = e.getProperty("opgave").toString();
+				a = new Antwoord( antwoordnummer,antwoord, tijd, rekenmachine, nr,vraagnummer, correct);
+				antwoorden.add(a);
+			
+			}
+			
+		}
+		return antwoorden;
 	}
 	//TODO maken!
 	public static Antwoord getAntwoordByVraagNr(int nr){
