@@ -29,8 +29,9 @@ public class ToetsServlet extends HttpServlet {
 		RequestDispatcher rd = null;
 		ArrayList<Vraag> set1 = (ArrayList<Vraag>) req.getSession().getAttribute("set1");
 		ArrayList<Antwoord> ant = new ArrayList<Antwoord>();
+		ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
 		if (req.getParameter("button").equals("volgende")) {
-			ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
+			
 			String antwoord = req.getParameter("antwoord");			
 			if(!antwoord.equals("")){
 				//getSession
