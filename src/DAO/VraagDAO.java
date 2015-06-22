@@ -56,24 +56,17 @@ public final class VraagDAO {
 	 * deze methode voegt een set vragen toe aan de database
 	 * 
 	 * @param vr
-	 *            het vraag object dat toegevoegd dient te worden
+	 * het vraag object dat toegevoegd dient te worden
 	 */
 	public static void addVraagSet(ArrayList<Vraag> set, int code, int aantal) {
-			for(Vraag vr : set){
-				aantal ++;
-				Entity vraag = new Entity("VraagSet", aantal);
-				Text af = new Text(vr.getAfbeelding());
-				vraag.setProperty("studentNummer", code);
-				vraag.setProperty("vraagNummer", aantal);
-				vraag.setProperty("categorie", vr.getType());
-				vraag.setProperty("opgave", vr.getVraagstelling());
-				vraag.setProperty("rekenmachine", vr.isRekenmachine());
-				vraag.setProperty("context", vr.getContext());
-				vraag.setProperty("afbeelding", af);
-				vraag.setProperty("isMultiplechoice", vr.isMultiplechoice());
-				vraag.setProperty("antwoord", vr.getAntwoord());
-				ds.put(vraag);
-			}
+		for(int i = 0; i<set.size(); i++){
+			aantal ++;
+			Entity vraag = new Entity("VraagSet");
+			vraag.setProperty("id", aantal);
+			vraag.setProperty("studentNummer", code);
+			vraag.setProperty("vraagNummer", set.get(i).getNummer());
+			ds.put(vraag);
+		}
 	}
 	
 	public static ArrayList<Vraag> getVraagSet(int code) {
@@ -83,20 +76,44 @@ public final class VraagDAO {
 		Query q = new Query("VraagSet").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
-			Text afbeelding = (Text) e.getProperty("afbeelding");
-			String antwoord = e.getProperty("antwoord").toString();
-			String cat = e.getProperty("categorie").toString();
-			String context = e.getProperty("context").toString();
-			boolean multi = (Boolean) e.getProperty("isMultiplechoice");
-			String opgave = e.getProperty("opgave").toString();
-			boolean rekenmachine = (Boolean) e.getProperty("rekenmachine");
-			// mulitple choice moet nog in vraag object
+			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());			
+			Vraag v = ToetsDAO.getVraagByNr(nummer);
+			boolean rekenmachine = (Boolean) v.isRekenmachine();
+			String context = v.getContext();
+			Text afbeelding = new Text(v.getAfbeelding());
+			String cat = v.getType();
+			String antwoord = v.getAntwoord();		
+			boolean multi = (Boolean) v.isMultiplechoice();
+			String opgave = v.getVraagstelling();
+			
+//			// mulitple choice moet nog in vraag object
 			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
 					opgave, antwoord);
 			set.add(vr);		
 		}
 		return set;
+	}
+	public static void removeAlleSets(){		
+		Query q = new Query("VraagSet");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			ds.delete(e.getKey());
+		}
+	}
+	public static void removeSet(int code){		
+		Filter filter = new FilterPredicate("studentNummer",FilterOperator.EQUAL, code);
+		Query q = new Query("VraagSet").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			ds.delete(e.getKey());
+		}
+	}
+	public static void removeAntwoord(){		
+		Query q = new Query("Antwoord");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			ds.delete(e.getKey());
+		}
 	}
 
 	/**
@@ -161,8 +178,7 @@ public final class VraagDAO {
 		}
 		int vraagNummer = 0;
 		if (toetsNummer > 0) {
-			Filter filter1 = new FilterPredicate("toetsNummer",
-					FilterOperator.EQUAL, toetsNummer);
+			Filter filter1 = new FilterPredicate("toetsNummer", FilterOperator.EQUAL, toetsNummer);
 			Query q1 = new Query("Antwoord").setFilter(filter1);
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity antwoord : pq1.asIterable()) {

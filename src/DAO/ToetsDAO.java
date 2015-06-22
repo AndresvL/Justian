@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.ArrayList;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -49,13 +51,14 @@ public final class ToetsDAO {
 		Vraag v = null;
 		try {
 			Entity vraag = ds.get(KeyFactory.createKey("Vraag", nr));
-			v = new Vraag(Boolean.parseBoolean(vraag
-					.getProperty("rekenmachine").toString()), nr, vraag
-					.getProperty("context").toString(),
-					(Text) vraag.getProperty("afbeelding"), vraag.getProperty(
-							"categorie").toString(), vraag
-							.getProperty("opgave").toString(), vraag
-							.getProperty("antwoord").toString());
+			v = new Vraag(Boolean.parseBoolean(
+					vraag.getProperty("rekenmachine").toString()),
+					nr, 
+					vraag.getProperty("context").toString(),
+					(Text) vraag.getProperty("afbeelding"),
+					vraag.getProperty("categorie").toString(),
+					vraag.getProperty("opgave").toString(),
+					vraag.getProperty("antwoord").toString());
 		} catch (EntityNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -73,11 +76,9 @@ public final class ToetsDAO {
 	public static void addAntwoord(Antwoord a) {
 		Entity antwoord = new Entity("Antwoord");
 		antwoord.setProperty("antwoordNummer", a.getNummer());
-		System.out.println("getnummer " + a.getNummer());
 		antwoord.setProperty("antwoord", a.getAntwoord());
 		antwoord.setProperty("tijd", a.getTijd());
-		antwoord.setProperty("heeftRekenmachineGebruikt",
-				a.getHeeftRekenmachineGebruikt());
+		antwoord.setProperty("heeftRekenmachineGebruikt",a.getHeeftRekenmachineGebruikt());
 		antwoord.setProperty("checkAntwoord", a.checkAntwoord());
 		antwoord.setProperty("toetsNummer", a.getToetsNummer());
 		antwoord.setProperty("vraagNummer", a.getVraagNummer());
@@ -85,11 +86,36 @@ public final class ToetsDAO {
 
 	}
 
-	// TODO maken!
-	public static Antwoord getAntwoordByVraagNr(int nr) {
-		return null;
-
+	public static ArrayList<Antwoord> getAlleAntwoorden(int code) {
+		ArrayList<Antwoord> set = null;
+		Antwoord antw = null;
+		
+		Filter filter = new FilterPredicate("studentNummer",FilterOperator.EQUAL, code);
+		Query q = new Query("Toets").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		int toetsNummer = 0;
+		for (Entity toets : pq.asIterable()) {
+			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
+		}
+		if (toetsNummer > 0) {
+			set = new ArrayList<Antwoord>();
+			Filter filter1 = new FilterPredicate("toetsNummer",	FilterOperator.EQUAL, toetsNummer);
+			Query q1 = new Query("Antwoord").setFilter(filter1);
+			PreparedQuery pq1 = ds.prepare(q1);
+			for (Entity e : pq1.asIterable()) {
+				int nummer = Integer.parseInt(e.getProperty("antwoordNummer").toString());
+			    int vraagnummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
+			    int tijd = Integer.parseInt(e.getProperty("tijd").toString());
+			    boolean rekenmachine  = Boolean.parseBoolean(e.getProperty("heeftRekenmachineGebruikt").toString());
+			    boolean correct = Boolean.parseBoolean(e.getProperty("checkAntwoord").toString());
+			    String antwoord = e.getProperty("antwoord").toString();
+			    antw = new Antwoord(nummer, antwoord, tijd, rekenmachine, toetsNummer, vraagnummer, correct);
+			    set.add(antw);				
+			}
+		}
+		return set;
 	}
+
 
 	/**
 	 * deze methode haalt het volgende toetsnummer op.
@@ -112,13 +138,12 @@ public final class ToetsDAO {
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer")
-					.toString())) {
-				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer")
-						.toString());
+			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
+				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
 			}
 			b = false;
 		}
+		//maak nieuwe toets aan als student geen toets heeft
 		if (b) {
 			Query q1 = new Query("Toets");
 			PreparedQuery pq1 = ds.prepare(q1);
