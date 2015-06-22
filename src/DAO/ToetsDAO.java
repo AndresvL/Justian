@@ -46,6 +46,7 @@ public final class ToetsDAO {
 	 *            het gewenste vraagnummer voor de volgende vraag.
 	 * @return de volgende vraag in de toets deze kan null zijn of ingevuld.
 	 */
+	// set volgende vraag
 	public static Vraag getVraagByNr(int nr) {
 		Vraag v = null;
 		try {
@@ -167,13 +168,16 @@ public final class ToetsDAO {
 			}
 			b = false;
 		}
+		addToets(b, studentNr);		
+		return toetsNummer;
+	}
+	public static void addToets(boolean b, int studentNr){
 		//maak nieuwe toets aan als student geen toets heeft
 		if (b) {
 			Query q1 = new Query("Toets");
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity e1 : pq1.asIterable()) {
-				int nr = Integer.parseInt(e1.getProperty("toetsNummer")
-						.toString());
+				int nr = Integer.parseInt(e1.getProperty("toetsNummer").toString());
 				if (toetsNummer <= nr) {
 					toetsNummer = nr + 1;
 				}
@@ -184,6 +188,17 @@ public final class ToetsDAO {
 			ds.put(toets);
 
 		}
-		return toetsNummer;
+	}
+	public static int getToetsNummer(int studentNr) {
+		int toetsnr = 0;
+		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, studentNr);
+		Query q = new Query("Toets").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			if (toetsnr < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
+				toetsnr = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			}
+		}	
+		return toetsnr;
 	}
 }

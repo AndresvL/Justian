@@ -93,25 +93,31 @@ public class Adaptief {
 					}
 					if (set.get(i).getType().equals("getal")) {
 						addVraag2("getal");
-						System.out.println("getal " + getal);
 						getal++;
+						System.out.println("getal " + getal);
 					}
 					if (set.get(i).getType().equals("verhouding")) {
 						addVraag2("verhouding");
-						System.out.println("verhouding " + verhouding);
 						verhouding++;
+						System.out.println("verhouding " + verhouding);
 					}
 				}
 			}
 		}
-		int aantalFout = meet + verband + verhouding + getal;
-		int restAantal = totaal - aantalFout;
 		ArrayList<Integer> type = new ArrayList<Integer>();
 		type.add(meet);
 		type.add(verband);
 		type.add(getal);
 		type.add(verhouding);
 		Collections.sort(type);
+		for(int i=0; i< 4; i++){
+			if(type.get(i)==0){
+				type.add(i, 1);
+			}
+			System.out.println("type array " + type.get(i));
+		}
+		int aantalFout = (type.get(0) + type.get(1) + type.get(2) + type.get(3));
+		int restAantal = totaal - aantalFout;		
 		for (int i = 0; i < restAantal; i++) {
 			int hoogst = type.get(3);
 			if (hoogst == meet && restAantal>0) {

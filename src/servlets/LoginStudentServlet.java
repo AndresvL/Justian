@@ -29,14 +29,14 @@ public class LoginStudentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Student s = new Student();
 		int code = Integer.parseInt(req.getParameter("code"));
-//		VraagDAO.removeSet();
+//		VraagDAO.removeAlleSets();
 //		VraagDAO.removeAntwoord();
 		RequestDispatcher rd = null;
 		if (StudentDAO.checkStudent(code)) {
-			s = StudentDAO.getStudentByCode(code);
-			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
+			s = StudentDAO.getStudentByCode(code);			
 			Vraag v = null;
-			if(VraagDAO.getLaatsteAntwoordNummer(code) == 0){
+			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
+			if(ToetsDAO.getToetsNummer(code) == 0){
 				vraag = Adaptief.set1();	
 				VraagDAO.addVraagSet(vraag, code, 0);
 				v = vraag.get(0);

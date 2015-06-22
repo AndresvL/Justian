@@ -22,14 +22,15 @@ import domein.Antwoord;
 @SuppressWarnings("serial")
 public class ToetsServlet extends HttpServlet {
 	private TijdController tijd = new TijdController();
-	private ArrayList<Antwoord> ant = null;
+	
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		ArrayList<Vraag> set1 = (ArrayList<Vraag>) req.getSession().getAttribute("set1");
-		
+		ArrayList<Antwoord> ant = new ArrayList<Antwoord>();
 		if (req.getParameter("button").equals("volgende")) {
+			ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
 			String antwoord = req.getParameter("antwoord");			
 			if(!antwoord.equals("")){
 				//getSession
@@ -42,7 +43,7 @@ public class ToetsServlet extends HttpServlet {
 				int min = (Integer) req.getSession().getAttribute("minuten");
 				int sec = (Integer) req.getSession().getAttribute("seconden");
 				int t = tijd.getVraagTijd(sec, min, uur,(System.currentTimeMillis()));
-				ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
+				
 				
 				Vraag huidig = set1.get(aantal-1);
 				boolean goedAntwoord = false;
@@ -50,7 +51,7 @@ public class ToetsServlet extends HttpServlet {
 					goedAntwoord = true;
 				}
 				Antwoord a = new Antwoord(aantal, antwoord, t, rekenmachine, toetsnr, vraagnr, goedAntwoord);
-				ToetsDAO.addAntwoord(a);			
+				ToetsDAO.addAntwoord(a);	
 				ant.add(a);
 				if (aantal <= set1.size()) {
 					if(aantal == 20){	
