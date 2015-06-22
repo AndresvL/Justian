@@ -32,5 +32,4 @@ public class EnqueteServlet extends HttpServlet {
 		rd = req.getRequestDispatcher("enquete-inzicht.jsp");
 		rd.forward(req, resp);
 	}
-
 }
