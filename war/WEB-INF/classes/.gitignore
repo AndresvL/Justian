@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 /servlets
 /DAO
 /domein
+=======
+/controller/
+/domein/
+/DAO/
+/servlets/
+>>>>>>> branch 'master' of https://github.com/makingdark/Justian.git

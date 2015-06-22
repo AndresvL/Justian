@@ -117,7 +117,12 @@
 								<th><%= v.getNummer()%></th><td><%= v.getType()%></td><td><%= v.isRekenmachine()%></td>
 								<td><%= v.heeftAfbeelding()%></td><td><%= v.isMultiplechoice()%></td><td><%= v.heeftContext()%></td>
 								<td><%= v.getVraagstelling()%></td><td><%= v.getAntwoord()%></td>
-								<td><a href="vragen-overzicht.do?vraagnummer=<%= v.getNummer()%>" class="btn btn-default vol">Bekijk</a></td>
+								<td>
+									<form action="vragen-overzicht.do">
+										<input type="hidden" name="vraagnummer" value="<%= v.getNummer() %>">
+										<input class="btn btn-default" type="submit" value="Bekijk">
+									</form>
+								</td>
 							</tr>
 							<% } %>
 						</table>

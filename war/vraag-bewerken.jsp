@@ -140,7 +140,7 @@
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-3 col-md-offset-2">
-							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+							<a href="vraag-overzicht.jsp" class="btn btn-danger vol">Terug</a>
 						</div>
 						<div class="col-md-3">
 							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>
