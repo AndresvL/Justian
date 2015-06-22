@@ -84,7 +84,6 @@ public final class ToetsDAO {
 		ds.put(antwoord);
 
 	}
-<<<<<<< HEAD
 
 	public static ArrayList<Antwoord> getAlleAntwoorden(int code) {
 		ArrayList<Antwoord> set = null;
@@ -114,7 +113,7 @@ public final class ToetsDAO {
 			}
 		}
 		return set;
-=======
+	}
 	public static ArrayList<Antwoord> getAntwoordenByToetsNr(int nr){
 		ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
 		Query q = new Query("Antwoord");
@@ -139,8 +138,6 @@ public final class ToetsDAO {
 	//TODO maken!
 	public static Antwoord getAntwoordByVraagNr(int nr){
 		return null;
-
->>>>>>> origin/master
 	}
 
 
