@@ -23,12 +23,14 @@ public class StudentcodeServlet extends HttpServlet {
 		if (aantal <= 40) {
 			Docent d = (Docent) req.getSession().getAttribute("docent");
 			String msgs = "";
+			String[] codes= new String[aantal+1];
 			// genereert code tussen 111.111 en 999.999
 			for (int i = 0; i < aantal; i++) {
 				int getal = (int) (888888 * Math.random() + 111111);
 				if(StudentDAO.checkCode(getal)){
 					s.setCode(getal);
 					StudentDAO.createStudent(s, d.getEmail());
+					codes[i] = getal + "";
 					msgs += getal + "<br />";
 				}else{
 					aantal++;
@@ -36,6 +38,7 @@ public class StudentcodeServlet extends HttpServlet {
 				
 			}
 			req.setAttribute("msgs", msgs);
+			req.getSession().setAttribute("codeExport", codes);
 		} else {
 			String melding = "Vul een getal kleiner dan 40 in!";
 			req.setAttribute("melding", melding);

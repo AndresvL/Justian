@@ -21,7 +21,15 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>exporteer servlet</servlet-name>
-		<url-pattern>/exporteer.do</url-pattern>
+		<url-pattern>/exporteer.zip</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>exporteer studentcodes</servlet-name>
+		<servlet-class>servlets.ExporteerCodesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exporteer studentcodes</servlet-name>
+		<url-pattern>/studentcodes.zip</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

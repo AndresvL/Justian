@@ -87,19 +87,17 @@ public final class ToetsDAO {
 	}
 	public static ArrayList<Antwoord> getAntwoordenByToetsNr(int nr){
 		ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
-		Antwoord a = null;
 		Query q = new Query("Antwoord");
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			if(e.getProperty("toetsNummer").equals(nr + "")){
+			Antwoord a = null;
+			if(e.getProperty("toetsNummer").toString().equals(nr + "")){
 				int antwoordnummer = antwoorden.size() +1;
 				int vraagnummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
 				int tijd = Integer.parseInt(e.getProperty("tijd").toString());
 				boolean rekenmachine  = Boolean.parseBoolean(e.getProperty("heeftRekenmachineGebruikt").toString());
 				boolean correct = Boolean.parseBoolean(e.getProperty("checkAntwoord").toString());
 				String antwoord = e.getProperty("antwoord").toString();
-				boolean multi = (Boolean)e.getProperty("isMultiplechoice");
-				String opgave = e.getProperty("opgave").toString();
 				a = new Antwoord( antwoordnummer,antwoord, tijd, rekenmachine, nr,vraagnummer, correct);
 				antwoorden.add(a);
 			
