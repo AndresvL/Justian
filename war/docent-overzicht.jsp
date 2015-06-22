@@ -1,3 +1,6 @@
+<%@ page import="java.util.*" %>
+<%@ page import="domein.Docent" %>
+<%@ page import="DAO.DocentDAO" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -57,22 +60,26 @@
 	    </nav>
 		<div class='container' id="content">
 			<div class="row">
-				<h3>Studenten Overzicht</h3>
+				<h3>Docenten Overzicht</h3>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="tablecontent">
 						<table class="table table-striped">
 							<tr>
-								<th>docent_email</th><th>Student Nummer</th><th>Gem_WiskundeCijfer</th><th>Geslacht</th>
-								<th>Niveau</th><th>Profiel</th><th>Schooljaar</th><th>WannBlijvenZitten</th>
+								<th>Email</th><th>Naam</th><th>School</th><th>School Plaats</th>
 								<th></th>
 							</tr>
+							<%! ArrayList<Docent> al = new ArrayList<Docent>(); %>
+							<%	al = DocentDAO.alleDocenten();
+								for(int i=0; i<al.size(); i++){
+								Docent d = al.get(i);%>
 							<tr>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td><a href="#" class="btn btn-default vol">Bekijk</a></td>
+								<th><%= d.getEmail()%></th><td><%= d.getVoornaam()+" "+d.getAchternaam()%></td>
+								<td><%= d.getSchoolnaam()%></td><td><%= d.getSchoolplaats()%></td>
+								<td><a href="docenten-overzicht.do?email=<%= d.getEmail()%>" class="btn btn-default vol">Bekijk</a></td>
 							</tr>
+							<% } %>
 						</table>
 					</div>
 				</div>

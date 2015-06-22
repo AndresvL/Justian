@@ -21,15 +21,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>exporteer servlet</servlet-name>
-		<url-pattern>/exporteer.zip</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>exporteer studentcodes</servlet-name>
-		<servlet-class>servlets.ExporteerCodesServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>exporteer studentcodes</servlet-name>
-		<url-pattern>/studentcodes.zip</url-pattern>
+		<url-pattern>/exporteer.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -68,23 +60,31 @@
 		<url-pattern>/vragen-bewerken.do</url-pattern>
 	</servlet-mapping>
 
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>vragen overzicht servlet</servlet-name>
-		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
+		<servlet-class>servlets.VragenOverzichtServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>vragen overzicht servlet</servlet-name>
 		<url-pattern>/vragen-overzicht.do</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>enquete servlet</servlet-name>
 		<servlet-class>servlets.EnqueteServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>enquete servlet</servlet-name>
 		<url-pattern>/enquete.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>enquete inzicht servlet</servlet-name>
+		<servlet-class>servlets.EnqueteInzichtServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>enquete inzicht servlet</servlet-name>
+		<url-pattern>/enqueteInzicht.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

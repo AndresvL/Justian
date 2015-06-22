@@ -56,7 +56,8 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div id="msgs">
-						<%	Object msgs = request.getAttribute("msgs"); 
+						<% 
+						Object msgs = request.getAttribute("msgs"); 
 						if (msgs != null) { 	 
 							out.println(msgs); 
 							out.println(); 		

@@ -21,18 +21,16 @@
 				<img alt="" src="images/logo.png" style="height: 25px"></img>
 		      </a>
 		    </div>
-	        <div id="navbar" class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
-	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="#">Home</a></li>
-	            <li class="actief"><a href="#">Vragenbeheer</a></li>
-	            <li><a href="#">Docenten</a></li>
-	            <li><a href="#">Resultaten</a></li>
-	          </ul>
-	        </div>
 	      </div>
 	    </nav>	
 		<div class="container" id="content">
 			<form action="enquete.do">
+				<div class="row">
+					<div class="col-md-4 col-md-offset-1">
+						<h3>Enquete - Deel 1</h3>
+						<p>Vul deze kleine enquete in voordat de toets begint.</p>
+					</div>
+				</div>
 				<div class="row form-group">
 					<div class="col-md-2 col-md-offset-1">
 						<label>School</label>
