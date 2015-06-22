@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.appengine.api.datastore.Text;
 
-public class Vraag implements Serializable {
+public class Vraag implements Serializable{
 	private String antwoord;
 	private boolean rekenmachine;
 	private boolean isMultiplechoice;
@@ -15,7 +15,9 @@ public class Vraag implements Serializable {
 	private String vraagstelling;
 	private enum type{getal,verhouding, verband, meet}
 	type cat;
-	
+	private String antwoord2;
+	private String antwoord3;
+	private String antwoord4;
 	
 	public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a){
 		this.setRekenmachine(rek);
@@ -31,8 +33,33 @@ public class Vraag implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Vraag(int nr){
+	public Vraag(int nr, String cat){
 		this.setNummer(nr);
+		this.setType(cat);
+	}
+	
+	public void setAntwoord2(String a){
+		antwoord2 = a;
+	}
+	
+	public String getAntwoord2(){
+		return antwoord2;
+	}
+	
+	public void setAntwoord3(String a){
+		antwoord3 = a;
+	}
+	
+	public String getAntwoord3(){
+		return antwoord3;
+	}
+	
+	public void setAntwoord4(String a){
+		antwoord4 = a;
+	}
+	
+	public String getAntwoord4(){
+		return antwoord4;
 	}
 	
 	public void setType(String t){
@@ -68,9 +95,6 @@ public class Vraag implements Serializable {
 	}
 
 	public void setContext(String context) {
-		if(context.equals("NULL")){
-			context = "";
-		}
 		this.context = context;
 	}
 

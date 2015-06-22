@@ -38,6 +38,8 @@
 	     		<li class="dropdown">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
+			            <li><a href="docent-overzicht.jsp">Overzicht</a></li>
+			            <li role="separator" class="divider"></li>
 			            <li><a href="docent-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>
 		        </li>

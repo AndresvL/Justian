@@ -47,6 +47,8 @@
 	     		<li class="dropdown">
 		        	<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docenten<span class="caret"></span></a>
 		          	<ul class="dropdown-menu">
+			            <li><a href="docent-overzicht.jsp">Overzicht</a></li>
+			            <li role="separator" class="divider"></li>
 			            <li><a href="docent-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>
 		        </li>
@@ -72,6 +74,14 @@
     					<p>U kunt vragen uploaden door een .csv bestand te kiezen</p>
     					</br>
     				</div>
+    				<div id="msgs">
+						<% 
+						Object msgs = request.getAttribute("msgs"); 
+						if (msgs != null) { 	 
+							out.println(msgs); 
+							out.println(); 		
+						}	%>
+					</div>
     				<div class="row">
     					<div class="col-md-3">
 							<input class="control-from" type="file" name="data">

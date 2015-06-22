@@ -41,7 +41,7 @@
 		<servlet-name>toets servlet</servlet-name>
 		<url-pattern>/toets-vraag.do</url-pattern>
 	</servlet-mapping>
-<!-- 
+ 
 	<servlet>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
 		<servlet-class>servlets.VragenAanmakenServlet</servlet-class>
@@ -49,9 +49,9 @@
 	<servlet-mapping>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
 		<url-pattern>/vraag-aanmaken.do</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping>
 
-	<!-- <servlet>
+	<servlet>
 		<servlet-name>vragen bewerken servlet</servlet-name>
 		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
 	</servlet>
@@ -60,7 +60,7 @@
 		<url-pattern>/vragen-bewerken.do</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>vragen overzicht servlet</servlet-name>
 		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
 	</servlet>
@@ -106,6 +106,16 @@
 	<servlet-mapping>
 		<servlet-name>Serve</servlet-name>
 		<url-pattern>/serve</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>docent aanmaken</servlet-name>
+		<servlet-class>servlets.DocentAanmakenServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>docent aanmaken</servlet-name>
+		<url-pattern>/docentaanmaken.do</url-pattern>
 	</servlet-mapping>
 	
 <!-- 	<filter>

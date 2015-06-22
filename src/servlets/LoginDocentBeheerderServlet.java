@@ -13,15 +13,16 @@ import domein.Docent;
 public class LoginDocentBeheerderServlet extends HttpServlet {
 	private Docent d = new Docent();
 	RequestDispatcher rd = null;
-	
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		String email = req.getParameter("email");
-		String wachtwoord = req.getParameter("wachtwoord");	
+		String wachtwoord = req.getParameter("wachtwoord");
 		d = DocentDAO.getDocent(email, wachtwoord);
-		if(d!= null){	
-			req.getSession().setAttribute("docent", d);		
-			rd = req.getRequestDispatcher("studentcode-aanmaken.jsp");			
-		}else{
+		if (d != null) {
+			req.getSession().setAttribute("docent", d);
+			rd = req.getRequestDispatcher("studentcode-aanmaken.jsp");
+		} else {
 			rd = req.getRequestDispatcher("/login-docent.jsp");
 			req.setAttribute("msgs", "Email of wachtwoord bestaat niet");
 		}

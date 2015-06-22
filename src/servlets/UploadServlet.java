@@ -13,17 +13,18 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 @SuppressWarnings("serial")
 public class UploadServlet extends HttpServlet {
-	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory
+			.getBlobstoreService();
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
-        List<BlobKey> blobKeys = blobs.get("data");
-        
-        if (blobKeys == null || blobKeys.isEmpty()) {
-            resp.sendRedirect("/");
-        } else {
-            resp.sendRedirect("/serve?blob-key=" + blobKeys.get(0).getKeyString());
-        }
+		List<BlobKey> blobKeys = blobs.get("data");
+		if (blobKeys == null || blobKeys.isEmpty()) {
+			resp.sendRedirect("/vraag-uploaden.jsp");
+		} else {		
+			resp.sendRedirect("/serve?blob-key="
+					+ blobKeys.get(0).getKeyString());
+		}
 	}
 }

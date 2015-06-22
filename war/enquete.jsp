@@ -58,6 +58,18 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-2 col-md-offset-1">
+						<label>Niveau</label>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" name="niveau">
+							<option value="VWO">VWO</option>
+							<option value="HAVO">HAVO</option>
+							<option value="VMBO">VMBO</option>
+						</select>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-2 col-md-offset-1">
 						<Label>Profiel</label>
 					</div>
 					<div class="col-md-3">
@@ -66,18 +78,6 @@
 							<option value="C&M">C&M</option>
 							<option value="N&G">N&G</option>
 							<option value="N&T">N&T</option>
-						</select>
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-2 col-md-offset-1">
-						<label>Niveau</label>
-					</div>
-					<div class="col-md-3">
-						<select class="form-control" name="niveau">
-							<option value="VWO">VWO</option>
-							<option value="HAVO">HAVO</option>
-							<option value="VMBO">VMBO</option>
 						</select>
 					</div>
 				</div>
