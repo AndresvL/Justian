@@ -46,7 +46,6 @@ public final class ToetsDAO {
 	 *            het gewenste vraagnummer voor de volgende vraag.
 	 * @return de volgende vraag in de toets deze kan null zijn of ingevuld.
 	 */
-	// set volgende vraag
 	public static Vraag getVraagByNr(int nr) {
 		Vraag v = null;
 		try {
@@ -85,6 +84,7 @@ public final class ToetsDAO {
 		ds.put(antwoord);
 
 	}
+<<<<<<< HEAD
 
 	public static ArrayList<Antwoord> getAlleAntwoorden(int code) {
 		ArrayList<Antwoord> set = null;
@@ -114,6 +114,33 @@ public final class ToetsDAO {
 			}
 		}
 		return set;
+=======
+	public static ArrayList<Antwoord> getAntwoordenByToetsNr(int nr){
+		ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
+		Query q = new Query("Antwoord");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			Antwoord a = null;
+			if(e.getProperty("toetsNummer").toString().equals(nr + "")){
+				int antwoordnummer = antwoorden.size() +1;
+				int vraagnummer = Integer.parseInt(e.getProperty("vraagNummer").toString());
+				int tijd = Integer.parseInt(e.getProperty("tijd").toString());
+				boolean rekenmachine  = Boolean.parseBoolean(e.getProperty("heeftRekenmachineGebruikt").toString());
+				boolean correct = Boolean.parseBoolean(e.getProperty("checkAntwoord").toString());
+				String antwoord = e.getProperty("antwoord").toString();
+				a = new Antwoord( antwoordnummer,antwoord, tijd, rekenmachine, nr,vraagnummer, correct);
+				antwoorden.add(a);
+			
+			}
+			
+		}
+		return antwoorden;
+	}
+	//TODO maken!
+	public static Antwoord getAntwoordByVraagNr(int nr){
+		return null;
+
+>>>>>>> origin/master
 	}
 
 

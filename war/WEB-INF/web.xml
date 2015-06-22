@@ -15,6 +15,22 @@
 		<servlet-name>login docent servlet</servlet-name>
 		<url-pattern>/login-docent.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>exporteer servlet</servlet-name>
+		<servlet-class>servlets.ExporteerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exporteer servlet</servlet-name>
+		<url-pattern>/exporteer.zip</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>exporteer studentcodes</servlet-name>
+		<servlet-class>servlets.ExporteerCodesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exporteer studentcodes</servlet-name>
+		<url-pattern>/studentcodes.zip</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>login student servlet</servlet-name>
