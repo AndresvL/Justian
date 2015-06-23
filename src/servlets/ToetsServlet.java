@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -18,8 +19,11 @@ import controller.TijdController;
 import domein.Student;
 import domein.Vraag;
 import domein.Antwoord;
-@SuppressWarnings("serial")
-public class ToetsServlet extends HttpServlet {
+public class ToetsServlet extends HttpServlet implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1777304050993338567L;
 	private TijdController tijd = new TijdController();
 	private ArrayList<Antwoord> ant = null;
 	

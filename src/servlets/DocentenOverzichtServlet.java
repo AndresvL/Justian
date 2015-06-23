@@ -15,6 +15,11 @@ import domein.Vraag;
 
 public class DocentenOverzichtServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8578648337310405243L;
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	

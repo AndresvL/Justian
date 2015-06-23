@@ -2,6 +2,7 @@ package servlets;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -25,7 +26,12 @@ public class ExporteerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
+		try{
+			Integer.parseInt(req.getParameter("toetsNr"));
+			}
+		catch(NumberFormatException nfe){
+			nfe.printStackTrace(new PrintWriter(System.out));
+		}
 		ArrayList<Antwoord> antwoorden = ToetsDAO.getAntwoordenByToetsNr(Integer.parseInt(req.getParameter("toetsNr")));
 		resp.setContentType("application/zip");
 		resp.setStatus(HttpServletResponse.SC_OK);

@@ -18,7 +18,7 @@ public class ExporteerCodesServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String[] codes = (String[])req.getSession().getAttribute("codeExport");
+		String[] codes = (String[])req.getSession().getAttribute("codes");
 		
 		resp.setContentType("application/zip");
 		   resp.setStatus(HttpServletResponse.SC_OK);

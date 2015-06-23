@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.StudentDAO;
 import domein.Student;
 
-@SuppressWarnings("serial")
 public class EnqueteInzichtServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2941548112770177902L;
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Student stud = new Student();
