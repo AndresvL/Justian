@@ -25,6 +25,15 @@
 		<servlet-name>logout docent servlet</servlet-name>
 		<url-pattern>/logout-docent.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>logout student servlet</servlet-name>
+		<servlet-class>servlets.LogoutStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout student servlet</servlet-name>
+		<url-pattern>/logout-student.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>exporteer servlet</servlet-name>

@@ -54,7 +54,7 @@
 				<h2>Log hier in als Student</h2>
 			</div>
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-4">
 					<div id="msgs">
 						<% 
 						Object msgs = request.getAttribute("msgs"); 

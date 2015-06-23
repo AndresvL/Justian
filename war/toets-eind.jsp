@@ -47,7 +47,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<a href="login-student.jsp" class="btn btn-default">beëindigen</a>
+					<a href="logout-student.do" class="btn btn-default">beëindigen</a>
 				</div>
 			</div>
 		</div>
