@@ -6,14 +6,18 @@ import java.util.ArrayList;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 import domein.Docent;
+import domein.Vraag;
 /**
  * deze klasse beheert alle docent-gerelateerde database acties.
  * @author Direct-Act
@@ -76,7 +80,7 @@ public final class DocentDAO {
 	}
 	
 	public static void createDocent(Docent d) {
-		Entity docent = new Entity("Docent");
+		Entity docent = new Entity("Docent", d.getEmail());
 		docent.setProperty("email", d.getEmail());
 		docent.setProperty("voornaam", d.getVoornaam());
 		docent.setProperty("achternaam", d.getAchternaam());
@@ -112,5 +116,23 @@ public final class DocentDAO {
 			docenten.add(dc);
 		}
 		return docenten;
+	}
+	
+	public static void updateDocent(Docent dc) {	
+		try {
+			Entity docent = ds.get(KeyFactory.createKey("Docent", dc.getEmail()));
+			
+			docent.setProperty("id", dc.getEmail());
+			docent.setProperty("email", dc.getEmail());
+			docent.setProperty("voornaam", dc.getVoornaam());
+			docent.setProperty("achternaam", dc.getAchternaam());
+			docent.setProperty("schoolNaam", dc.getSchoolnaam());
+			docent.setProperty("schoolPlaats", dc.getSchoolplaats());
+			
+			ds.put(docent);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
