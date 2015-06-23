@@ -60,6 +60,7 @@
 			            <li class="disabled"><a href="#">Aanmaken</a></li>
 		   			</ul>
 		        </li>
+		        <li><a href="login-docent.jsp">Log Uit</a></li>
 	          </ul>
 	        </div>
 	      </div>

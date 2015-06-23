@@ -60,6 +60,7 @@
 			            <li><a href="studentcode-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>
 		        </li>
+		        <li><a href="login-docent.jsp">Log Uit</a></li>
 	          </ul>
 	        </div>
 	      </div>
