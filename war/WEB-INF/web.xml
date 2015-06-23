@@ -24,6 +24,7 @@
 		<servlet-name>exporteer servlet</servlet-name>
 		<url-pattern>/exporteer.zip</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>exporteer code servlet</servlet-name>
 		<servlet-class>servlets.ExporteerCodesServlet</servlet-class>
@@ -32,6 +33,7 @@
 		<servlet-name>exporteer code servlet</servlet-name>
 		<url-pattern>/codeExport.zip</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>studenten overzicht servlet</servlet-name>
 		<servlet-class>servlets.StudentenOverzichtServlet</servlet-class>
@@ -40,6 +42,7 @@
 		<servlet-name>studenten overzicht servlet</servlet-name>
 		<url-pattern>/studenten-overzicht.do</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>login student servlet</servlet-name>
 		<servlet-class>servlets.LoginStudentServlet</servlet-class>
