@@ -78,6 +78,7 @@ public class Adaptief {
 		set2 = new ArrayList<Vraag>();
 		for (int i = 0; i < totaal-1; i++) {
 			if (!antwoorden.isEmpty()) {
+				System.out.println("antwoord" + antwoorden.get(i).checkAntwoord());
 				Boolean antwoord = antwoorden.get(i).checkAntwoord();
 				// als antwoord onjuist is
 				if (!antwoord) {

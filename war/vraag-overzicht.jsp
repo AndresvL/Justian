@@ -2,6 +2,15 @@
 <%@ page import="domein.Vraag" %>
 <%@ page import="DAO.VraagDAO" %>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<%
+ if (session.getAttribute("docent") == null) {
+%>
+<jsp:forward page="login-docent.jsp" />
+<%
+ }
+%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0"/>
@@ -106,7 +115,7 @@
 						<table class="table table-striped">
 							<tr>
 								<th>Vraag Nummer</th><th>Categorie</th><th>Rekenmachine</th><th>Afbeelding</th>
-								<th>Multiple Choice</th><th>Context</th><th>Opgave</th><th>Antwoord</th>
+								<th>Context</th><th>Opgave</th><th>Antwoord</th>
 								<th></th>
 							</tr>
 							<%! ArrayList<Vraag> al = new ArrayList<Vraag>(); %>
@@ -115,12 +124,13 @@
 								Vraag v = al.get(i);%>
 							<tr>
 								<th><%= v.getNummer()%></th><td><%= v.getType()%></td><td><%= v.isRekenmachine()%></td>
-								<td><%= v.heeftAfbeelding()%></td><td><%= v.isMultiplechoice()%></td><td><%= v.heeftContext()%></td>
+								<td><%= v.heeftAfbeelding()%></td>
+								<td><%= v.heeftContext()%></td>
 								<td><%= v.getVraagstelling()%></td><td><%= v.getAntwoord()%></td>
 								<td>
 									<form action="vragen-overzicht.do">
 										<input type="hidden" name="vraagnummer" value="<%= v.getNummer() %>">
-										<input class="btn btn-default" type="submit" value="Bekijk">
+										<input class="btn btn-default vol" type="submit" value="Bekijk">
 									</form>
 								</td>
 							</tr>
@@ -132,7 +142,7 @@
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 		  <div class="container-fluid">
-		    <h6>© Direct-ACT & Justian Knobbout</h6>
+		    <h6>Â© Direct-ACT & Justian Knobbout</h6>
 		  </div>
 		</nav>
 	</body>

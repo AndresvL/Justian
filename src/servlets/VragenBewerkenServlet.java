@@ -26,17 +26,6 @@ public class VragenBewerkenServlet extends HttpServlet{
 		String msgs = "";
 		RequestDispatcher rd = null;
 		v.setRekenmachine(false);
-		v.setMultiplechoice(false);
-		
-		String x = "";
-		x = x + req.getParameter("multiplechoice");
-		
-		if (x.equals("true")){
-			v.setMultiplechoice(true);
-		}
-		v.setAntwoord2(req.getParameter("antwoord2"));
-		v.setAntwoord3(req.getParameter("antwoord3"));
-		v.setAntwoord4(req.getParameter("antwoord4"));
 		
 		String y = "";
 		y = y + req.getParameter("rekenmachine");

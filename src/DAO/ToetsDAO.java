@@ -28,7 +28,7 @@ public final class ToetsDAO {
 	 * dit is een vereist attribuut om de verbinding met de google data
 	 */
 	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-	/**
+	/**c
 	 * dit attribuut houdt het toetsnummer bij met default value -1
 	 */
 	public static int toetsNummer = 1;
@@ -49,18 +49,8 @@ public final class ToetsDAO {
 	// set volgende vraag
 	public static Vraag getVraagByNr(int nr) {
 		Vraag v = null;
-		String antwoord2, antwoord3, antwoord4;
 		try {
 			Entity vraag = ds.get(KeyFactory.createKey("Vraag", nr));
-			if(vraag.getProperty("antwoord2").toString().equals("NULL")){
-				antwoord2 = "";
-				antwoord3 = "";
-				antwoord4 = "";
-			}else{
-				antwoord2 = vraag.getProperty("antwoord2").toString();
-				antwoord3 = vraag.getProperty("antwoord3").toString();
-				antwoord4 = vraag.getProperty("antwoord4").toString();
-			}
 			v = new Vraag(Boolean.parseBoolean(
 					vraag.getProperty("rekenmachine").toString()),
 					nr, 
@@ -68,11 +58,7 @@ public final class ToetsDAO {
 					(Text) vraag.getProperty("afbeelding"),
 					vraag.getProperty("categorie").toString(),
 					vraag.getProperty("opgave").toString(),
-					vraag.getProperty("antwoord").toString(),
-					antwoord2,
-					antwoord3,
-					antwoord4,
-					Boolean.parseBoolean(vraag.getProperty("isMultiplechoice").toString()));
+					vraag.getProperty("antwoord").toString());
 			
 		} catch (EntityNotFoundException e) {
 			e.printStackTrace();
@@ -215,5 +201,16 @@ public final class ToetsDAO {
 			}
 		}	
 		return toetsnr;
+	}
+		public static ArrayList<Integer> getAlleToetsNummers(String studentNr) {
+		int s = Integer.parseInt(studentNr);
+		ArrayList<Integer> toetsnummers = new ArrayList<Integer>();
+		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, s);
+		Query q = new Query("Toets").setFilter(filter);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			toetsnummers.add(Integer.parseInt(e.getProperty("toetsNummer").toString()));
+		} 
+		return toetsnummers;
 	}
 }

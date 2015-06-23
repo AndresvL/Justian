@@ -21,6 +21,9 @@ public class LoginDocentBeheerderServlet extends HttpServlet {
 		d = DocentDAO.getDocent(email, wachtwoord);
 		if (d != null) {
 			req.getSession().setAttribute("docent", d);
+			if(d.getEmail().equals("justianmind@gmail.com")){
+				req.getSession().setAttribute("beheerder", "justian");
+			}
 			rd = req.getRequestDispatcher("studentcode-aanmaken.jsp");
 		} else {
 			rd = req.getRequestDispatcher("/login-docent.jsp");

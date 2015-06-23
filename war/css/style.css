@@ -57,10 +57,10 @@
 .tablecontent{
 	overflow: auto;
 	height: 400px;
-<<<<<<< HEAD
-=======
 }
 #vraagcontext{
 	height: 200px;
->>>>>>> origin/master
+}
+.bottom{
+	padding-bottom: 5px;
 }

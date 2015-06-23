@@ -1,4 +1,16 @@
+<%@ page import="java.util.*" %>
+<%@ page import="domein.Student" %>
+<%@ page import="DAO.StudentDAO" %>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<%
+ if (session.getAttribute("docent") == null) {
+%>
+<jsp:forward page="login-docent.jsp" />
+<%
+ }
+%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0"/>
@@ -60,19 +72,28 @@
 				<h3>Studenten Overzicht</h3>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-10">
 					<div class="tablecontent">
 						<table class="table table-striped">
 							<tr>
-								<th>docent_email</th><th>Student Nummer</th><th>Gem_WiskundeCijfer</th><th>Geslacht</th>
-								<th>Niveau</th><th>Profiel</th><th>Schooljaar</th><th>WannBlijvenZitten</th>
+								<th>Docent Email</th><th>Student Nummer</th><th>School</th>
 								<th></th>
 							</tr>
+							<%! ArrayList<Student> al = new ArrayList<Student>(); %>
+							<%	al = StudentDAO.alleStudenten();
+								for(int i=0; i<al.size(); i++){
+								Student s = al.get(i);%>
 							<tr>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td><a href="#" class="btn btn-default vol">Bekijk</a></td>
+								<th><%= s.getDocentEmail() %><th><%= s.getCode()%></th><th><%= s.getSchool()%></th>
+								
+								<td>
+									<form action="studenten-overzicht.do">
+										<input type="hidden" name="studentnummer" value="<%= s.getCode() %>">
+										<input class="btn btn-default vol" type="submit" value="Bekijk">
+									</form>
+								</td>
 							</tr>
+							<% } %>
 						</table>
 					</div>
 				</div>
@@ -80,7 +101,7 @@
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 		  <div class="container-fluid">
-		    <h6>© Direct-ACT & Justian Knobbout</h6>
+		    <h6>Â© Direct-ACT & Justian Knobbout</h6>
 		  </div>
 		</nav>
 	</body>

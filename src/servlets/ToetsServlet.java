@@ -18,20 +18,17 @@ import controller.TijdController;
 import domein.Student;
 import domein.Vraag;
 import domein.Antwoord;
-
 @SuppressWarnings("serial")
 public class ToetsServlet extends HttpServlet {
 	private TijdController tijd = new TijdController();
+	private ArrayList<Antwoord> ant = null;
 	
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		RequestDispatcher rd = null;
 		ArrayList<Vraag> set1 = (ArrayList<Vraag>) req.getSession().getAttribute("set1");
-		ArrayList<Antwoord> ant = new ArrayList<Antwoord>();
-		ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
 		if (req.getParameter("button").equals("volgende")) {
-			
 			String antwoord = req.getParameter("antwoord");			
 			if(!antwoord.equals("")){
 				//getSession
@@ -45,15 +42,21 @@ public class ToetsServlet extends HttpServlet {
 				int sec = (Integer) req.getSession().getAttribute("seconden");
 				int t = tijd.getVraagTijd(sec, min, uur,(System.currentTimeMillis()));
 				
-				
 				Vraag huidig = set1.get(aantal-1);
 				boolean goedAntwoord = false;
 				if (huidig.getAntwoord().equals(antwoord)) {
 					goedAntwoord = true;
 				}
 				Antwoord a = new Antwoord(aantal, antwoord, t, rekenmachine, toetsnr, vraagnr, goedAntwoord);
-				ToetsDAO.addAntwoord(a);	
-				ant.add(a);
+				ToetsDAO.addAntwoord(a);
+				if(req.getSession().getAttribute("antwoorden")!=null){
+					 ant = (ArrayList<Antwoord>)req.getSession().getAttribute("antwoorden");
+					 ant.add(a);
+				}else{
+					 ant = new ArrayList<Antwoord>();
+					 ant.add(a);
+				}
+				
 				if (aantal <= set1.size()) {
 					if(aantal == 20){	
 						ArrayList<Vraag> set2 = Adaptief.set2(ant, set1);
@@ -85,6 +88,7 @@ public class ToetsServlet extends HttpServlet {
 							req.getSession().setAttribute("context", "");
 						}
 						req.getSession().setAttribute("antwoord", "");
+						req.getSession().setAttribute("antwoorden", ant);
 						req.getSession().setAttribute("vraag", volgende.getVraagstelling());
 						req.getSession().setAttribute("plaatje", volgende.getAfbeelding());
 						req.getSession().setAttribute("rekenmachine", volgende.isRekenmachine());

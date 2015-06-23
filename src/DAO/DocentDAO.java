@@ -8,15 +8,12 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 import domein.Docent;
-import domein.Student;
-import domein.Vraag;
 /**
  * deze klasse beheert alle docent-gerelateerde database acties.
  * @author Direct-Act
@@ -60,6 +57,24 @@ public final class DocentDAO {
 		return d;
 	}
 	
+	public static Docent getDocentByEmail(String em) {	
+		Docent d = null;
+		// filter voor ingevoerde email en wachtwoord
+		Filter email = new FilterPredicate("email", FilterOperator.EQUAL, em);
+		Query q = new Query("Docent").setFilter(email);
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			d = new Docent();
+			d.setEmail(e.getProperty("email").toString());
+			d.setWachtwoord(e.getProperty("wachtwoord").toString());
+			d.setVoornaam(e.getProperty("voornaam").toString());
+			d.setAchternaam(e.getProperty("achternaam").toString());
+			d.setSchoolnaam(e.getProperty("schoolNaam").toString());
+			d.setSchoolplaats(e.getProperty("schoolPlaats").toString());
+		}
+		return d;
+	}
+	
 	public static void createDocent(Docent d) {
 		Entity docent = new Entity("Docent");
 		docent.setProperty("email", d.getEmail());
@@ -70,13 +85,12 @@ public final class DocentDAO {
 		docent.setProperty("schoolPlaats", d.getSchoolplaats());
 		ds.put(docent);
 	}
-	
 	public static void createBeheerder() {
 		Entity docent = new Entity("Docent");
-		docent.setProperty("email", "andresvanlummel@gmail.com");
-		docent.setProperty("voornaam", "Andres");
-		docent.setProperty("achternaam", "van Lummel");
-		docent.setProperty("wachtwoord", "andres");
+		docent.setProperty("email", "justianmind@gmail.com");
+		docent.setProperty("voornaam", "Justian");
+		docent.setProperty("achternaam", "Mind");
+		docent.setProperty("wachtwoord", "justian");
 		docent.setProperty("schoolNaam", "Amerongen");
 		docent.setProperty("schoolPlaats", "Amersfoort");
 		ds.put(docent);

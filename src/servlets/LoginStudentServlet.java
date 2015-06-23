@@ -32,9 +32,12 @@ public class LoginStudentServlet extends HttpServlet {
 		int code = Integer.parseInt(req.getParameter("code"));
 //		VraagDAO.removeAlleSets();
 //		VraagDAO.removeAntwoord();
+//		DocentDAO.createBeheerder();
 		RequestDispatcher rd = null;
 		if (StudentDAO.checkStudent(code)) {
-			s = StudentDAO.getStudentByCode(code);			
+			s = StudentDAO.getStudentByCode(code);
+			ArrayList<Antwoord> antwoorden = ToetsDAO.getAlleAntwoorden(code);
+			req.getSession().setAttribute("antwoorden", antwoorden);
 			Vraag v = null;
 			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
 			if(ToetsDAO.getToetsNummer(code) == 0){
@@ -48,8 +51,7 @@ public class LoginStudentServlet extends HttpServlet {
 				Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
 				v.setAfbeelding(blob);
 			}
-			ArrayList<Antwoord> antwoorden = ToetsDAO.getAlleAntwoorden(code);
-			req.getSession().setAttribute("antwoorden", antwoorden);
+			
 			req.getSession().setAttribute("set1", vraag);			
 			req.getSession().setAttribute("aantal", (VraagDAO.getLaatsteAntwoordNummer(code)+1));
 			req.getSession().setAttribute("student", s);

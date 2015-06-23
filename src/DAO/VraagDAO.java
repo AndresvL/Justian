@@ -39,18 +39,9 @@ public final class VraagDAO {
 	 *            het vraag object dat toegevoegd dient te worden
 	 */
 	public static void addVraag(Vraag vr) {
-		String antwoord2, antwoord3, antwoord4, context, afbeelding;
+		String context, afbeelding;
 		Entity vraag = new Entity("Vraag", vr.getNummer());
-		System.out.println("antwoord2" + vr.getAntwoord2()+"hiertussen");
-		if(vr.getAntwoord2().equals("")){			
-			antwoord2 = "NULL";
-			antwoord3 = "NULL";
-			antwoord4 = "NULL";
-		}else{
-			antwoord2 = vr.getAntwoord2();
-			antwoord3 = vr.getAntwoord3();
-			antwoord4 = vr.getAntwoord4();
-		}
+		System.out.println("context " + vr.getContext());
 		if(vr.getContext().equals("")){
 			context = "NULL";
 		}else{
@@ -69,29 +60,15 @@ public final class VraagDAO {
 		vraag.setProperty("rekenmachine", vr.isRekenmachine());
 		vraag.setProperty("context", context);
 		vraag.setProperty("afbeelding", af);
-		vraag.setProperty("isMultiplechoice", vr.isMultiplechoice());
 		vraag.setProperty("antwoord", vr.getAntwoord());
-		vraag.setProperty("antwoord2", antwoord2);
-		vraag.setProperty("antwoord3", antwoord3);
-		vraag.setProperty("antwoord4", antwoord4);
 		ds.put(vraag);
 	}
 	
 	public static void updateVraag(Vraag vr) {	
 		try {
-			String antwoord2, antwoord3, antwoord4, context, afbeelding;
+			String context, afbeelding;
 			Entity vraag = ds.get(KeyFactory.createKey("Vraag", vr.getNummer()));
-			System.out.println("antwoord2" + vr.getAntwoord2()+"hiertussen");
-			if(vr.getAntwoord2().equals("")){			
-				antwoord2 = "NULL";
-				antwoord3 = "NULL";
-				antwoord4 = "NULL";
-			}else{
-				antwoord2 = vr.getAntwoord2();
-				antwoord3 = vr.getAntwoord3();
-				antwoord4 = vr.getAntwoord4();
-			}
-			if(vr.getContext().equals("")){
+			if(vr.getContext()==null){
 				context = "NULL";
 			}else{
 				context = vr.getContext();
@@ -108,11 +85,7 @@ public final class VraagDAO {
 			vraag.setProperty("rekenmachine", vr.isRekenmachine());
 			vraag.setProperty("context", context);
 			vraag.setProperty("afbeelding", af);
-			vraag.setProperty("isMultiplechoice", vr.isMultiplechoice());
 			vraag.setProperty("antwoord", vr.getAntwoord());
-			vraag.setProperty("antwoord2", antwoord2);
-			vraag.setProperty("antwoord3", antwoord3);
-			vraag.setProperty("antwoord4", antwoord4);
 			ds.put(vraag);
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -146,20 +119,14 @@ public final class VraagDAO {
 		for (Entity e : pq.asIterable()) {
 			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());			
 			Vraag v = ToetsDAO.getVraagByNr(nummer);
-			
-			boolean rekenmachine = (Boolean) v.isRekenmachine();
 			String context = v.getContext();
+			boolean rekenmachine = (Boolean) v.isRekenmachine();
 			Text afbeelding = new Text(v.getAfbeelding());
 			String cat = v.getType();
 			String antwoord = v.getAntwoord();		
-			boolean multi = (Boolean) v.isMultiplechoice();
 			String opgave = v.getVraagstelling();
-			String antwoord2 = v.getAntwoord2();
-			String antwoord3 = v.getAntwoord3();
-			String antwoord4 = v.getAntwoord4();
-//			// mulitple choice moet nog in vraag object
 			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
-					opgave, antwoord, antwoord2, antwoord3, antwoord4, multi);
+					opgave, antwoord);
 			set.add(vr);		
 		}
 		return set;
@@ -199,8 +166,7 @@ public final class VraagDAO {
 		Vraag vr = null;
 		try {
 			InputStream is = new BlobstoreInputStream(blobkey);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is,
-					"UTF-8"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
 			String line = br.readLine();
 			while (line != null) {
 				String[] inhoud = line.split(";");
@@ -212,11 +178,7 @@ public final class VraagDAO {
 				vr.setContext(inhoud[4]);
 				String afbeelding = inhoud[5].replaceAll("\r\n", "");
 				vr.setBlobAfbeelding(afbeelding);
-				vr.setMultiplechoice(Boolean.parseBoolean(inhoud[6]));
-				vr.setAntwoord(inhoud[7]);
-				vr.setAntwoord2(null);
-				vr.setAntwoord3(null);
-				vr.setAntwoord4(null);
+				vr.setAntwoord(inhoud[6]);
 				addVraag(vr);
 				line = br.readLine();
 			}
@@ -267,7 +229,6 @@ public final class VraagDAO {
 	}
 
 	public static ArrayList<Vraag> alleVragen() {
-		String antwoord2, antwoord3, antwoord4;
 		ArrayList<Vraag> vragen = new ArrayList<Vraag>();
 		Vraag vr = null;
 		Query q = new Query("Vraag");
@@ -278,27 +239,11 @@ public final class VraagDAO {
 			String antwoord = e.getProperty("antwoord").toString();
 			String cat = e.getProperty("categorie").toString();
 			String context = e.getProperty("context").toString();
-			boolean multi = (Boolean) e.getProperty("isMultiplechoice");
 			String opgave = e.getProperty("opgave").toString();
 			boolean rekenmachine = (Boolean) e.getProperty("rekenmachine");
-			if(e.getProperty("antwoord2")!= null){
-				antwoord2 = e.getProperty("antwoord2").toString();
-			}else{
-				antwoord2 = "";
-			}
-			if(e.getProperty("antwoord3")!=null){
-				antwoord3 = e.getProperty("antwoord3").toString();
-			}else{
-				antwoord3 = "";
-			}
-			if(e.getProperty("antwoord4")!=null){
-				antwoord4 = e.getProperty("antwoord4").toString();
-			}else{
-				antwoord4 = "";
-			}
 			// mulitple choice moet nog in vraag object
 			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
-					opgave, antwoord, antwoord2, antwoord3, antwoord4, multi);
+					opgave, antwoord);
 			vragen.add(vr);
 		}
 		return vragen;

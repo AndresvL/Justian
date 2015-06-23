@@ -1,12 +1,17 @@
 package DAO;
 
+import java.util.ArrayList;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 
+import domein.Docent;
 import domein.Student;
 /**
  * Deze klasse beheert alle student-gerelateerde database acties
@@ -25,6 +30,7 @@ public final class StudentDAO {
 	 */
 	public static void createStudent(Student s, String email) {
 		Entity student = new Entity("Student", s.getCode());
+		student.setProperty("studentNummer", s.getCode());
 		student.setProperty("docent_email", email);
 		ds.put(student);
 	}
@@ -37,13 +43,17 @@ public final class StudentDAO {
 	public static void fillStudent(Student s) {
 		Key key=KeyFactory.createKey("Student", s.getCode());
 		String email = "";
+		int code = 0;
 		try{
 			Entity getKey = ds.get(key);		
 			email = getKey.getProperty("docent_email").toString();
+			code = Integer.parseInt(getKey.getProperty("studentNummer").toString());
 		}catch(EntityNotFoundException e){
 			e.printStackTrace();
 		}
 		Entity student = new Entity("Student",s.getCode());
+		student.setProperty("studentNummer", code);
+		student.setProperty("docent_email", email);
 		student.setProperty("schoolNaam", s.getSchool());
 		student.setProperty("schoolJaar", s.getJaar());
 		student.setProperty("profiel", s.getProfiel());
@@ -51,7 +61,9 @@ public final class StudentDAO {
 		student.setProperty("geslacht", s.getGeslacht());
 		student.setProperty("gemWiskundeCijfer", s.getGemCijfer());
 		student.setProperty("wannBlijvenZitten", s.getIsBlijvenZitten());
-		student.setProperty("docent_email", email);
+		student.setProperty("watIsRekensom", s.getWatIsRekensom());
+		student.setProperty("hoogteEiffeltoren", s.getHoogteEiffeltoren());
+		student.setProperty("aantMobieleTelefoons", s.getAantMobieleTelefoons());
 		ds.put(student);
 	}
 	/**
@@ -109,7 +121,9 @@ public final class StudentDAO {
 		s.setCode(code);
 		try {
 			Entity getKey = ds.get(key);			
-			if(getKey.hasProperty("schoolNaam")){			
+			if(getKey.hasProperty("schoolNaam")){
+				s.setCode(Integer.parseInt(getKey.getProperty("studentNummer").toString()));
+				s.setDocentEmail(getKey.getProperty("docent_email").toString());
 				s.setSchool(getKey.getProperty("schoolNaam").toString());
 				s.setJaar(getKey.getProperty("schoolJaar").toString());
 				s.setProfiel(getKey.getProperty("profiel").toString());
@@ -117,11 +131,51 @@ public final class StudentDAO {
 				s.setGeslacht(getKey.getProperty("geslacht").toString());
 				s.setIsBlijvenZitten(getKey.getProperty("wannBlijvenZitten").toString());
 				s.setGemCijfer(getKey.getProperty("gemWiskundeCijfer").toString());
+				s.setWatIsRekensom(getKey.getProperty("watIsRekensom").toString());
+				s.setHoogteEiffeltoren(getKey.getProperty("hoogteEiffeltoren").toString());
+				s.setAantMobieleTelefoons(getKey.getProperty("aantMobieleTelefoons").toString());
 			}
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return s;		
+	}
+	
+	public static ArrayList<Student> alleStudenten() {
+		ArrayList<Student> studenten = new ArrayList<Student>();
+		Student dc = null;
+		Query q = new Query("Student");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			if(e.hasProperty("schoolNaam")){
+				int code = Integer.parseInt(e.getProperty("studentNummer").toString());
+				String email = e.getProperty("docent_email").toString();
+				String schoolNaam = e.getProperty("schoolNaam").toString();
+				String schoolJaar = e.getProperty("schoolJaar").toString();
+				String profiel = e.getProperty("profiel").toString();
+				String niveau = e.getProperty("niveau").toString();
+				String geslacht = e.getProperty("geslacht").toString();
+				String wanBlijvenZitten = e.getProperty("wannBlijvenZitten").toString();
+				String watIsRekensom = e.getProperty("watIsRekensom").toString();
+				String hoogteEiffeltoren = e.getProperty("hoogteEiffeltoren").toString();
+				String aantMobieleTelefoons = e.getProperty("aantMobieleTelefoons").toString();
+	
+				dc = new Student();
+				dc.setCode(code);
+				dc.setDocentEmail(email);
+				dc.setSchool(schoolNaam);
+				dc.setJaar(schoolJaar);
+				dc.setProfiel(profiel);
+				dc.setNiveau(niveau);
+				dc.setGeslacht(geslacht);
+				dc.setIsBlijvenZitten(wanBlijvenZitten);
+				dc.setWatIsRekensom(watIsRekensom);
+				dc.setHoogteEiffeltoren(hoogteEiffeltoren);
+				dc.setAantMobieleTelefoons(aantMobieleTelefoons);
+				studenten.add(dc);
+			}
+		}
+		return studenten;
 	}
 }

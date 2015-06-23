@@ -2,6 +2,15 @@
 <%@ page import="domein.Docent" %>
 <%@ page import="DAO.DocentDAO" %>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<%
+ if (session.getAttribute("beheerder") == null) {
+%>
+<jsp:forward page="login-docent.jsp" />
+<%
+ }
+%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0"/>
@@ -77,7 +86,12 @@
 							<tr>
 								<th><%= d.getEmail()%></th><td><%= d.getVoornaam()+" "+d.getAchternaam()%></td>
 								<td><%= d.getSchoolnaam()%></td><td><%= d.getSchoolplaats()%></td>
-								<td><a href="docenten-overzicht.do?email=<%= d.getEmail()%>" class="btn btn-default vol">Bekijk</a></td>
+								<td>
+									<form action="docenten-overzicht.do">
+										<input type="hidden" name="email" value="<%= d.getEmail() %>">
+										<input class="btn btn-default vol" type="submit" value="Bekijk">
+									</form>
+								</td>
 							</tr>
 							<% } %>
 						</table>
@@ -87,7 +101,7 @@
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 		  <div class="container-fluid">
-		    <h6>© Direct-ACT & Justian Knobbout</h6>
+		    <h6>Â© Direct-ACT & Justian Knobbout</h6>
 		  </div>
 		</nav>
 	</body>

@@ -29,12 +29,8 @@ public class VragenOverzichtServlet extends HttpServlet{
 	req.getSession().setAttribute("vraagNummer", nummer);
 	req.getSession().setAttribute("context", x.getContext());
 	req.getSession().setAttribute("antwoord1", x.getAntwoord());
-	req.getSession().setAttribute("antwoord2", x.getAntwoord2());
-	req.getSession().setAttribute("antwoord3", x.getAntwoord3());
-	req.getSession().setAttribute("antwoord4", x.getAntwoord4());
 	req.getSession().setAttribute("opgave", x.getVraagstelling());
 	req.getSession().setAttribute("rekenmachine", x.isRekenmachine());
-	req.getSession().setAttribute("multiple", x.isMultiplechoice());
 	req.getSession().setAttribute("categorie", x.getType());
 	req.getSession().setAttribute("afbeelding", x.getAfbeelding());
 	

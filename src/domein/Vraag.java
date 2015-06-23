@@ -7,7 +7,6 @@ import com.google.appengine.api.datastore.Text;
 public class Vraag implements Serializable{
 	private String antwoord;
 	private boolean rekenmachine;
-	private boolean isMultiplechoice;
 	private int nummer;
 	private String context;
 	private Text afbeelding;
@@ -15,11 +14,8 @@ public class Vraag implements Serializable{
 	private String vraagstelling;
 	private enum type{getal,verhouding, verband, meet}
 	type cat;
-	private String antwoord2;
-	private String antwoord3;
-	private String antwoord4;
 	
-	public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a, String a2, String a3 ,String a4, boolean isM){
+	public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a){
 		this.setRekenmachine(rek);
 		this.setNummer(nr);
 		this.setContext(con);
@@ -27,10 +23,6 @@ public class Vraag implements Serializable{
 		this.setType(t);
 		this.setVraagstelling(vS);
 		this.setAntwoord(a);
-		this.setAntwoord2(a2);
-		this.setAntwoord3(a3);
-		this.setAntwoord4(a4);
-		this.setMultiplechoice(isM);
 	}
 
 	public Vraag() {
@@ -40,41 +32,6 @@ public class Vraag implements Serializable{
 	public Vraag(int nr, String cat){
 		this.setNummer(nr);
 		this.setType(cat);
-	}
-	
-	public void setAntwoord2(String a){
-		if(!a.equals("NULL")){
-			antwoord2 = a;
-		}else{
-			antwoord2 = "";
-		}
-	}
-	
-	public String getAntwoord2(){
-		return antwoord2;
-	}
-	
-	public void setAntwoord3(String a){
-		if(!a.equals("NULL")){
-			antwoord3 = a;
-		}else{
-			antwoord3 = "";
-		}
-	}
-	public String getAntwoord3(){
-		return antwoord3;
-	}
-	
-	public void setAntwoord4(String a){
-		if(!a.equals("NULL")){
-			antwoord4 = a;
-		}else{
-			antwoord4 = "";
-		}
-	}
-	
-	public String getAntwoord4(){
-		return antwoord4;
 	}
 	
 	public void setType(String t){
@@ -109,11 +66,7 @@ public class Vraag implements Serializable{
 	}
 
 	public void setContext(String context) {
-		if(!context.equals("NULL")){
-			this.context = context;
-		}else{
-			context = "";
-		}
+		this.context = context;
 	}
 
 	public String getAfbeelding() {
@@ -138,14 +91,6 @@ public class Vraag implements Serializable{
 
 	public void setAntwoord(String antwoord) {
 		this.antwoord = antwoord;
-	}
-
-	public boolean isMultiplechoice() {
-		return isMultiplechoice;
-	}
-
-	public void setMultiplechoice(boolean isMultiplechoice) {
-		this.isMultiplechoice = isMultiplechoice;
 	}
 
 	public void setBlobAfbeelding(String blobAfbeelding) {

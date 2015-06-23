@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class Student implements Serializable{
 
 	private boolean firstTime;
+	private String docentEmail;
 	private int code;
 	private String school;
 	private int jaar;
@@ -115,9 +116,13 @@ public class Student implements Serializable{
 	public void setAantMobieleTelefoons(String aantMobieleTelefoons) {
 		this.aantMobieleTelefoons = aantMobieleTelefoons;
 	}
-	
-	public String toString(){
-		return "JEMOEDER" + this.getCode();
+
+	public String getDocentEmail() {
+		return docentEmail;
+	}
+
+	public void setDocentEmail(String docentEmail) {
+		this.docentEmail = docentEmail;
 	}
 	
 }

@@ -1,4 +1,16 @@
+<%@page import="javax.mail.Session"%>
+<%@ page import="java.util.*" %>
+<%@ page import="DAO.ToetsDAO" %>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<%
+ if (session.getAttribute("docent") == null) {
+%>
+<jsp:forward page="login-docent.jsp" />
+<%
+ }
+%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0"/>
@@ -66,15 +78,15 @@
 							<label>Student Nummer:</label>
 						</div>
 						<div class="col-md-2">
-							<p>TEST</p>
+							<p>${studentnummer}</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-10">
-							<label>Docent Email:</label>
+							<label>Is blijven zitten:</label>
 						</div>
 						<div class="col-md-2">
-							<p>TEST</p>
+							<p>${wannBlijvenZitten}</p>
 						</div>
 					</div>
 					<div class="row">
@@ -82,7 +94,7 @@
 							<label>Gem WiskundeCijfer:</label>
 						</div>
 						<div class="col-md-2">
-							<p>TEST</p>
+							<p>${gemWiskundeCijfer}</p>
 						</div>
 					</div>
 				</div>
@@ -90,28 +102,38 @@
 					<div class="tablecontent">
 						<table class="table table-striped">
 							<tr>
-								<th>Toetsnummer</th><th>Student Nummer</th>
-								<th>Niveau</th><th>Profiel</th><th>Schooljaar</th><th>WannBlijvenZitten</th>
+								<th>Toetsnummer</th>
 								<th></th>
 							</tr>
+							<%! ArrayList<Integer> al = new ArrayList<Integer>(); %>
+							<% String x = session.getAttribute("studentnummer").toString();%>
+							<%	al = ToetsDAO.getAlleToetsNummers(x);
+								for(int i=0; i<al.size(); i++){
+								int s = al.get(i);%>
 							<tr>
-								<td>TEST</td><td>TEST</td>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td><a href="#" class="btn btn-default vol">Bekijk</a></td>
+								<th><%= s %></th>								
+								<td>
+									<form action="exporteer.zip">
+										<input type="hidden" name="stuNr" value="${studentnummer}">
+										<input type="hidden" name="toetsNr" value="<%= s %>">
+								    	<input class="btn btn-default vol" type="submit" value="Exporteer">
+								    </form>
+								</td>
 							</tr>
+							<% } %>
 						</table>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<a href="#"><button class="btn btn-danger half">Terug</button></a>
+					<a href="student-overzicht.jsp"><button class="btn btn-danger half">Terug</button></a>
 				</div>
 			</div>
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 		  <div class="container-fluid">
-		    <h6>© Direct-ACT & Justian Knobbout</h6>
+		    <h6>Â© Direct-ACT & Justian Knobbout</h6>
 		  </div>
 		</nav>
 	</body>

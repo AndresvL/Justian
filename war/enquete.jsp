@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8"%>
+<%
+ if (session.getAttribute("student") == null) {
+%>
+<jsp:forward page="login-docent.jsp" />
+<%
+ }
+%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0" />
@@ -123,7 +132,7 @@
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
 			<div class="container-fluid">
-				<h6>© Direct-ACT & Justian Knobbout</h6>
+				<h6>Â© Direct-ACT & Justian Knobbout</h6>
 			</div>
 		</nav>
 	</body>
