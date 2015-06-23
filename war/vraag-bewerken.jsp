@@ -62,7 +62,7 @@
 						<h3>Opties</h3>
 					</div>
 					<div class="row">
-						<input type="file" name="afbeelding" accept="image/*">
+						<input type="file" name="afbeelding" accept="image/*" value="${afbeelding}">
    		 				<p class="help-block">Geef afbeelding indien nodig</p>
 					</div>
 					<div class="row">
@@ -95,7 +95,7 @@
 							<label>Context</label>
 						</div>
 						<div class="col-md-6">
-							<textarea class="form-control" name="context" required placeholder="Vul hier de context in indien aanwezig" rows="3" >${context}</textarea>
+							<textarea class="form-control" name="context" required rows="3" >${context}</textarea>
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -103,7 +103,7 @@
 							<label>Opgave</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="opgave" required placeholder="Vul hier de opgave in" value="${opgave}">
+							<input class="form-control" type="text" name="opgave" value="${opgave}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -111,7 +111,7 @@
 							<label>Antwoord 1</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord1" required placeholder="Vul hier het correcte antwoord in" value="${antwoord1}">
+							<input class="form-control" type="text" name="antwoord1" required value="${antwoord1}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -119,7 +119,7 @@
 							<label>Antwoord 2</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord2" placeholder="Vul indien multiple choice" value="${antwoord2}">
+							<input class="form-control" type="text" name="antwoord2" value="${antwoord2}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -127,7 +127,7 @@
 							<label>Antwoord 3</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord3" placeholder="Vul indien multiple choice" value="${antwoord3}">
+							<input class="form-control" type="text" name="antwoord3" value="${antwoord3}">
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -135,12 +135,12 @@
 							<label>Antwoord 4</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord4" placeholder="Vul indien multiple choice" value="${antwoord4}">
+							<input class="form-control" type="text" name="antwoord4" value="${antwoord4}">
 						</div>
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-3 col-md-offset-2">
-							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+							<a href="vraag-overzicht.jsp" class="btn btn-danger vol">Terug</a>
 						</div>
 						<div class="col-md-3">
 							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>

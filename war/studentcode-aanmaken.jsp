@@ -86,11 +86,11 @@
 				</div>
 			</div>
 		</form>
-		<form action="studentcodes.zip">
+		<form action="exporteer.do">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-3">
-					<input class="btn btn-default" style="width: 100%;" type="submit"
-						name="button" value="export studentnummers">
+					<button class="btn btn-default" style="width: 100%;" type="submit"
+						name="button" value="export">Exporteer codes</button>
 				</div>
 			</div>
 			</form>

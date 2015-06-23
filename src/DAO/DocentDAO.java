@@ -1,11 +1,14 @@
 package DAO;
 
 
+import java.util.ArrayList;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
@@ -13,6 +16,7 @@ import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 import domein.Docent;
 import domein.Student;
+import domein.Vraag;
 /**
  * deze klasse beheert alle docent-gerelateerde database acties.
  * @author Direct-Act
@@ -67,4 +71,21 @@ public final class DocentDAO {
 		ds.put(docent);
 	}
 	
+	public static ArrayList<Docent> alleDocenten() {
+		ArrayList<Docent> docenten = new ArrayList<Docent>();
+		Docent dc = null;
+		Query q = new Query("Docent");
+		PreparedQuery pq = ds.prepare(q);
+		for (Entity e : pq.asIterable()) {
+			String email = e.getProperty("email").toString();
+			String voornaam = e.getProperty("voornaam").toString();
+			String achternaam = e.getProperty("achternaam").toString();
+			String schoolnaam = e.getProperty("schoolNaam").toString();
+			String schoolplaats = e.getProperty("schoolPlaats").toString();
+			// mulitple choice moet nog in vraag object
+			dc = new Docent(email, voornaam, achternaam, schoolnaam, schoolplaats);
+			docenten.add(dc);
+		}
+		return docenten;
+	}
 }

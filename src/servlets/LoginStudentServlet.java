@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DocentDAO;
 import DAO.StudentDAO;
 import DAO.ToetsDAO;
 import DAO.VraagDAO;
@@ -17,6 +16,7 @@ import DAO.VraagDAO;
 import com.google.appengine.api.datastore.Text;
 
 import controller.TijdController;
+import domein.Antwoord;
 import domein.Student;
 import domein.Vraag;
 
@@ -29,28 +29,28 @@ public class LoginStudentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Student s = new Student();
 		int code = Integer.parseInt(req.getParameter("code"));
-//		Vraag v = ToetsDAO.getVraagByNr(VraagDAO.getLaatsteAntwoord(code));	
+//		VraagDAO.removeAlleSets();
+//		VraagDAO.removeAntwoord();
 		RequestDispatcher rd = null;
 		if (StudentDAO.checkStudent(code)) {
-			s = StudentDAO.getStudentByCode(code);
-			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
+			s = StudentDAO.getStudentByCode(code);			
 			Vraag v = null;
-			if(VraagDAO.getLaatsteAntwoordNummer(code) == 0){
-				System.out.println("leeg");
+			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
+			if(ToetsDAO.getToetsNummer(code) == 0){
 				vraag = Adaptief.set1();	
 				VraagDAO.addVraagSet(vraag, code, 0);
 				v = vraag.get(0);
 			}else{
-				System.out.println("niet leeg");
 				v = vraag.get(VraagDAO.getLaatsteAntwoordNummer(code));
 			}
 			if (v.getAfbeelding().equals("NULL")) {
 				Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
 				v.setAfbeelding(blob);
 			}
-			
-			req.getSession().setAttribute("set1", vraag);
-			req.getSession().setAttribute("aantal", VraagDAO.getLaatsteAntwoordNummer(code)+1);
+			ArrayList<Antwoord> antwoorden = ToetsDAO.getAlleAntwoorden(code);
+			req.getSession().setAttribute("antwoorden", antwoorden);
+			req.getSession().setAttribute("set1", vraag);			
+			req.getSession().setAttribute("aantal", (VraagDAO.getLaatsteAntwoordNummer(code)+1));
 			req.getSession().setAttribute("student", s);
 			req.getSession().setAttribute("vraag", v.getVraagstelling());
 			req.getSession().setAttribute("vraagnummer", v.getNummer());

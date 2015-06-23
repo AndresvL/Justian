@@ -1,3 +1,6 @@
+<%@ page import="java.util.*" %>
+<%@ page import="domein.Vraag" %>
+<%@ page import="DAO.VraagDAO" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -106,11 +109,22 @@
 								<th>Multiple Choice</th><th>Context</th><th>Opgave</th><th>Antwoord</th>
 								<th></th>
 							</tr>
+							<%! ArrayList<Vraag> al = new ArrayList<Vraag>(); %>
+							<%	al = VraagDAO.alleVragen();
+								for(int i=0; i<al.size(); i++){
+								Vraag v = al.get(i);%>
 							<tr>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td>TEST</td><td>TEST</td><td>TEST</td><td>TEST</td>
-								<td><a href="#" class="btn btn-default vol">Bekijk</a></td>
+								<th><%= v.getNummer()%></th><td><%= v.getType()%></td><td><%= v.isRekenmachine()%></td>
+								<td><%= v.heeftAfbeelding()%></td><td><%= v.isMultiplechoice()%></td><td><%= v.heeftContext()%></td>
+								<td><%= v.getVraagstelling()%></td><td><%= v.getAntwoord()%></td>
+								<td>
+									<form action="vragen-overzicht.do">
+										<input type="hidden" name="vraagnummer" value="<%= v.getNummer() %>">
+										<input class="btn btn-default" type="submit" value="Bekijk">
+									</form>
+								</td>
 							</tr>
+							<% } %>
 						</table>
 					</div>
 				</div>

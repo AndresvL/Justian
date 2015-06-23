@@ -14,6 +14,9 @@ public class Student implements Serializable{
 	private double cijfer;
 	private String isBlijvenZitten;
 	private String profiel;
+	private String watIsRekensom;
+	private String hoogteEiffeltoren;
+	private String aantMobieleTelefoons;
 
 	public boolean isFirstTime() {
 		if(this.school == null)firstTime = true;
@@ -88,4 +91,33 @@ public class Student implements Serializable{
 	public void setProfiel(String prof) {
 		this.profiel = prof;
 	}
+
+	public String getWatIsRekensom() {
+		return watIsRekensom;
+	}
+
+	public void setWatIsRekensom(String watIsRekensom) {
+		this.watIsRekensom = watIsRekensom;
+	}
+
+	public String getHoogteEiffeltoren() {
+		return hoogteEiffeltoren;
+	}
+
+	public void setHoogteEiffeltoren(String hoogteEiffeltoren) {
+		this.hoogteEiffeltoren = hoogteEiffeltoren;
+	}
+
+	public String getAantMobieleTelefoons() {
+		return aantMobieleTelefoons;
+	}
+
+	public void setAantMobieleTelefoons(String aantMobieleTelefoons) {
+		this.aantMobieleTelefoons = aantMobieleTelefoons;
+	}
+	
+	public String toString(){
+		return "JEMOEDER" + this.getCode();
+	}
+	
 }

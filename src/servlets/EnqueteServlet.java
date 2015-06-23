@@ -27,10 +27,9 @@ public class EnqueteServlet extends HttpServlet {
 		s.setGemCijfer(req.getParameter("gemWisCijfer"));
 		String datum = req.getParameter("blijvenZitten");
 		s.setIsBlijvenZitten(datum);
-		StudentDAO.fillStudent(s);
+		req.getSession().setAttribute("huidigeStudent", s);
 		RequestDispatcher rd = null;
-		rd = req.getRequestDispatcher("toets-vraag.jsp");
+		rd = req.getRequestDispatcher("enquete-inzicht.jsp");
 		rd.forward(req, resp);
 	}
-
 }

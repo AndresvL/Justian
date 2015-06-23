@@ -51,8 +51,11 @@
 					<div class="row">
 						<form id="antwoord" action="toets-vraag.do" method="get">
 							<div class="form-group">
+							<div id="msgs">
+							${msgs}
+							</div>
 								<div class="col-md-6">
-									<input class="form-control vol" type="text" required
+									<input class="form-control vol" type="text" required autofocus
 										name="antwoord" placeholder="Voer hier uw antwoord in">
 								</div>
 								<div class="col-md-3">
