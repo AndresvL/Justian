@@ -25,7 +25,8 @@ public class VragenBewerkenServlet extends HttpServlet{
 		String blob = "";
 		String msgs = "";
 		RequestDispatcher rd = null;
-		v.setRekenmachine(false);
+		
+		v = (Vraag) req.getSession().getAttribute("vraagbewerk");
 		
 		String y = "";
 		y = y + req.getParameter("rekenmachine");
@@ -38,10 +39,7 @@ public class VragenBewerkenServlet extends HttpServlet{
 		v.setType(req.getSession().getAttribute("categorie").toString());
 		v.setContext(req.getParameter("context"));
 		v.setVraagstelling(req.getParameter("opgave"));
-		v.setAntwoord(req.getParameter("antwoord1"));
-		v.setBlobAfbeelding("");
-		Text t = null;
-		v.setAfbeelding(t);
+		v.setAntwoord(req.getParameter("antwoord"));
 		
 		//blob = iets parse van de afbeelding??? TODO
 		//v.setBlobAfbeelding(blob);

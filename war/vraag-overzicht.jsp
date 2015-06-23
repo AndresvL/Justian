@@ -77,34 +77,34 @@
 						<div class="row">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="context">Context
+									<input type="checkbox" name="context" checked>Context
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="non-context">Non-Context
+									<input type="checkbox" name="non-context" checked>Non-Context
 								</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="meet">Meetkunde
+									<input type="checkbox" name="meet" checked>Meetkunde
 								</label>
 							</div>							
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="getal">Getallen
+									<input type="checkbox" name="getal" checked>Getallen
 								</label>
 							</div>							
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="verhoud">Verhoudingen
+									<input type="checkbox" name="verhoud" checked>Verhoudingen
 								</label>
 							</div>							
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="verband">Verbanden
+									<input type="checkbox" name="verband" checked>Verbanden
 								</label>
 							</div>							
 						</div>
@@ -121,7 +121,7 @@
 							<%! ArrayList<Vraag> al = new ArrayList<Vraag>(); %>
 							<%	al = VraagDAO.alleVragen();
 								for(int i=0; i<al.size(); i++){
-								Vraag v = al.get(i);%>
+									Vraag v = al.get(i);%>
 							<tr>
 								<th><%= v.getNummer()%></th><td><%= v.getType()%></td><td><%= v.isRekenmachine()%></td>
 								<td><%= v.heeftAfbeelding()%></td>
@@ -130,7 +130,7 @@
 								<td>
 									<form action="vragen-overzicht.do">
 										<input type="hidden" name="vraagnummer" value="<%= v.getNummer() %>">
-										<input class="btn btn-default vol" type="submit" value="Bekijk">
+										<input class="btn btn-default" type="submit" value="Bekijk">
 									</form>
 								</td>
 							</tr>

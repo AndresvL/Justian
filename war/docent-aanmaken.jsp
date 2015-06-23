@@ -73,7 +73,7 @@
 							<label>Voornaam</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="voornaam" required >
+							<input class="form-control" type="text" name="voornaam" required autofocus >
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -126,7 +126,7 @@
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-3 col-md-offset-3">
-							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+							<a href="docent-overzicht.jsp" class="btn btn-danger vol">Annuleren</a>
 						</div>
 						<div class="col-md-3">
 							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>

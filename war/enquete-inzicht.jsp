@@ -45,7 +45,7 @@
 						<label>Wat is 198*12?</label>
 					</div>
 					<div class="col-md-3">
-						<input class="form-control" type="text" name="watIsRekensom" required >
+						<input class="form-control" type="text" name="watIsRekensom" required autofocus >
 					</div>
 				</div>
 				<div class="row form-group">

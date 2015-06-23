@@ -18,6 +18,7 @@ public class EnqueteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Student stud = (Student) req.getSession().getAttribute("student");
+		System.out.println("stud " + stud.getCode());
 		s.setCode(stud.getCode());
 		s.setSchool(req.getParameter("school"));
 		s.setJaar(req.getParameter("lesjaar"));

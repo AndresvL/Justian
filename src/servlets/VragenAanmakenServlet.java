@@ -43,7 +43,7 @@ public class VragenAanmakenServlet extends HttpServlet{
 		v.setType(req.getParameter("categorie"));
 		v.setContext(req.getParameter("context"));
 		v.setVraagstelling(req.getParameter("opgave"));
-		v.setAntwoord(req.getParameter("antwoord1"));
+		v.setAntwoord(req.getParameter("antwoord"));
 		
 		v.setBlobAfbeelding("");
 		Text t = null;
@@ -56,7 +56,7 @@ public class VragenAanmakenServlet extends HttpServlet{
 		
 		msgs = "Vraag is aangemaakt";
 		req.setAttribute("msgs", msgs);
-		rd = req.getRequestDispatcher("/vraag-aanmaken.jsp");
+		rd = req.getRequestDispatcher("/vraag-overzicht.jsp");
 		
 		rd.forward(req, resp);
 		

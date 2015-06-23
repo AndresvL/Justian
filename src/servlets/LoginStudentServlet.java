@@ -39,7 +39,12 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("antwoorden", antwoorden);
 			Vraag v = null;
 			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
-			if(ToetsDAO.getToetsNummer(code) == 0 || VraagDAO.getLaatsteAntwoordNummer(code)==60){
+			if(ToetsDAO.getToetsNummer(code) == 0){
+				ToetsDAO.addToets(code);
+				vraag = Adaptief.set1();	
+				VraagDAO.addVraagSet(vraag, code, 0);
+				v = vraag.get(0);
+			}else if(VraagDAO.getLaatsteAntwoordNummer(code)==60){
 				ToetsDAO.addToets(code);
 				vraag = Adaptief.set1();	
 				VraagDAO.addVraagSet(vraag, code, 0);
