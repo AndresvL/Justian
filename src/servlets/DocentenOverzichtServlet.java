@@ -23,6 +23,7 @@ public class DocentenOverzichtServlet extends HttpServlet{
 	Docent x = new Docent();
 	x = DocentDAO.getDocentByEmail(email);
 
+	req.getSession().setAttribute("docentbewerk", x);
 	req.getSession().setAttribute("voornaam", x.getVoornaam());
 	req.getSession().setAttribute("achternaam", x.getAchternaam());
 	req.getSession().setAttribute("email", x.getEmail());

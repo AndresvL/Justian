@@ -26,13 +26,21 @@ public class VragenOverzichtServlet extends HttpServlet{
 	Vraag x = new Vraag();
 	x = ToetsDAO.getVraagByNr(nummer);
 	
+	req.getSession().setAttribute("vraagbewerk", x);
 	req.getSession().setAttribute("vraagNummer", nummer);
 	req.getSession().setAttribute("context", x.getContext());
-	req.getSession().setAttribute("antwoord1", x.getAntwoord());
+	req.getSession().setAttribute("antwoord", x.getAntwoord());
 	req.getSession().setAttribute("opgave", x.getVraagstelling());
 	req.getSession().setAttribute("rekenmachine", x.isRekenmachine());
 	req.getSession().setAttribute("categorie", x.getType());
 	req.getSession().setAttribute("afbeelding", x.getAfbeelding());
+	
+	String s =(String) req.getSession().getAttribute("context");
+	if(s.equals("NULL")){
+		s = "";
+	}
+	
+	req.getSession().setAttribute("context", s);
 	
 	
 	RequestDispatcher rd = null;

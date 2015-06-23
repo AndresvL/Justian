@@ -73,10 +73,10 @@ public final class VraagDAO {
 			}else{
 				context = vr.getContext();
 			}
-			if(vr.getBlobAfbeelding().equals("")){
+			if(vr.getAfbeelding().equals("")){
 				afbeelding = "NULL";
 			}else{
-				afbeelding = vr.getBlobAfbeelding();
+				afbeelding = vr.getAfbeelding();
 			}
 			Text af = new Text(afbeelding);
 			vraag.setProperty("id", vr.getNummer());
@@ -209,22 +209,23 @@ public final class VraagDAO {
 		PreparedQuery pq = ds.prepare(q);
 		int toetsNummer = 0;
 		for (Entity toets : pq.asIterable()) {
-			if (toetsNummer <= Integer.parseInt(toets.getProperty("toetsNummer").toString())) {
-				toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
-			}
+			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer")
+					.toString());
 		}
-		int antwoordNummer = 0;
+		int vraagNummer = 0;
 		if (toetsNummer > 0) {
 			Filter filter1 = new FilterPredicate("toetsNummer", FilterOperator.EQUAL, toetsNummer);
 			Query q1 = new Query("Antwoord").setFilter(filter1);
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity antwoord : pq1.asIterable()) {
-				if (antwoordNummer <= Integer.parseInt(antwoord.getProperty("antwoordNummer").toString())) {
-					antwoordNummer = Integer.parseInt(antwoord.getProperty("antwoordNummer").toString());
+				if (vraagNummer < Integer.parseInt(antwoord.getProperty(
+						"antwoordNummer").toString())) {
+					vraagNummer = Integer.parseInt(antwoord.getProperty(
+							"antwoordNummer").toString());
 				}
 			}
 		}
-		return antwoordNummer;
+		return vraagNummer;
 	}
 
 	public static ArrayList<Vraag> alleVragen() {
