@@ -24,7 +24,7 @@ public class LoginDocentBeheerderServlet extends HttpServlet {
 			if(d.getEmail().equals("justianmind@gmail.com")){
 				req.getSession().setAttribute("beheerder", "justian");
 			}
-			rd = req.getRequestDispatcher("studentcode-aanmaken.jsp");
+			rd = req.getRequestDispatcher("docent-dash.jsp");
 		} else {
 			rd = req.getRequestDispatcher("/login-docent.jsp");
 			req.setAttribute("msgs", "Email of wachtwoord bestaat niet");

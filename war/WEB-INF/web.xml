@@ -15,7 +15,7 @@
 		<servlet-name>login docent servlet</servlet-name>
 		<url-pattern>/login-docent.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>exporteer servlet</servlet-name>
 		<servlet-class>servlets.ExporteerServlet</servlet-class>
@@ -42,7 +42,7 @@
 		<servlet-name>toets servlet</servlet-name>
 		<url-pattern>/toets-vraag.do</url-pattern>
 	</servlet-mapping>
- 
+
 	<servlet>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
 		<servlet-class>servlets.VragenAanmakenServlet</servlet-class>
@@ -62,6 +62,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>docent bewerken servlet</servlet-name>
+		<servlet-class>servlets.DocentenBewerkenServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>docent bewerken servlet</servlet-name>
+		<url-pattern>/docent-bewerken.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>vragen overzicht servlet</servlet-name>
 		<servlet-class>servlets.VragenOverzichtServlet</servlet-class>
 	</servlet>
@@ -78,7 +87,7 @@
 		<servlet-name>enquete servlet</servlet-name>
 		<url-pattern>/enquete.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>enquete inzicht servlet</servlet-name>
 		<servlet-class>servlets.EnqueteInzichtServlet</servlet-class>
@@ -111,41 +120,37 @@
 		<servlet-name>Serve</servlet-name>
 		<servlet-class>servlets.Serve</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>Serve</servlet-name>
 		<url-pattern>/serve</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>docent aanmaken</servlet-name>
 		<servlet-class>servlets.DocentAanmakenServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>docent aanmaken</servlet-name>
 		<url-pattern>/docentaanmaken.do</url-pattern>
 	</servlet-mapping>
-	
-<!-- 	<filter>
-		<filter-name>InlogFilterStudent</filter-name>
-		<filter-class>servlets.InlogFilterStudentServlet</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>InlogFilterStudent</filter-name>
-		<url-pattern>/*</url-pattern>
-		<DISPATCHER>REQUEST</DISPATCHER>
-		<DISPATCHER>RESPONSE</DISPATCHER>
-	</filter-mapping>
-	 -->
-	<!-- <filter>
-		<filter-name>InlogFilterDocent</filter-name>
-		<filter-class>servlets.InlogFilterDocentServlet</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>InlogFilterDocent</filter-name>
-		<url-pattern>/secure/studentcode-aanmaken</url-pattern>
-		<DISPATCHER>REQUEST</DISPATCHER>
-		<DISPATCHER>RESPONSE</DISPATCHER>
-	</filter-mapping> -->
+
+	<servlet>
+		<servlet-name>studenten overzicht servlet</servlet-name>
+		<servlet-class>servlets.StudentenOverzichtServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>studenten overzicht servlet</servlet-name>
+		<url-pattern>/studenten-overzicht.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>docenten overzicht servlet</servlet-name>
+		<servlet-class>servlets.DocentenOverzichtServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>docenten overzicht servlet</servlet-name>
+		<url-pattern>/docenten-overzicht.do</url-pattern>
+	</servlet-mapping>
 </web-app> 

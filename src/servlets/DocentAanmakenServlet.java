@@ -41,7 +41,7 @@ public class DocentAanmakenServlet extends HttpServlet{
 			msgs = "Mislukt, controleer invoer";
 			req.setAttribute("msgs", msgs);
 		}
-		rd = req.getRequestDispatcher("/docent-aanmaken.jsp");
+		rd = req.getRequestDispatcher("/docent-overzicht.jsp");
 		rd.forward(req, resp);
 	}
 }
