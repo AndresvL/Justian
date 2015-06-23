@@ -55,11 +55,11 @@
 	        </div>
 	      </div>
 	    </nav>
-	    <form action="exporteer.do">
-	    	studentnummer: <input type="text" name="stuNr">
+	     <form action="exporteer.zip">
 	    	toetsnummer: <input type="text" name="toetsNr">
-	    	<input type="submit" value="exporteer.do">
-	    </form>
+	    	<input type="submit" value="exporteer">
+	    </form>	    	<input type="submit" value="exporteer">
+
 	    
 	    
 	    

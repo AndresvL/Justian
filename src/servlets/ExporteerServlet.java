@@ -1,4 +1,5 @@
 package servlets;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class ExporteerServlet extends HttpServlet {
 					mySerializer.flush();
 					mySerializer.write(s2);
 				}
+				mySerializer.write("\n");
 			}
 			zipOut.closeEntry();
 
@@ -48,12 +50,11 @@ public class ExporteerServlet extends HttpServlet {
 
 	}
 	public List<String[]> getMyData(ArrayList<Antwoord> antwoorden){
-		System.out.println(antwoorden.size());
 		List<String[]> stringAntw = new ArrayList<String[]>();
 		for(Antwoord a : antwoorden){
 			stringAntw.add(new String[] {a.getNummer() + "",a.getToetsNummer() + "",
 					a.getVraagNummer() + "",a.getHeeftRekenmachineGebruikt() + "",
-					a.getAntwoord(), "\n"});
+					a.getAntwoord()});
 		}
 
 		return stringAntw;
