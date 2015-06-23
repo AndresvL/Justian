@@ -1,3 +1,5 @@
-/servlets
-/DAO
-/domein
+/DAO/
+/controller/
+/domein/
+/log4j.properties
+/servlets/

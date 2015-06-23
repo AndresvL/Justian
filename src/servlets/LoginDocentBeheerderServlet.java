@@ -9,8 +9,11 @@ import javax.servlet.http.*;
 import DAO.DocentDAO;
 import domein.Docent;
 
-@SuppressWarnings("serial")
 public class LoginDocentBeheerderServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1681310498024724512L;
 	private Docent d = new Docent();
 	RequestDispatcher rd = null;
 

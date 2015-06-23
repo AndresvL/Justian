@@ -1,5 +1,6 @@
 package servlets;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,7 +8,11 @@ import domein.Antwoord;
 import domein.Vraag;
 import DAO.VraagDAO;
 
-public class Adaptief {
+public class Adaptief implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 592535668166401344L;
 	private static ArrayList<Vraag> vr = VraagDAO.alleVragen();	
 	private static ArrayList<Vraag> set1;
 	private static ArrayList<Vraag> set2;

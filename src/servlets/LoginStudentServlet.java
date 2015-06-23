@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.mortbay.log.Log;
 
 import DAO.DocentDAO;
 import DAO.StudentDAO;
@@ -21,7 +24,8 @@ import domein.Antwoord;
 import domein.Student;
 import domein.Vraag;
 
-public class LoginStudentServlet extends HttpServlet {
+import java.util.logging.*;
+public class LoginStudentServlet extends HttpServlet implements Serializable{
 
 	private static final long serialVersionUID = 194503685680L;
 	private TijdController tijd = new TijdController();
@@ -34,8 +38,14 @@ public class LoginStudentServlet extends HttpServlet {
 //		VraagDAO.removeAntwoord();
 //		DocentDAO.createBeheerder();
 		RequestDispatcher rd = null;
+		Logger log = Logger.getLogger("loginCode");
+			
+		log.info("test");
 		if (StudentDAO.checkStudent(code)) {
+			log.info("checkstudent is k");
 			s = StudentDAO.getStudentByCode(code);
+			log.info(code + "is studentcode");
+			log.info(s.getCode() +" is studentobjectcode");
 			ArrayList<Antwoord> antwoorden = ToetsDAO.getAlleAntwoorden(code);
 			req.getSession().setAttribute("antwoorden", antwoorden);
 			Vraag v = null;
@@ -74,6 +84,8 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("toetsnummer",
 					ToetsDAO.getVolgendToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
+				req.getSession().setAttribute("msgs", s.getCode());
+				
 				rd = req.getRequestDispatcher("enquete.jsp");
 			} else {
 				rd = req.getRequestDispatcher("toets-vraag.jsp");

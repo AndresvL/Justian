@@ -95,7 +95,7 @@
 				</div>
 			</div>
 		</form>
-		<form action="exporteer.do">
+		<form action="codeExport.zip">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-3">
 					<button class="btn btn-default" style="width: 100%;" type="submit"
