@@ -19,7 +19,7 @@ public class Vraag implements Serializable{
 	private String antwoord3;
 	private String antwoord4;
 	
-	public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a){
+	public Vraag(boolean rek, int nr, String con, Text af, String t, String vS, String a, String a2, String a3 ,String a4, boolean isM){
 		this.setRekenmachine(rek);
 		this.setNummer(nr);
 		this.setContext(con);
@@ -27,6 +27,10 @@ public class Vraag implements Serializable{
 		this.setType(t);
 		this.setVraagstelling(vS);
 		this.setAntwoord(a);
+		this.setAntwoord2(a2);
+		this.setAntwoord3(a3);
+		this.setAntwoord4(a4);
+		this.setMultiplechoice(isM);
 	}
 
 	public Vraag() {
@@ -39,7 +43,11 @@ public class Vraag implements Serializable{
 	}
 	
 	public void setAntwoord2(String a){
-		antwoord2 = a;
+		if(!a.equals("NULL")){
+			antwoord2 = a;
+		}else{
+			antwoord2 = "";
+		}
 	}
 	
 	public String getAntwoord2(){
@@ -47,15 +55,22 @@ public class Vraag implements Serializable{
 	}
 	
 	public void setAntwoord3(String a){
-		antwoord3 = a;
+		if(!a.equals("NULL")){
+			antwoord3 = a;
+		}else{
+			antwoord3 = "";
+		}
 	}
-	
 	public String getAntwoord3(){
 		return antwoord3;
 	}
 	
 	public void setAntwoord4(String a){
-		antwoord4 = a;
+		if(!a.equals("NULL")){
+			antwoord4 = a;
+		}else{
+			antwoord4 = "";
+		}
 	}
 	
 	public String getAntwoord4(){
@@ -81,7 +96,6 @@ public class Vraag implements Serializable{
 	public void setRekenmachine(boolean rekenmachine) {
 		this.rekenmachine = rekenmachine;
 	}
-
 	public int getNummer() {
 		return nummer;
 	}
@@ -95,12 +109,15 @@ public class Vraag implements Serializable{
 	}
 
 	public void setContext(String context) {
-		this.context = context;
+		if(!context.equals("NULL")){
+			this.context = context;
+		}else{
+			context = "";
+		}
 	}
 
 	public String getAfbeelding() {
-		return afbeelding.getValue();
-		
+		return afbeelding.getValue();	
 	}
 
 	public void setAfbeelding(Text afbeelding) {
@@ -140,11 +157,10 @@ public class Vraag implements Serializable{
 
 	public boolean heeftAfbeelding() {
 		boolean b = true;
-		if (afbeelding == null
-				|| afbeelding.equals("")
-				|| afbeelding.equals("NULL")
-				|| afbeelding
-						.equals("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY")) {
+		if (getAfbeelding() == null
+				|| getAfbeelding().equals("")
+				|| getAfbeelding().equals("NULL")
+				|| getAfbeelding().equals("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY")) {
 			b = false;
 		}
 		return b;

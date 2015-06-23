@@ -13,6 +13,11 @@ import domein.Vraag;
 
 public class VragenOverzichtServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
@@ -21,6 +26,7 @@ public class VragenOverzichtServlet extends HttpServlet{
 	Vraag x = new Vraag();
 	x = ToetsDAO.getVraagByNr(nummer);
 	
+	req.getSession().setAttribute("vraagNummer", nummer);
 	req.getSession().setAttribute("context", x.getContext());
 	req.getSession().setAttribute("antwoord1", x.getAntwoord());
 	req.getSession().setAttribute("antwoord2", x.getAntwoord2());

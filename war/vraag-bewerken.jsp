@@ -56,7 +56,7 @@
 	      </div>
 	    </nav>
 		<div class='container' id="content">
-			<form class="form-group" action="vraag-aanmaken.do">
+			<form class="form-group" action="vraag-bewerken.do">
 				<div class="col-md-4">
 					<div class="row">
 						<h3>Opties</h3>

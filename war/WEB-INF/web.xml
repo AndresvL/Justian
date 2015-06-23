@@ -53,12 +53,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>vragen bewerken servlet</servlet-name>
+		<servlet-name>vraag bewerken servlet</servlet-name>
 		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>vragen bewerken servlet</servlet-name>
-		<url-pattern>/vragen-bewerken.do</url-pattern>
+		<servlet-name>vraag bewerken servlet</servlet-name>
+		<url-pattern>/vraag-bewerken.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

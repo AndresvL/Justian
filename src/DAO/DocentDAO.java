@@ -71,6 +71,17 @@ public final class DocentDAO {
 		ds.put(docent);
 	}
 	
+	public static void createBeheerder() {
+		Entity docent = new Entity("Docent");
+		docent.setProperty("email", "andresvanlummel@gmail.com");
+		docent.setProperty("voornaam", "Andres");
+		docent.setProperty("achternaam", "van Lummel");
+		docent.setProperty("wachtwoord", "andres");
+		docent.setProperty("schoolNaam", "Amerongen");
+		docent.setProperty("schoolPlaats", "Amersfoort");
+		ds.put(docent);
+	}
+	
 	public static ArrayList<Docent> alleDocenten() {
 		ArrayList<Docent> docenten = new ArrayList<Docent>();
 		Docent dc = null;

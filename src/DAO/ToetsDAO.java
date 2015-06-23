@@ -49,8 +49,18 @@ public final class ToetsDAO {
 	// set volgende vraag
 	public static Vraag getVraagByNr(int nr) {
 		Vraag v = null;
+		String antwoord2, antwoord3, antwoord4;
 		try {
 			Entity vraag = ds.get(KeyFactory.createKey("Vraag", nr));
+			if(vraag.getProperty("antwoord2").toString().equals("NULL")){
+				antwoord2 = "";
+				antwoord3 = "";
+				antwoord4 = "";
+			}else{
+				antwoord2 = vraag.getProperty("antwoord2").toString();
+				antwoord3 = vraag.getProperty("antwoord3").toString();
+				antwoord4 = vraag.getProperty("antwoord4").toString();
+			}
 			v = new Vraag(Boolean.parseBoolean(
 					vraag.getProperty("rekenmachine").toString()),
 					nr, 
@@ -58,7 +68,12 @@ public final class ToetsDAO {
 					(Text) vraag.getProperty("afbeelding"),
 					vraag.getProperty("categorie").toString(),
 					vraag.getProperty("opgave").toString(),
-					vraag.getProperty("antwoord").toString());
+					vraag.getProperty("antwoord").toString(),
+					antwoord2,
+					antwoord3,
+					antwoord4,
+					Boolean.parseBoolean(vraag.getProperty("isMultiplechoice").toString()));
+			
 		} catch (EntityNotFoundException e) {
 			e.printStackTrace();
 		}

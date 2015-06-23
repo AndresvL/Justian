@@ -33,10 +33,10 @@ public class VragenBewerkenServlet extends HttpServlet{
 		
 		if (x.equals("true")){
 			v.setMultiplechoice(true);
-			v.setAntwoord2(req.getParameter("antwoord2"));
-			v.setAntwoord3(req.getParameter("antwoord3"));
-			v.setAntwoord4(req.getParameter("antwoord4"));
 		}
+		v.setAntwoord2(req.getParameter("antwoord2"));
+		v.setAntwoord3(req.getParameter("antwoord3"));
+		v.setAntwoord4(req.getParameter("antwoord4"));
 		
 		String y = "";
 		y = y + req.getParameter("rekenmachine");
@@ -45,12 +45,11 @@ public class VragenBewerkenServlet extends HttpServlet{
 			v.setRekenmachine(true);
 		}
 		
-		v.setNummer(Integer.parseInt((req.getParameter("nummer"))));		
-		v.setType(req.getParameter("categorie"));
+		v.setNummer(Integer.parseInt(req.getSession().getAttribute("vraagNummer").toString()));		
+		v.setType(req.getSession().getAttribute("categorie").toString());
 		v.setContext(req.getParameter("context"));
 		v.setVraagstelling(req.getParameter("opgave"));
 		v.setAntwoord(req.getParameter("antwoord1"));
-		
 		v.setBlobAfbeelding("");
 		Text t = null;
 		v.setAfbeelding(t);
@@ -58,11 +57,11 @@ public class VragenBewerkenServlet extends HttpServlet{
 		//blob = iets parse van de afbeelding??? TODO
 		//v.setBlobAfbeelding(blob);
 		
-		VraagDAO.addVraag(v);
+		VraagDAO.updateVraag(v);
 		
 		msgs = "Vraag is aangepast";
 		req.setAttribute("msgs", msgs);
-		rd = req.getRequestDispatcher("/vraag-bewerken.jsp");
+		rd = req.getRequestDispatcher("/vraag-overzicht.jsp");
 		
 		rd.forward(req, resp);
 		
