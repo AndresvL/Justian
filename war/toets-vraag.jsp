@@ -48,7 +48,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"> <img alt=""
+					<a class="navbar-brand"> <img alt=""
 						src="images/logo.png" style="height: 25px"/>
 					</a>
 				</div>
