@@ -78,29 +78,24 @@ public class Adaptief {
 		set2 = new ArrayList<Vraag>();
 		for (int i = 0; i < totaal-1; i++) {
 			if (!antwoorden.isEmpty()) {
-				System.out.println("antwoord" + antwoorden.get(i).checkAntwoord());
 				Boolean antwoord = antwoorden.get(i).checkAntwoord();
 				// als antwoord onjuist is
 				if (!antwoord) {
 					if (set.get(i).getType().equals("meet")) {
 						addVraag2("meet");
 						meet++;
-						System.out.println("meet" + meet);
 					}
 					if (set.get(i).getType().equals("verband")) {
 						addVraag2("verband");
 						verband++;
-						System.out.println("verband " + verband);
 					}
 					if (set.get(i).getType().equals("getal")) {
 						addVraag2("getal");
 						getal++;
-						System.out.println("getal " + getal);
 					}
 					if (set.get(i).getType().equals("verhouding")) {
 						addVraag2("verhouding");
 						verhouding++;
-						System.out.println("verhouding " + verhouding);
 					}
 				}
 			}
@@ -115,7 +110,6 @@ public class Adaptief {
 			if(type.get(i)==0){
 				type.add(i, 1);
 			}
-			System.out.println("type array " + type.get(i));
 		}
 		int aantalFout = (type.get(0) + type.get(1) + type.get(2) + type.get(3));
 		int restAantal = totaal - aantalFout;		
@@ -125,25 +119,21 @@ public class Adaptief {
 				addVraag2("meet");
 				restAantal--;
 				meet--;
-				System.out.println("meet" + meet);
 			}
 			if (hoogst == verband && restAantal>0) {
 				addVraag2("verband");
 				restAantal--;
 				verband--;
-				System.out.println("verband" + verband);
 			}
 			if (hoogst == getal && restAantal>0) {
 				addVraag2("getal");
 				restAantal--;
 				getal--;
-				System.out.println("getal" + getal);
 			}
 			if (hoogst == verhouding && restAantal>0) {
 				addVraag2("verhouding");
 				restAantal--;
 				verhouding--;
-				System.out.println("verhouding" + verhouding);
 			}
 			
 			type.add(meet);
@@ -177,10 +167,13 @@ public class Adaptief {
 		int verhouding = 0;
 		int getal = 0;
 		int totaal = set.size();		
+		System.out.println("totaal " + totaal);
+
 		set3 = new ArrayList<Vraag>();
-		for (int i = 20; i < totaal; i++) {
+		for (int i = 19; i < totaal-1; i++) {
 			if (!antwoorden.isEmpty()) {
 				Boolean antwoord = antwoorden.get(i).checkAntwoord();
+				System.out.println("antwoord " + antwoorden.get(i).getNummer());
 				// als antwoord onjuist is
 				if (!antwoord) {
 					if (set.get(i).getType().equals("meet")) {
@@ -203,7 +196,8 @@ public class Adaptief {
 			}
 		}
 		int aantalFout = meet + verband + verhouding + getal;
-		int restAantal = totaal - aantalFout;
+		int restAantal = 20 - aantalFout;
+		System.out.println("rest"+ restAantal);
 		ArrayList<Integer> type = new ArrayList<Integer>();
 		type.add(meet);
 		type.add(verband);
@@ -213,22 +207,22 @@ public class Adaptief {
 		for (int i = 0; i < restAantal; i++) {
 			int hoogst = type.get(3);
 			if (hoogst == meet && restAantal>0) {
-				addVraag2("meet");
+				addVraag3("meet");
 				restAantal--;
 				meet--;
 			}
 			if (hoogst == verband && restAantal>0) {
-				addVraag2("verband");
+				addVraag3("verband");
 				restAantal--;
 				verband--;
 			}
 			if (hoogst == getal && restAantal>0) {
-				addVraag2("getal");
+				addVraag3("getal");
 				restAantal--;
 				getal--;
 			}
 			if (hoogst == verhouding && restAantal>0) {
-				addVraag2("verhouding");
+				addVraag3("verhouding");
 				restAantal--;
 				verhouding--;
 			}			

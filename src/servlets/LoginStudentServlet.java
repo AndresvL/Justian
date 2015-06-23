@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DocentDAO;
 import DAO.StudentDAO;
 import DAO.ToetsDAO;
 import DAO.VraagDAO;
@@ -40,12 +39,17 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("antwoorden", antwoorden);
 			Vraag v = null;
 			ArrayList<Vraag> vraag = VraagDAO.getVraagSet(code);
-			if(ToetsDAO.getToetsNummer(code) == 0){
+			if(ToetsDAO.getToetsNummer(code) == 0 || VraagDAO.getLaatsteAntwoordNummer(code)==60){
+				ToetsDAO.addToets(code);
 				vraag = Adaptief.set1();	
 				VraagDAO.addVraagSet(vraag, code, 0);
 				v = vraag.get(0);
 			}else{
-				v = vraag.get(VraagDAO.getLaatsteAntwoordNummer(code));
+				if(VraagDAO.getLaatsteAntwoordNummer(code)==60){
+					v = vraag.get(0);
+				}else{
+					v = vraag.get(VraagDAO.getLaatsteAntwoordNummer(code));
+				}
 			}
 			if (v.getAfbeelding().equals("NULL")) {
 				Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
@@ -72,7 +76,7 @@ public class LoginStudentServlet extends HttpServlet {
 			req.getSession().setAttribute("seconden",
 					tijd.getSeconde(System.currentTimeMillis()));
 			req.getSession().setAttribute("toetsnummer",
-					ToetsDAO.getVolgendToetsNummer(s.getCode()));
+					ToetsDAO.getToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
 				rd = req.getRequestDispatcher("enquete.jsp");
 			} else {

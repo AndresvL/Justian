@@ -26,12 +26,13 @@ import domein.Vraag;
 public final class ToetsDAO {
 	/**
 	 * dit is een vereist attribuut om de verbinding met de google data
+	 * tot stand te brengen
 	 */
 	static DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-	/**c
+	/**
 	 * dit attribuut houdt het toetsnummer bij met default value -1
 	 */
-	public static int toetsNummer = 1;
+
 
 	/**
 	 * deze methode haalt de volgende vraag voor de toets op gebaseerd op een
@@ -157,38 +158,35 @@ public final class ToetsDAO {
 	 *            is.
 	 * @return het toetsnummer van de volgende toets.
 	 */
-	public static int getVolgendToetsNummer(int studentNr) {
-		boolean b = true;
-		Filter filter = new FilterPredicate("studentNummer",
-				FilterOperator.EQUAL, studentNr);
-		Query q = new Query("Toets").setFilter(filter);
+//	public static int getVolgendToetsNummer(int studentNr) {
+//		boolean b = true;
+//		int toetsNummer = 1;
+//		Filter filter = new FilterPredicate("studentNummer",
+//				FilterOperator.EQUAL, studentNr);
+//		Query q = new Query("Toets").setFilter(filter);
+//		PreparedQuery pq = ds.prepare(q);
+//		for (Entity e : pq.asIterable()) {
+//			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
+//				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
+//			}
+//			b = false;
+//		}		
+//		return toetsNummer;
+//	}
+	public static void addToets(int studentNr) {
+		int toetsNummer = 1;
+		Query q = new Query("Toets");
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			if (toetsNummer < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
-				toetsNummer = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			int nr = Integer.parseInt(e.getProperty("toetsNummer").toString());
+			if (toetsNummer <= nr) {
+				toetsNummer = nr + 1;
 			}
-			b = false;
 		}
-		addToets(b, studentNr);		
-		return toetsNummer;
-	}
-	public static void addToets(boolean b, int studentNr){
-		//maak nieuwe toets aan als student geen toets heeft
-		if (b) {
-			Query q1 = new Query("Toets");
-			PreparedQuery pq1 = ds.prepare(q1);
-			for (Entity e1 : pq1.asIterable()) {
-				int nr = Integer.parseInt(e1.getProperty("toetsNummer").toString());
-				if (toetsNummer <= nr) {
-					toetsNummer = nr + 1;
-				}
-			}
-			Entity toets = new Entity("Toets", toetsNummer);
-			toets.setProperty("toetsNummer", toetsNummer);
-			toets.setProperty("studentNummer", studentNr);
-			ds.put(toets);
-
-		}
+		Entity toets = new Entity("Toets", toetsNummer);
+		toets.setProperty("toetsNummer", toetsNummer);
+		toets.setProperty("studentNummer", studentNr);
+		ds.put(toets);		
 	}
 	public static int getToetsNummer(int studentNr) {
 		int toetsnr = 0;
@@ -202,7 +200,7 @@ public final class ToetsDAO {
 		}	
 		return toetsnr;
 	}
-		public static ArrayList<Integer> getAlleToetsNummers(String studentNr) {
+	public static ArrayList<Integer> getAlleToetsNummers(String studentNr) {
 		int s = Integer.parseInt(studentNr);
 		ArrayList<Integer> toetsnummers = new ArrayList<Integer>();
 		Filter filter = new FilterPredicate("studentNummer", FilterOperator.EQUAL, s);
