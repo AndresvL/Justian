@@ -105,6 +105,7 @@ public class ToetsServlet extends HttpServlet implements Serializable{
 					} else {
 						VraagDAO.removeSet(s.getCode());
 						req.getSession().removeAttribute("aantal");
+						req.getSession().removeAttribute("set1");
 						req.getSession().removeAttribute("vraagNummer");
 						req.getSession().removeAttribute("context");
 						req.getSession().removeAttribute("vraag");
@@ -113,6 +114,9 @@ public class ToetsServlet extends HttpServlet implements Serializable{
 						req.getSession().removeAttribute("uren");
 						req.getSession().removeAttribute("minuten");
 						req.getSession().removeAttribute("seconden");
+						VraagDAO.removeSet(s.getCode());
+						
+						
 						rd = req.getRequestDispatcher("/toets-eind.jsp");
 						
 						

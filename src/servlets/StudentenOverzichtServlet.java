@@ -17,7 +17,6 @@ public class StudentenOverzichtServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 6055975407706991951L;
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	

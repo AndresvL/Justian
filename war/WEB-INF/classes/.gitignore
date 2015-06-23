@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 /DAO/
 /controller/
 /domein/
 /log4j.properties
 /servlets/
+=======
+/servlets
+/DAO
+>>>>>>> branch 'master' of https://github.com/makingdark/Justian

@@ -93,22 +93,15 @@
 							</label>
 						</div>
 					</div>
-					<div class="row">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="multiplechoice" value="true">Multiplechoice
-							</label>
-						</div>
-					</div>
 				</div>
 				<div class="col-md-7 col-md-offset-1">
-					<h3>Vraag aanmaken</h3>
+					<h3>Vraag bewerken</h3>
 					<div class="row form-group">
 						<div class="col-md-2">
 							<label>Context</label>
 						</div>
 						<div class="col-md-6">
-							<textarea class="form-control" name="context" required rows="3" >${context}</textarea>
+							<textarea class="form-control" name="context" rows="3" autofocus >${context}</textarea>
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -121,34 +114,10 @@
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-2">
-							<label>Antwoord 1</label>
+							<label>Antwoord</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord1" required value="${antwoord1}">
-						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 2</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord2" value="${antwoord2}">
-						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 3</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord3" value="${antwoord3}">
-						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 4</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord4" value="${antwoord4}">
+							<input class="form-control" type="text" name="antwoord" required value="${antwoord}">
 						</div>
 					</div> 
 					<div class="row form-group">

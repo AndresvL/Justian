@@ -75,7 +75,7 @@
 				    		<label class="control-label">Aantal nieuwe studenten</label>
 				    	</div>
 						<div class="col-md-2">
-							<input class="form-control" type="number" name="aantal" required autofocus="on">
+							<input class="form-control" type="number" name="aantal" required autofocus>
 				    	</div>
 					    <div class="col-md-2">
 					    	<button class="btn btn-default" style="width:100%;" type="submit" name="button" value="code">Genereer	Codes</button>

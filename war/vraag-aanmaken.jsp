@@ -89,13 +89,6 @@
 							</label>
 						</div>
 					</div>
-					<div class="row">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="multiplechoice" value="true">Multiplechoice
-							</label>
-						</div>
-					</div>
 				</div>
 				<div class="col-md-7 col-md-offset-1">
 					<h3>Vraag aanmaken</h3>
@@ -104,7 +97,7 @@
 							<label>Context</label>
 						</div>
 						<div class="col-md-6">
-							<textarea class="form-control" name="context" required placeholder="Vul hier de context in indien aanwezig" rows="3"></textarea>
+							<textarea class="form-control" name="context" placeholder="Vul hier de context in indien aanwezig" rows="3" autofocus ></textarea>
 						</div>
 					</div> 
 					<div class="row form-group">
@@ -117,39 +110,15 @@
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-2">
-							<label>Antwoord 1</label>
+							<label>Antwoord</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord1" required placeholder="Vul hier het correcte antwoord in">
+							<input class="form-control" type="text" name="antwoord" required placeholder="Vul hier het correcte antwoord in">
 						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 2</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord2" placeholder="Vul indien multiple choice">
-						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 3</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord3" placeholder="Vul indien multiple choice">
-						</div>
-					</div> 
-					<div class="row form-group">
-						<div class="col-md-2">
-							<label>Antwoord 4</label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="antwoord4" placeholder="Vul indien multiple choice">
-						</div>
-					</div> 
+					</div>
 					<div class="row form-group">
 						<div class="col-md-3 col-md-offset-2">
-							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+							<a href="vraag-overzicht.jsp" class="btn btn-danger vol">Annuleren</a>
 						</div>
 						<div class="col-md-3">
 							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>

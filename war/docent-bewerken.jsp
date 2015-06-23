@@ -66,8 +66,20 @@
 	    </nav>	  
 		<div class='container' id="content">
 			<div class="col-md-7">
-				<h3>Docent aanmaken</h3>
-				<form action="docentbewerken.do">
+				<h3>Docent bewerken</h3>
+				<form action="docent-bewerken.do">
+					<div class="row">
+						<div class="col-md-6">
+							<div id="msgs">
+								<% 
+								Object msgs = request.getAttribute("msgs"); 
+								if (msgs != null) { 	 
+									out.println(msgs); 
+									out.println(); 		
+								}	%>
+							</div>
+						</div>
+					</div>
 					<div class="row form-group">
 						<div class="col-md-3">
 							<label>Voornaam</label>
@@ -126,7 +138,7 @@
 					</div> 
 					<div class="row form-group">
 						<div class="col-md-3 col-md-offset-3">
-							<button class="btn btn-danger vol" type="reset" name="cancel" value="cancel">Annuleren</button>
+							<a href="docent-overzicht.jsp" class="btn btn-danger vol">Annuleren</a>
 						</div>
 						<div class="col-md-3">
 							<button class="btn btn-default vol" type="submit" name="next" value="next">Verder</button>

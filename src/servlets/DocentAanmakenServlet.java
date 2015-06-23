@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +13,12 @@ import domein.Docent;
 import DAO.DocentDAO;
 import DAO.StudentDAO;
 
-@SuppressWarnings("serial")
-public class DocentAanmakenServlet extends HttpServlet{
+public class DocentAanmakenServlet extends HttpServlet implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4011050161348312011L;
 	private Docent d = new Docent();
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
