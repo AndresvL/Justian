@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mortbay.log.Log;
 
+import DAO.DocentDAO;
 import DAO.StudentDAO;
 import DAO.ToetsDAO;
 import DAO.VraagDAO;
@@ -93,7 +94,7 @@ public class LoginStudentServlet extends HttpServlet implements Serializable{
 			req.getSession().setAttribute("toetsnummer",
 					ToetsDAO.getToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
-				req.getSession().setAttribute("msgs", s.getCode());
+				
 				
 				rd = req.getRequestDispatcher("enquete.jsp");
 			} else {

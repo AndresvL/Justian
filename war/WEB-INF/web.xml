@@ -45,7 +45,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>exporteer servlet</servlet-name>
-		<url-pattern>/exporteer.do</url-pattern>
+		<url-pattern>/exporteer.zip</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -166,5 +166,23 @@
 	<servlet-mapping>
 		<servlet-name>docenten overzicht servlet</servlet-name>
 		<url-pattern>/docenten-overzicht.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>docenten bewerken servlet</servlet-name>
+		<servlet-class>servlets.DocentenBewerkenServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>docenten bewerken servlet</servlet-name>
+		<url-pattern>/docent-bewerken.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>code exporteren servlet</servlet-name>
+		<servlet-class>servlets.ExporteerCodesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>code exporteren servlet</servlet-name>
+		<url-pattern>/codeExport.zip</url-pattern>
 	</servlet-mapping>
 </web-app> 
