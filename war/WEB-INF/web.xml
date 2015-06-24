@@ -9,7 +9,7 @@
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>login docent servlet</servlet-name>
-		<servlet-class>servlets.LoginDocentBeheerderServlet</servlet-class>
+		<servlet-class>servlets.login.LoginDocentBeheerderServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>login docent servlet</servlet-name>
@@ -18,7 +18,7 @@
 
 	<servlet>
 		<servlet-name>exporteer servlet</servlet-name>
-		<servlet-class>servlets.ExporteerServlet</servlet-class>
+		<servlet-class>servlets.exporteer.ExporteerServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>exporteer servlet</servlet-name>
@@ -27,7 +27,7 @@
 
 	<servlet>
 		<servlet-name>login student servlet</servlet-name>
-		<servlet-class>servlets.LoginStudentServlet</servlet-class>
+		<servlet-class>servlets.login.LoginStudentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>login student servlet</servlet-name>
@@ -36,7 +36,7 @@
 
 	<servlet>
 		<servlet-name>toets servlet</servlet-name>
-		<servlet-class>servlets.ToetsServlet</servlet-class>
+		<servlet-class>servlets.toets.ToetsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>toets servlet</servlet-name>
@@ -45,7 +45,7 @@
 
 	<servlet>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
-		<servlet-class>servlets.VragenAanmakenServlet</servlet-class>
+		<servlet-class>servlets.toets.VragenAanmakenServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>vragen aanmaken servlet</servlet-name>
@@ -54,7 +54,7 @@
 
 	<servlet>
 		<servlet-name>vraag bewerken servlet</servlet-name>
-		<servlet-class>servlets.VragenBewerkenServlet</servlet-class>
+		<servlet-class>servlets.toets.VragenBewerkenServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>vraag bewerken servlet</servlet-name>
@@ -63,7 +63,7 @@
 
 	<servlet>
 		<servlet-name>vragen overzicht servlet</servlet-name>
-		<servlet-class>servlets.VragenOverzichtServlet</servlet-class>
+		<servlet-class>servlets.toets.VragenOverzichtServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>vragen overzicht servlet</servlet-name>
@@ -72,7 +72,7 @@
 
 	<servlet>
 		<servlet-name>enquete servlet</servlet-name>
-		<servlet-class>servlets.EnqueteServlet</servlet-class>
+		<servlet-class>servlets.enquete.EnqueteServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>enquete servlet</servlet-name>
@@ -81,7 +81,7 @@
 
 	<servlet>
 		<servlet-name>enquete inzicht servlet</servlet-name>
-		<servlet-class>servlets.EnqueteInzichtServlet</servlet-class>
+		<servlet-class>servlets.enquete.EnqueteInzichtServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>enquete inzicht servlet</servlet-name>
@@ -90,7 +90,7 @@
 
 	<servlet>
 		<servlet-name>studentcodes genereren</servlet-name>
-		<servlet-class>servlets.StudentcodeServlet</servlet-class>
+		<servlet-class>servlets.student.StudentcodeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>studentcodes genereren</servlet-name>
@@ -99,7 +99,7 @@
 
 	<servlet>
 		<servlet-name>Upload</servlet-name>
-		<servlet-class>servlets.UploadServlet</servlet-class>
+		<servlet-class>servlets.upload.UploadServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -109,7 +109,7 @@
 
 	<servlet>
 		<servlet-name>Serve</servlet-name>
-		<servlet-class>servlets.Serve</servlet-class>
+		<servlet-class>servlets.upload.Serve</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -119,7 +119,7 @@
 
 	<servlet>
 		<servlet-name>docent aanmaken</servlet-name>
-		<servlet-class>servlets.DocentAanmakenServlet</servlet-class>
+		<servlet-class>servlets.docent.DocentAanmakenServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -129,7 +129,7 @@
 
 	<servlet>
 		<servlet-name>studenten overzicht servlet</servlet-name>
-		<servlet-class>servlets.StudentenOverzichtServlet</servlet-class>
+		<servlet-class>servlets.student.StudentenOverzichtServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>studenten overzicht servlet</servlet-name>
@@ -138,7 +138,7 @@
 
 	<servlet>
 		<servlet-name>docenten overzicht servlet</servlet-name>
-		<servlet-class>servlets.DocentenOverzichtServlet</servlet-class>
+		<servlet-class>servlets.docent.DocentenOverzichtServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>docenten overzicht servlet</servlet-name>
