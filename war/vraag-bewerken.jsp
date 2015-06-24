@@ -75,7 +75,7 @@
 						<input type="file" name="afbeelding" accept="image/*" value="${afbeelding}">
    		 				<p class="help-block">
 							<img id="ilustratie" alt="ilustratie"
-								src="data:image/gif;base64,${plaatje}"></img>
+								src="data:image/gif;base64,${afbeelding}"></img>
 						</p>
    		 				
 					</div>

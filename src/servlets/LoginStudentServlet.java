@@ -94,8 +94,6 @@ public class LoginStudentServlet extends HttpServlet implements Serializable{
 			req.getSession().setAttribute("toetsnummer",
 					ToetsDAO.getToetsNummer(s.getCode()));
 			if (s.isFirstTime()) {
-				
-				
 				rd = req.getRequestDispatcher("enquete.jsp");
 			} else {
 				rd = req.getRequestDispatcher("toets-vraag.jsp");

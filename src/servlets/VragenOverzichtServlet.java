@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.Text;
+
 import DAO.ToetsDAO;
 import domein.Vraag;
 
@@ -33,8 +35,13 @@ public class VragenOverzichtServlet extends HttpServlet{
 	req.getSession().setAttribute("opgave", x.getVraagstelling());
 	req.getSession().setAttribute("rekenmachine", x.isRekenmachine());
 	req.getSession().setAttribute("categorie", x.getType());
+	if(x.getAfbeelding() == null||x.getAfbeelding().equals("NULL")){
+		Text blob = new Text("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAAANSURBVBhXY/j//z8DAAj8Av6IXwbgAAAAAElFTkSuQmCC");
+		x.setAfbeelding(blob);
+	}
+	System.out.println("afbeelding " + x.getAfbeelding());
 	req.getSession().setAttribute("afbeelding", x.getAfbeelding());
-	
+		
 	String s =(String) req.getSession().getAttribute("context");
 	if(s.equals("NULL")){
 		s = "";
