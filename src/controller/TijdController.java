@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
@@ -7,7 +8,11 @@ import java.util.Date;
  * @author Direct-Act
  *
  */
-public class TijdController {
+public class TijdController implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8097653653813085220L;
 	/**
 	 * in deze methode worden eerst het aantal uren, minuten en seconden uit het systeem gehaald<br>
 	 * vervolgens worden het aantal uren en minuten naar seconden omgerekend<br>

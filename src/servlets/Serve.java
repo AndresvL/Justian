@@ -15,9 +15,12 @@ import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 
-@SuppressWarnings("serial")
 public class Serve extends HttpServlet {
-    private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1260291234438393419L;
+	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
         throws IOException, ServletException {

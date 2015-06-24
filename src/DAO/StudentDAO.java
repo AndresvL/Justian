@@ -118,12 +118,13 @@ public final class StudentDAO {
 	public static Student getStudentByCode(int code) {
 		Key key=KeyFactory.createKey("Student", code);
 		Student s = new Student();
-		s.setCode(code);
+				
 		try {
-			Entity getKey = ds.get(key);			
+			Entity getKey = ds.get(key);
+			s.setCode(code);
+			s.setDocentEmail(getKey.getProperty("docent_email").toString());
+					
 			if(getKey.hasProperty("schoolNaam")){
-				s.setCode(Integer.parseInt(getKey.getProperty("studentNummer").toString()));
-				s.setDocentEmail(getKey.getProperty("docent_email").toString());
 				s.setSchool(getKey.getProperty("schoolNaam").toString());
 				s.setJaar(getKey.getProperty("schoolJaar").toString());
 				s.setProfiel(getKey.getProperty("profiel").toString());

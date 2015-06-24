@@ -14,9 +14,12 @@ import com.google.appengine.api.datastore.Text;
 import domein.Vraag;
 import DAO.VraagDAO;
 
-@SuppressWarnings("serial")
 public class VragenAanmakenServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7629923893808435875L;
 	private Vraag v = new Vraag();
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

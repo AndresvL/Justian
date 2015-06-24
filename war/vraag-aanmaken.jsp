@@ -28,7 +28,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">
+		      <a class="navbar-brand" href="login-docent.jsp">
 				<img alt="" src="images/logo.png" style="height: 25px"></img>
 		      </a>
 		    </div>
@@ -60,6 +60,7 @@
 			            <li><a href="studentcode-aanmaken.jsp">Aanmaken</a></li>
 		   			</ul>
 		        </li>
+		        <li><a href="logout-docent.do">Log Uit</a></li>
 	          </ul>
 	        </div>
 	      </div>

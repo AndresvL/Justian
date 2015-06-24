@@ -4,7 +4,7 @@
 <%
  if (session.getAttribute("student") == null) {
 %>
-<jsp:forward page="login-docent.jsp" />
+<jsp:forward page="login-student.jsp" />
 <%
  }
 %>
@@ -26,7 +26,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">
+		      <a class="navbar-brand">
 				<img alt="" src="images/logo.png" style="height: 25px"></img>
 		      </a>
 		    </div>
@@ -47,7 +47,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-					<a href="login-student.jsp" class="btn btn-default">beëindigen</a>
+					<a href="logout-student.do" class="btn btn-default">beëindigen</a>
 				</div>
 			</div>
 		</div>

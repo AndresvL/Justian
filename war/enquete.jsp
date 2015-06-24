@@ -4,7 +4,7 @@
 <%
  if (session.getAttribute("student") == null) {
 %>
-<jsp:forward page="login-docent.jsp" />
+<jsp:forward page="login-student.jsp" />
 <%
  }
 %>
@@ -26,21 +26,23 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">
+		      <a class="navbar-brand">
 				<img alt="" src="images/logo.png" style="height: 25px"></img>
 		      </a>
 		    </div>
 	      </div>
 	    </nav>	
 		<div class="container" id="content">
-			<form action="enquete.do">
+			<form action="enquete.do" method="post">
 				<div class="row">
 					<div class="col-md-4 col-md-offset-1">
 						<h3>Enquete - Deel 1</h3>
 						<p>Vul deze kleine enquete in voordat de toets begint.</p>
 					</div>
 				</div>
+				<input type="hidden" name="msgs" value="${msgs}">
 				<div class="row form-group">
+
 					<div class="col-md-2 col-md-offset-1">
 						<label>School</label>
 					</div>

@@ -90,7 +90,7 @@ public final class DocentDAO {
 		ds.put(docent);
 	}
 	public static void createBeheerder() {
-		Entity docent = new Entity("Docent");
+		Entity docent = new Entity("Docent", "justianmind@gmail.com");
 		docent.setProperty("email", "justianmind@gmail.com");
 		docent.setProperty("voornaam", "Justian");
 		docent.setProperty("achternaam", "Mind");

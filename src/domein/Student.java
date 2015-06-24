@@ -5,6 +5,10 @@ import java.io.Serializable;
 
 public class Student implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6084012180678435361L;
 	private boolean firstTime;
 	private String docentEmail;
 	private int code;

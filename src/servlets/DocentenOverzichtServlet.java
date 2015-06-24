@@ -14,7 +14,12 @@ import domein.Docent;
 import domein.Vraag;
 
 public class DocentenOverzichtServlet extends HttpServlet{
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8578648337310405243L;
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
@@ -23,6 +28,7 @@ public class DocentenOverzichtServlet extends HttpServlet{
 	Docent x = new Docent();
 	x = DocentDAO.getDocentByEmail(email);
 
+	req.getSession().setAttribute("docentbewerk", x);
 	req.getSession().setAttribute("voornaam", x.getVoornaam());
 	req.getSession().setAttribute("achternaam", x.getAchternaam());
 	req.getSession().setAttribute("email", x.getEmail());
