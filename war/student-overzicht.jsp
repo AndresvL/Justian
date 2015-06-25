@@ -98,6 +98,11 @@
 						</table>
 					</div>
 				</div>
+				<div class="col-md-2">
+					<form action="alleResultaten.zip">
+						<button class="btn btn-default vol" type="submit">Exporteer Alles</button>
+					</form>
+				</div>
 			</div>
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-bottom" id="footernew">
