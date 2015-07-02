@@ -194,7 +194,7 @@ public final class ToetsDAO {
 		Query q = new Query("Toets").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			if (toetsnr < Integer.parseInt(e.getProperty("toetsNummer").toString())) {
+			if (toetsnr <= Integer.parseInt(e.getProperty("toetsNummer").toString())) {
 				toetsnr = Integer.parseInt(e.getProperty("toetsNummer").toString());
 			}
 		}	
@@ -210,5 +210,35 @@ public final class ToetsDAO {
 			toetsnummers.add(Integer.parseInt(e.getProperty("toetsNummer").toString()));
 		} 
 		return toetsnummers;
+	}
+	
+	public static int[][] getCorrecteCategorien() {
+		  int[][] aantalGoedPerCat = new int[getHoogsteToetsNummer()][4];
+		  Query q = new Query("Antwoord");
+		  Query q2 = new Query("vraag");
+		  PreparedQuery pq = ds.prepare(q);
+		  PreparedQuery pq2 = ds.prepare(q2);
+		  for(Entity e : pq.asIterable()){
+		   for(Entity e2 : pq2.asIterable()){
+		    if(e2.getProperty("id") == e.getProperty("vraagNummer")){
+		     if((e2.getProperty("checkAntwoord").equals("true"))){
+		      switch((String)e2.getProperty("categorie")){
+
+		      case "getal": if(aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0] == 0) aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0] = 0; else aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0]++; continue;
+		      case "verhouding": if(aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0] == 0) aantalGoedPerCat[(int)e.getProperty("toetsNummer")][1] = 0; else aantalGoedPerCat[(int)e.getProperty("toetsNummer")][1]++; continue;
+		      case "verband": if(aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0] == 0) aantalGoedPerCat[(int)e.getProperty("toetsNummer")][2] = 0; else aantalGoedPerCat[(int)e.getProperty("toetsNummer")][2]++; continue;
+		      case "meet": if(aantalGoedPerCat[(int)e.getProperty("toetsNummer")][0] == 0) aantalGoedPerCat[(int)e.getProperty("toetsNummer")][3] = 0; else aantalGoedPerCat[(int)e.getProperty("toetsNummer")][3]++; continue;
+		      default: continue;
+		      }
+		     }
+		    }
+		   }
+		  }
+		  return aantalGoedPerCat;
+		 }
+
+	private static int getHoogsteToetsNummer() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

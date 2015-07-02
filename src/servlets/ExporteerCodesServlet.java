@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.csvreader.CsvWriter;
+import com.opencsv.CSVWriter;
 
 
 public class ExporteerCodesServlet extends HttpServlet{
@@ -21,20 +21,16 @@ public class ExporteerCodesServlet extends HttpServlet{
 		String[] codes = (String[])req.getSession().getAttribute("codes");
 		
 		resp.setContentType("application/zip");
-		   resp.setStatus(HttpServletResponse.SC_OK);
+			resp.setStatus(HttpServletResponse.SC_OK);
 		    ZipOutputStream zipOut = new ZipOutputStream(resp.getOutputStream());
-		    try {
-		    		
-		            zipOut.putNextEntry(new ZipEntry("codes.csv"));
-		            CsvWriter mySerializer = new CsvWriter(new OutputStreamWriter(zipOut), ';');
-		            for(String s : codes){
-		            		mySerializer.flush();
-		            		mySerializer.write(s);
-		            	}
-		            
-		            zipOut.closeEntry();
-
+		    CSVWriter writer = new CSVWriter(new OutputStreamWriter(zipOut), ';');
+		    try {		    		
+	            zipOut.putNextEntry(new ZipEntry("codes.csv"));
+	            writer.flush();
+            	writer.writeNext(codes);	
+	            	
 		    } finally { 
+		    	writer.close();
 		        zipOut.close();
 		    }
 		}

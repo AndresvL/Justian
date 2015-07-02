@@ -49,9 +49,17 @@ public class Vraag implements Serializable{
 	public boolean isRekenmachine() {
 		return rekenmachine;
 	}
-
+	
 	public void setRekenmachine(boolean rekenmachine) {
 		this.rekenmachine = rekenmachine;
+	}
+	
+	public void setBlobRekenmachine(int rekenmachine) {
+		if(rekenmachine == 0){
+			this.rekenmachine = false;
+		}else{
+			this.rekenmachine = true;
+		}
 	}
 	public int getNummer() {
 		return nummer;
@@ -66,7 +74,11 @@ public class Vraag implements Serializable{
 	}
 
 	public void setContext(String context) {
-		this.context = context;
+		if(context.equals("NULL")){
+			this.context = context;
+		}else{
+			this.context = "";
+		}
 	}
 
 	public String getAfbeelding() {

@@ -25,40 +25,6 @@
 	    </nav>	
 		<div class="container" id="content">
 			<div class="row">
-				<h2>Welkom bij Justianmind</h2>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<p>Duur van de toets is 120 minuten.</p>
-					<p>Je mag je antwoorden uitwerken op een kladblad.</p>
-					<p>Rekenmachine wordt gegeven wanneer deze gebruikt mag worden</p>
-					<p>Bij het invullen van een negatief getal, een breuk of een groot getal moet je dat op de volgende manier doen.</p>
-					<br/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-5">
-					<table class="table">
-						<tr>
-							<th>Negatief getal</th>
-							<th>Geen punt voor duizentallen</th>
-							<th>Breuk</th>
-						</tr>
-						<tr>
-							<td>-3,5</td>
-							<td>32342,45</td>
-							<td>1/8</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<p><b>Let op!</b> Bekijk je antwoord goed voordat je op volgende drukt, want je kan niet terug naar de vorige vraag.</p>
-					<br/>
-				</div>
-			</div>
-			<div class="row">
 				<h2>Log hier in als Student</h2>
 			</div>
 			<div class="row">
@@ -78,7 +44,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" position = "center">
 				<form id="studentInlog" action="/login-student.do" method="get">
 	  				<div class="col-md-3">
 						<input class="form-group form-control" type="number" name="code" placeholder="Voer hier uw code in" required autofocus="on">

@@ -5,7 +5,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javacsv.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (1)"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/servlet-api-3.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/opencsv-3.4.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

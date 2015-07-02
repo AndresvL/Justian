@@ -1,5 +1,4 @@
 package servlets;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -26,12 +25,9 @@ public class ExporteerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		try{
-			Integer.parseInt(req.getParameter("toetsNr"));
-			}
-		catch(NumberFormatException nfe){
-			nfe.printStackTrace(new PrintWriter(System.out));
-		}
+		
+		
+		
 		ArrayList<Antwoord> antwoorden = ToetsDAO.getAntwoordenByToetsNr(Integer.parseInt(req.getParameter("toetsNr")));
 		resp.setContentType("application/zip");
 		resp.setStatus(HttpServletResponse.SC_OK);
@@ -43,8 +39,9 @@ public class ExporteerServlet extends HttpServlet {
 			List<String[]> myData = getMyData(antwoorden);
 			for(String s[] : myData){	
 				for(String s2 : s){
-					mySerializer.flush();
+					
 					mySerializer.write(s2);
+					mySerializer.flush();
 				}
 				mySerializer.write("\n");
 			}

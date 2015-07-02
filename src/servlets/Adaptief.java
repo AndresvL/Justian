@@ -13,13 +13,14 @@ public class Adaptief implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 592535668166401344L;
-	private static ArrayList<Vraag> vr = VraagDAO.alleVragen();	
-	private static ArrayList<Vraag> set1;
-	private static ArrayList<Vraag> set2;
-	private static ArrayList<Vraag> set3;
+	private static ArrayList<Vraag> vr;
+	private static ArrayList<Integer> set1;
+	private static ArrayList<Integer> set2;
+	private static ArrayList<Integer> set3;
 	
-	public static ArrayList<Vraag> set1() {
-		set1  = new ArrayList<Vraag>();
+	public static ArrayList<Integer> set1(ArrayList<Vraag> vragen) {
+		vr = vragen;
+		set1  = new ArrayList<Integer>();
 		int meet = 0;
 		int verband = 0;
 		int verhouding = 0;
@@ -30,25 +31,25 @@ public class Adaptief implements Serializable{
 			if (v.getType().equals("meet")) {
 				if (meet < 5) {
 					meet++;
-					set1.add(v);
+					set1.add(v.getNummer());
 				}
 			}
 			if (v.getType().equals("verband")) {
 				if (verband < 5) {
 					verband++;
-					set1.add(v);
+					set1.add(v.getNummer());
 				}
 			}
 			if (v.getType().equals("getal")) {
 				if (getal < 5) {
 					getal++;
-					set1.add(v);
+					set1.add(v.getNummer());
 				}
 			}
 			if (v.getType().equals("verhouding")) {
 				if (verhouding < 5) {
 					verhouding++;
-					set1.add(v);
+					set1.add(v.getNummer());
 				}
 			}
 		}
@@ -74,15 +75,18 @@ public class Adaptief implements Serializable{
 	 * @param set
 	 * @return ArrayList set2
 	 */
-	public static ArrayList<Vraag> set2(ArrayList<Antwoord> antwoorden, ArrayList<Vraag> set) {
+	public static ArrayList<Integer> set2(ArrayList<Antwoord> antwoorden, ArrayList<Vraag> set) {
 		int meet = 0;
 		int verband = 0;
 		int verhouding = 0;
 		int getal = 0;
 		int totaal = set.size();		
-		set2 = new ArrayList<Vraag>();
+		vr = set;
+		System.out.println("set2" + vr);
+		set2 = new ArrayList<Integer>();
 		for (int i = 0; i < totaal-1; i++) {
-			if (!antwoorden.isEmpty()) {
+			if (antwoorden != null) {
+				System.out.println("i " + i);
 				Boolean antwoord = antwoorden.get(i).checkAntwoord();
 				// als antwoord onjuist is
 				if (!antwoord) {
@@ -166,19 +170,18 @@ public class Adaptief implements Serializable{
 	 * @param set
 	 * @return ArrayList set3
 	 */
-	public static ArrayList<Vraag> set3(ArrayList<Antwoord> antwoorden, ArrayList<Vraag> set) {
+	public static ArrayList<Integer> set3(ArrayList<Antwoord> antwoorden, ArrayList<Vraag> set) {
 		int meet = 0;
 		int verband = 0;
 		int verhouding = 0;
 		int getal = 0;
 		int totaal = set.size();		
-		System.out.println("totaal " + totaal);
-
-		set3 = new ArrayList<Vraag>();
-		for (int i = 19; i < totaal-1; i++) {
+		vr = set;
+		set3 = new ArrayList<Integer>();
+		for (int i = 20; i < totaal-1; i++) {
 			if (!antwoorden.isEmpty()) {
 				Boolean antwoord = antwoorden.get(i).checkAntwoord();
-				System.out.println("antwoord " + antwoorden.get(i).getNummer());
+				System.out.println("antwoord " + antwoorden.get(i));
 				// als antwoord onjuist is
 				if (!antwoord) {
 					if (set.get(i).getType().equals("meet")) {
@@ -202,7 +205,6 @@ public class Adaptief implements Serializable{
 		}
 		int aantalFout = meet + verband + verhouding + getal;
 		int restAantal = 20 - aantalFout;
-		System.out.println("rest"+ restAantal);
 		ArrayList<Integer> type = new ArrayList<Integer>();
 		type.add(meet);
 		type.add(verband);
@@ -241,19 +243,17 @@ public class Adaptief implements Serializable{
 	}
 
 	public static void addVraag2(String type) {
-		Collections.shuffle(vr);
 		for (Vraag vraag : vr) {
 			if (vraag.getType().equals(type)) {
-				set2.add(vraag);	
+				set2.add(vraag.getNummer());	
 				break;
 			}			
 		}
 	}
 	public static void addVraag3(String type) {
-		Collections.shuffle(vr);
 		for (Vraag vraag : vr) {
 			if (vraag.getType().equals(type)) {
-				set3.add(vraag);	
+				set3.add(vraag.getNummer());	
 				break;
 			}			
 		}

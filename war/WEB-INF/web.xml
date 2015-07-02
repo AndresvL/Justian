@@ -185,4 +185,13 @@
 		<servlet-name>code exporteren servlet</servlet-name>
 		<url-pattern>/codeExport.zip</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>toetsen exporteren servlet</servlet-name>
+		<servlet-class>servlets.ExporteerAllServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>toetsen exporteren servlet</servlet-name>
+		<url-pattern>/alleResultaten.zip</url-pattern>
+	</servlet-mapping>
 </web-app> 

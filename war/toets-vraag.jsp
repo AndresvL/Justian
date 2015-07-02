@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
-<%
+<%-- <%
  if (session.getAttribute("student") == null) {
-%>
-<jsp:forward page="login-student.jsp" />
-<%
+%> --%>
+<%-- <jsp:forward page="login-student.jsp" /> --%>
+<%-- <%
  }
-%>
+%> --%>
 <html>
 	<head>
 		<meta charset="utf-8 u00E0"/>

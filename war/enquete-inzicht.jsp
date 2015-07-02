@@ -42,7 +42,7 @@
 				</div>
 				<div class="row form-group">
 					<div class="col-md-3 col-md-offset-1">
-						<label>Wat is 198*12?</label>
+						<label>Hoeveel liter past er in een m3</label>
 					</div>
 					<div class="col-md-3">
 						<input class="form-control" type="text" name="watIsRekensom" required autofocus >

@@ -16,20 +16,18 @@ public class EnqueteInzichtServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -2941548112770177902L;
-
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		Student stud = new Student();
-		stud = (Student) req.getSession().getAttribute("huidigeStudent");
-		
+		RequestDispatcher rd = null;
+		Student stud = (Student) req.getSession().getAttribute("student");	
 		stud.setWatIsRekensom(req.getParameter("watIsRekensom"));
 		stud.setHoogteEiffeltoren(req.getParameter("hoogteEiffeltoren"));
 		stud.setAantMobieleTelefoons(req.getParameter("aantMobieleTelefoons"));
-		
-		StudentDAO.fillStudent(stud);
-		RequestDispatcher rd = null;
-		rd = req.getRequestDispatcher("toets-vraag.jsp");
+		req.getSession().setAttribute("student", stud);
+		System.out.println("studentnr inzicht" + stud.getCode());
+		StudentDAO.fillStudent(stud);		
+		rd = req.getRequestDispatcher("toets-begin.jsp");
 		rd.forward(req, resp);
 	}
-
 }

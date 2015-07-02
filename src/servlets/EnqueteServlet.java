@@ -16,13 +16,11 @@ public class EnqueteServlet extends HttpServlet implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4596112393549239366L;
-	private Student s = new Student();
-
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		Student stud = (Student) req.getSession().getAttribute("student");
-		System.out.println("stud " + stud.getCode());
-		s.setCode(stud.getCode());
+		RequestDispatcher rd = null;
+		Student s = (Student) req.getSession().getAttribute("student");
 		s.setSchool(req.getParameter("school"));
 		s.setJaar(req.getParameter("lesjaar"));
 		s.setProfiel(req.getParameter("profiel"));
@@ -31,8 +29,8 @@ public class EnqueteServlet extends HttpServlet implements Serializable{
 		s.setGemCijfer(req.getParameter("gemWisCijfer"));
 		String datum = req.getParameter("blijvenZitten");
 		s.setIsBlijvenZitten(datum);
-		req.getSession().setAttribute("huidigeStudent", s);
-		RequestDispatcher rd = null;
+		System.out.println("studentnr enquete" + s.getCode());
+		req.getSession().setAttribute("student", s);
 		rd = req.getRequestDispatcher("enquete-inzicht.jsp");
 		rd.forward(req, resp);
 	}

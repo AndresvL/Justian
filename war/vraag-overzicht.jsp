@@ -73,44 +73,6 @@
 				<h3>Vragen Overzicht</h3>
 			</div>
 			<div class="row">
-				<div class="col-md-1">
-					<form class="form-group">
-						<div class="row">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="context" checked>Context
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="non-context" checked>Non-Context
-								</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="meet" checked>Meetkunde
-								</label>
-							</div>							
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="getal" checked>Getallen
-								</label>
-							</div>							
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="verhoud" checked>Verhoudingen
-								</label>
-							</div>							
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="verband" checked>Verbanden
-								</label>
-							</div>							
-						</div>
-					</form>
-				</div>
 				<div class="col-md-10 col-md-offset-1">
 					<div class="tablecontent">
 						<table class="table table-striped">

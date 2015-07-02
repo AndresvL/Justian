@@ -12,7 +12,6 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -99,35 +98,25 @@ public final class VraagDAO {
 	 * @param vr
 	 * het vraag object dat toegevoegd dient te worden
 	 */
-	public static void addVraagSet(ArrayList<Vraag> set, int code, int aantal) {
+	public static void addVraagSet(ArrayList<Integer> set, int code, int aantal) {
 		for(int i = 0; i<set.size(); i++){
 			aantal ++;
 			Entity vraag = new Entity("VraagSet");
 			vraag.setProperty("id", aantal);
 			vraag.setProperty("studentNummer", code);
-			vraag.setProperty("vraagNummer", set.get(i).getNummer());
+			vraag.setProperty("vraagNummer", set.get(i));
 			ds.put(vraag);
 		}
 	}
 	
-	public static ArrayList<Vraag> getVraagSet(int code) {
-		ArrayList<Vraag> set = new ArrayList<Vraag>();
-		Vraag vr = null;
+	public static ArrayList<Integer> getVraagSet(int code) {
+		ArrayList<Integer> set = new ArrayList<Integer>();
 		Filter filter = new FilterPredicate("studentNummer",FilterOperator.EQUAL, code);
 		Query q = new Query("VraagSet").setFilter(filter);
 		PreparedQuery pq = ds.prepare(q);
 		for (Entity e : pq.asIterable()) {
-			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());			
-			Vraag v = ToetsDAO.getVraagByNr(nummer);
-			String context = v.getContext();
-			boolean rekenmachine = (Boolean) v.isRekenmachine();
-			Text afbeelding = new Text(v.getAfbeelding());
-			String cat = v.getType();
-			String antwoord = v.getAntwoord();		
-			String opgave = v.getVraagstelling();
-			vr = new Vraag(rekenmachine, nummer, context, afbeelding, cat,
-					opgave, antwoord);
-			set.add(vr);		
+			int nummer = Integer.parseInt(e.getProperty("vraagNummer").toString());	
+			set.add(nummer);		
 		}
 		return set;
 	}
@@ -174,7 +163,9 @@ public final class VraagDAO {
 				vr.setNummer(Integer.parseInt(inhoud[0]));
 				vr.setType(inhoud[1]);
 				vr.setVraagstelling(inhoud[2]);
-				vr.setRekenmachine(Boolean.parseBoolean(inhoud[3]));
+				System.out.println("vr.setRekenmachine String " + inhoud[3]);
+				System.out.println("vr.setRekenmachine boolean " + Boolean.parseBoolean(inhoud[3]));
+				vr.setBlobRekenmachine(Integer.parseInt(inhoud[3]));
 				vr.setContext(inhoud[4]);
 				String afbeelding = inhoud[5].replaceAll("\r\n", "");
 				vr.setBlobAfbeelding(afbeelding);
@@ -209,8 +200,9 @@ public final class VraagDAO {
 		PreparedQuery pq = ds.prepare(q);
 		int toetsNummer = 0;
 		for (Entity toets : pq.asIterable()) {
-			toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer")
-					.toString());
+			if(toetsNummer <= Integer.parseInt(toets.getProperty("toetsNummer").toString())){
+				toetsNummer = Integer.parseInt(toets.getProperty("toetsNummer").toString());
+			}	
 		}
 		int vraagNummer = 0;
 		if (toetsNummer > 0) {
@@ -218,10 +210,8 @@ public final class VraagDAO {
 			Query q1 = new Query("Antwoord").setFilter(filter1);
 			PreparedQuery pq1 = ds.prepare(q1);
 			for (Entity antwoord : pq1.asIterable()) {
-				if (vraagNummer < Integer.parseInt(antwoord.getProperty(
-						"antwoordNummer").toString())) {
-					vraagNummer = Integer.parseInt(antwoord.getProperty(
-							"antwoordNummer").toString());
+				if (vraagNummer <= Integer.parseInt(antwoord.getProperty("antwoordNummer").toString())) {
+					vraagNummer = Integer.parseInt(antwoord.getProperty("antwoordNummer").toString());
 				}
 			}
 		}
