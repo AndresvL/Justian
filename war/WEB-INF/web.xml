@@ -47,6 +47,14 @@
 		<servlet-name>exporteer servlet</servlet-name>
 		<url-pattern>/exporteer.zip</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>exporteer alles servlet</servlet-name>
+		<servlet-class>servlets.ExporteerAllServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>exporteer alles servlet</servlet-name>
+		<url-pattern>/alleResultaten.zip</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>login student servlet</servlet-name>
